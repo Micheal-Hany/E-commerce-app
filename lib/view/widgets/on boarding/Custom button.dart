@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/onording_controller.dart';
 import 'package:store_app/core/constant/colors.dart';
+import 'package:get/get.dart';
 
-class CustomButtonOnBoarding extends StatelessWidget {
+class CustomButtonOnBoarding extends GetView<onBordingControllerImplment> {
   const CustomButtonOnBoarding({Key? key}) : super(key: key);
 
   @override
@@ -12,7 +14,9 @@ class CustomButtonOnBoarding extends StatelessWidget {
       child: MaterialButton(
           padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 0),
           textColor: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            controller.next();
+          },
           color: AppColor.primaryColor,
           child: const Text("Continue")),
     );

@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/onording_controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/data/data%20source/static/static.dart';
+import 'package:get/get.dart';
 
-class CustomSelider extends StatelessWidget {
+class CustomSelider extends GetView<onBordingControllerImplment> {
   const CustomSelider({
     super.key,
   });
@@ -11,6 +12,10 @@ class CustomSelider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
+      controller: controller.pageController,
+      onPageChanged: (value) {
+        controller.onPageChanged(value);
+      },
       itemCount: onboardingList.length,
       itemBuilder: (context, index) {
         return Column(

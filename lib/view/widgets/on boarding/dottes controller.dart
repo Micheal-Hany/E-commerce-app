@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/onording_controller.dart';
 import 'package:store_app/data/data%20source/static/static.dart';
-
+import 'package:get/get.dart';
 import '../../../core/constant/colors.dart';
 
 class DottesController extends StatelessWidget {
@@ -10,22 +11,24 @@ class DottesController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ...List.generate(
-          onboardingList.length,
-          (index) => AnimatedContainer(
-            duration: const Duration(microseconds: 900),
-            width: 6,
-            height: 6,
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            decoration: BoxDecoration(
-                color: AppColor.primaryColor,
-                borderRadius: BorderRadius.circular(10)),
-          ),
-        )
-      ],
+    return GetBuilder<onBordingControllerImplment>(
+      builder: (controller) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ...List.generate(
+            onboardingList.length,
+            (index) => AnimatedContainer(
+              duration: const Duration(milliseconds: 600),
+              width: controller.currentPage == index ? 20 : 5,
+              height: 6,
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              decoration: BoxDecoration(
+                  color: AppColor.primaryColor,
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
