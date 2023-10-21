@@ -4,6 +4,7 @@ import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/routs.dart';
+import 'package:store_app/view/screens/language.dart';
 
 import 'view/screens/on boarding.dart';
 
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: routes,
-      home: const OnBording(),
+      // home: const OnBording(),
+      home: const Language(),
     );
   }
 }
