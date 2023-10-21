@@ -14,6 +14,7 @@ class CustomButtonOnBoarding extends GetView<onBordingControllerImplment> {
       child: MaterialButton(
           padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 0),
           textColor: Colors.white,
+          
           onPressed: () {
             controller.next();
           },

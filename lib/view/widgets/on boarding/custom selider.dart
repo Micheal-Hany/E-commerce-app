@@ -37,11 +37,7 @@ class CustomSelider extends GetView<onBordingControllerImplment> {
                 child: Text(
                   onboardingList[index].body!,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      height: 2,
-                      color: AppColor.grey,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 )),
           ],
         );
