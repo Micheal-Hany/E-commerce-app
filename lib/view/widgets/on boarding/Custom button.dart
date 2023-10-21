@@ -9,17 +9,33 @@ class CustomButtonOnBoarding extends GetView<onBordingControllerImplment> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 30),
-      height: 40,
-      child: MaterialButton(
-          padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 0),
-          textColor: Colors.white,
-          
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 50),
+        // margin: const EdgeInsets.only(bottom: 30),
+        child: TextButton(
           onPressed: () {
             controller.next();
           },
-          color: AppColor.primaryColor,
-          child: const Text("Continue")),
-    );
+          style: const ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(Color(0xff8a5365)),
+          ),
+          child: Text(
+            "Continue",
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: Colors.white),
+          ),
+        ));
   }
 }
+
+
+// MaterialButton(
+//           padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 0),
+//           textColor: Colors.white,
+//           onPressed: () {
+//             controller.next();
+//           },
+//           color: const Color(0xff8a5365),
+//           child: const Text("Continue")),

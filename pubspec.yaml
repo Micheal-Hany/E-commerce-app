@@ -28,39 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  # jiffy:
-  # intl:
-  # http:
-  # cached_network_image:
-  # image_picker:
-  # show_up_animation:
-  # auto_animated:
-  # flutter_polyline_points:
-  # google_maps_flutter:
-  # geolocator:
-  # geocoding:
-  # firebase_messaging:
-  # firebase_core:
-  # flutter_local_notifications:
-  # cloud_firestore:
-  # sqflite:
-  # shared_preferences:
-  # path:
-  # qr_flutter:
-  # scan:
-  # grouped_list:
-  # url_launcher:
-  # dropdown_search:
-  # badges:
-  # font_awesome_flutter:
-  # fluttericon:
-  # dartz:
-  # google_sign_in:
-  # device_preview:
-  # responsive_builder:
-  # image_pickers:
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -70,6 +37,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   get: ^4.6.6
+  shared_preferences: ^2.2.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -103,6 +71,5 @@ flutter:
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
           weight: 700
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

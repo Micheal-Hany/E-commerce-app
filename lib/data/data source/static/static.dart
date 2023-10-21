@@ -4,23 +4,15 @@ import '../../model/onBordingModel.dart';
 
 List<OnBoardingModel> onboardingList = [
   OnBoardingModel(
-      title: 'Choose Product',
-      body:
-          'We have 100k Product , choose \n your product from our E-commerce shop',
+      title: 'Find Favorite Item',
+      body: 'find your favorite product that you wnat to\nbuy easily',
       imageUrl: ImageAssets.onBordingImageOne),
   OnBoardingModel(
-      title: 'Easy & Safe Payment',
-      body:
-          'We have 100k Product , choose \n your product from our E-commerce shop',
+      title: 'Easy and Safe Payment',
+      body: 'pay for the products you buy safely and\neasily',
       imageUrl: ImageAssets.onBordingImageTwo),
   OnBoardingModel(
-      title: 'Track your Order',
-      body:
-          'We have 100k Product , choose \n your product from our E-commerce shop',
+      title: 'Product Delivary',
+      body: 'your product is delivared to your home \nsafely and securly',
       imageUrl: ImageAssets.onBordingImageThree),
-  OnBoardingModel(
-      title: 'Fast Delivary',
-      body:
-          'We have 100k Product , choose \n your product from our E-commerce shop',
-      imageUrl: ImageAssets.onBordingImageFour),
 ];

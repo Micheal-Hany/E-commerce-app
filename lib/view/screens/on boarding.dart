@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/onording_controller.dart';
+import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/view/widgets/on%20boarding/custom%20selider.dart';
 
 import '../widgets/on boarding/Custom button.dart';
@@ -13,6 +14,7 @@ class OnBording extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(onBordingControllerImplment());
     return const Scaffold(
+      backgroundColor: AppColor.backgrounmfColor,
       body: SafeArea(
         child: Column(
           children: [

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/colors.dart';
+import 'package:store_app/core/localization/translation.dart';
+import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/routs.dart';
 
 import 'view/screens/on boarding.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initServices();
   runApp(const MyApp());
 }
 
@@ -15,14 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      //   useMaterial3: true,
-      // ),
       theme: ThemeData(
-        fontFamily: "PlayfairDisplay",
+        fontFamily: "Cairo",
         textTheme: const TextTheme(
             displayLarge: TextStyle(
                 fontWeight: FontWeight.bold,
