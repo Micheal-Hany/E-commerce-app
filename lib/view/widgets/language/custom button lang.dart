@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/core/constant/colors.dart';
 
 class CustomButtonLang extends StatelessWidget {
   final String textbutton;
@@ -13,7 +12,7 @@ class CustomButtonLang extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 100),
       width: double.infinity,
       child: MaterialButton(
-        color: AppColor.primaryColor,
+        color: const Color(0xff8a5365),
         textColor: Colors.white,
         onPressed: onPressed,
         child: Text(textbutton,
