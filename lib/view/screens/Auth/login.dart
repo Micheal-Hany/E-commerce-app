@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
+import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
+import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
+import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -28,62 +31,29 @@ class Login extends StatelessWidget {
       body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
-            children: [
-              const SizedBox(
+            children: const [
+              SizedBox(
                 height: 30,
               ),
-              Text(
-                'Welcome Back',
-                style: Theme.of(context)
-                    .textTheme
-                    .displayLarge!
-                    .copyWith(fontSize: 28),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 18),
-              Text(
-                'Sign in with your Emai and Password\nor continue with social Media',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge!
-                    .copyWith(height: 1.3),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 18),
-              const CustomTextFormFiled(
+              CustomTextAuthTitle(title: 'Welcome Back'),
+              SizedBox(height: 18),
+              CustomTextBodyAuth(
+                  bodyText:
+                      'Sign in with your Emai and Password\nor continue with social Media'),
+              SizedBox(height: 80),
+              CustomTextFormFiled(
+                mrController: null,
                 iconData: Icons.email_outlined,
-                lableTitle: '   Email   ',
+                lableTitle: 'Email',
               ),
-              const SizedBox(height: 18),
-              const CustomTextFormFiled(
+              SizedBox(height: 30),
+              CustomTextFormFiled(
+                mrController: null,
                 iconData: Icons.lock,
-                lableTitle: '   Password   ',
+                lableTitle: 'Password',
               )
             ],
           )),
-    );
-  }
-}
-
-class CustomTextFormFiled extends StatelessWidget {
-  const CustomTextFormFiled(
-      {super.key, required this.lableTitle, required this.iconData});
-  final String lableTitle;
-  final IconData iconData;
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: AppColor.grey,
-      decoration: InputDecoration(
-        suffixIcon: Icon(iconData),
-        suffixIconColor: AppColor.grey,
-        labelStyle: const TextStyle(color: AppColor.grey),
-        focusedBorder:
-            OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-        label: Text(lableTitle),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
-      ),
     );
   }
 }
