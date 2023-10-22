@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
+import 'package:store_app/view/widgets/Auth/Custom%20Go%20To%20Register%20Page.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
+import 'package:store_app/view/widgets/Auth/custom%20button%20Auth.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -31,27 +33,50 @@ class Login extends StatelessWidget {
       body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 height: 30,
               ),
-              CustomTextAuthTitle(title: 'Welcome Back'),
-              SizedBox(height: 18),
-              CustomTextBodyAuth(
+              Image.asset(
+                'assets/images/logo.png',
+                width: 100,
+                height: 100,
+              ),
+              const CustomTextAuthTitle(title: 'Welcome Back'),
+              const SizedBox(height: 18),
+              const CustomTextBodyAuth(
                   bodyText:
                       'Sign in with your Emai and Password\nor continue with social Media'),
-              SizedBox(height: 80),
-              CustomTextFormFiled(
+              const SizedBox(height: 80),
+              const CustomTextFormFiled(
                 mrController: null,
                 iconData: Icons.email_outlined,
                 lableTitle: 'Email',
               ),
-              SizedBox(height: 30),
-              CustomTextFormFiled(
+              const SizedBox(height: 30),
+              const CustomTextFormFiled(
                 mrController: null,
                 iconData: Icons.lock,
                 lableTitle: 'Password',
-              )
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              const Text(
+                'Forget password',
+                textAlign: TextAlign.end,
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CustomButtonAuth(
+                onPressed: () {},
+                title: 'Log in',
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const CustomGoToRegisterPage()
             ],
           )),
     );
