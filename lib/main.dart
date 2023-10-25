@@ -4,7 +4,6 @@ import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/routs.dart';
-import 'package:store_app/view/screens/Auth/login.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/widgets/language/change_Language.dart';
 
@@ -40,7 +39,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: routes,
-        // home: const OnBording(),
-        home: const Login());
+        //home: const Test());
+
+        home: const Language());
   }
 }

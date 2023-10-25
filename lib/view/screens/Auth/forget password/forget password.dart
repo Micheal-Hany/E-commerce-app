@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Auth/login%20controller.dart';
+import 'package:store_app/controller/Auth/forget%20password%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20Go%20To%20Register%20Page.dart';
@@ -8,14 +8,13 @@ import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
 import 'package:store_app/view/widgets/Auth/custom%20button%20Auth.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class ForgetPassword extends StatelessWidget {
+  const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    LoginControllerImpl controller = Get.put(LoginControllerImpl());
-    // ForgeTPasswordControllerimpl fotgetController =
-    //     Get.put(ForgeTPasswordControllerimpl());
+    ForgeTPasswordControllerimpl controller =
+        Get.put(ForgeTPasswordControllerimpl());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgrounmfColor,
@@ -30,7 +29,7 @@ class Login extends StatelessWidget {
           color: Color.fromARGB(255, 35, 35, 35),
         ),
         title: Text(
-          '9'.tr,
+          '14'.tr,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
@@ -41,51 +40,30 @@ class Login extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: 100,
-                height: 100,
-              ),
-              CustomTextAuthTitle(title: '10'.tr),
+              CustomTextAuthTitle(title: '27'.tr),
               const SizedBox(height: 18),
-              CustomTextBodyAuth(bodyText: '11'.tr),
-              const SizedBox(height: 80),
+              CustomTextBodyAuth(bodyText: '29'.tr),
+              const SizedBox(height: 50),
               CustomTextFormFiled(
-                mrController: controller.email,
-                iconData: Icons.email_outlined,
+                mrController: null,
+                iconData: Icons.person,
                 lableTitle: '12'.tr,
-              ),
-              const SizedBox(height: 30),
-              CustomTextFormFiled(
-                mrController: controller.password,
-                iconData: Icons.lock,
-                lableTitle: '13'.tr,
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              InkWell(
-                onTap: () => controller.toForgetPassword(),
-                child: Text(
-                  '14'.tr,
-                  textAlign: TextAlign.end,
-                ),
               ),
               const SizedBox(
                 height: 30,
               ),
               CustomButtonAuth(
-                onPressed: () {},
-                title: '15'.tr,
+                onPressed: () => controller.goToVerifayCode(),
+                title: '30'.tr,
               ),
               const SizedBox(
                 height: 15,
               ),
-              CustomGoToRegisterPageOrLogin(
-                textOne: '16'.tr,
-                textTwo: '17'.tr,
-                onTap: () => controller.goToSignUp(),
-              )
+              // CustomGoToRegisterPageOrLogin(
+              //   textOne: 'Already have an account? ',
+              //   textTwo: 'Sign In',
+              //   onTap: () {},
+              // )
             ],
           )),
     );

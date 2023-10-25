@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 
-class CustomGoToRegisterPage extends StatelessWidget {
-  const CustomGoToRegisterPage({super.key});
-
+class CustomGoToRegisterPageOrLogin extends StatelessWidget {
+  const CustomGoToRegisterPageOrLogin({super.key, required this.textOne, required this.textTwo, required this.onTap});
+  final String textOne;
+  final String textTwo;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Do not have an account? ',
+          textOne,
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 14),
         ),
-        Text('Sign Up',
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .copyWith(fontSize: 14, color: Colors.black))
+        InkWell(
+          onTap: onTap,
+          child: Text(textTwo,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(fontSize: 14, color: Colors.black)),
+        )
       ],
     );
   }

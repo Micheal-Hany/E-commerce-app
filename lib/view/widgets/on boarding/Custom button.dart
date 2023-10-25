@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/onording_controller.dart';
-import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 
 class CustomButtonOnBoarding extends GetView<onBordingControllerImplment> {
@@ -20,7 +19,7 @@ class CustomButtonOnBoarding extends GetView<onBordingControllerImplment> {
             backgroundColor: MaterialStatePropertyAll(Color(0xff8a5365)),
           ),
           child: Text(
-            "Continue",
+            "8".tr,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!

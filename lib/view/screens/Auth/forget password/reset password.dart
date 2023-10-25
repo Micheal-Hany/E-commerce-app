@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Auth/login%20controller.dart';
+import 'package:store_app/controller/Auth/reset%20password%20contreoller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
-import 'package:store_app/view/widgets/Auth/Custom%20Go%20To%20Register%20Page.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
 import 'package:store_app/view/widgets/Auth/custom%20button%20Auth.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class ResetPassword extends StatelessWidget {
+  const ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    LoginControllerImpl controller = Get.put(LoginControllerImpl());
-    // ForgeTPasswordControllerimpl fotgetController =
-    //     Get.put(ForgeTPasswordControllerimpl());
+    ResetPasswordControllerImpl controller =
+        Get.put(ResetPasswordControllerImpl());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgrounmfColor,
@@ -30,7 +28,7 @@ class Login extends StatelessWidget {
           color: Color.fromARGB(255, 35, 35, 35),
         ),
         title: Text(
-          '9'.tr,
+          '35'.tr,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
@@ -41,51 +39,38 @@ class Login extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: 100,
-                height: 100,
-              ),
-              CustomTextAuthTitle(title: '10'.tr),
+              CustomTextAuthTitle(title: '34'.tr),
               const SizedBox(height: 18),
-              CustomTextBodyAuth(bodyText: '11'.tr),
-              const SizedBox(height: 80),
+              //const CustomTextBodyAuth(bodyText: 'Make Your Password Strong'),
+              const SizedBox(height: 50),
               CustomTextFormFiled(
-                mrController: controller.email,
-                iconData: Icons.email_outlined,
-                lableTitle: '12'.tr,
-              ),
-              const SizedBox(height: 30),
-              CustomTextFormFiled(
-                mrController: controller.password,
-                iconData: Icons.lock,
-                lableTitle: '13'.tr,
+                mrController: null,
+                iconData: Icons.person,
+                lableTitle: '35'.tr,
               ),
               const SizedBox(
-                height: 25,
+                height: 30,
               ),
-              InkWell(
-                onTap: () => controller.toForgetPassword(),
-                child: Text(
-                  '14'.tr,
-                  textAlign: TextAlign.end,
-                ),
+              CustomTextFormFiled(
+                mrController: null,
+                iconData: Icons.person,
+                lableTitle: '35'.tr,
               ),
               const SizedBox(
                 height: 30,
               ),
               CustomButtonAuth(
-                onPressed: () {},
-                title: '15'.tr,
+                onPressed: () => controller.goToSuccessResetPassword(),
+                title: '33'.tr,
               ),
               const SizedBox(
                 height: 15,
               ),
-              CustomGoToRegisterPageOrLogin(
-                textOne: '16'.tr,
-                textTwo: '17'.tr,
-                onTap: () => controller.goToSignUp(),
-              )
+              // CustomGoToRegisterPageOrLogin(
+              //   textOne: 'Already have an account? ',
+              //   textTwo: 'Sign In',
+              //   onTap: () {},
+              // )
             ],
           )),
     );
