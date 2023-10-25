@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Auth/signup%20verifay%20code%20controller.dart';
 import 'package:store_app/controller/Auth/verifay%20code%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
@@ -6,12 +7,13 @@ import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
 
-class VerifayCode extends StatelessWidget {
-  const VerifayCode({super.key});
+class SignUpVerifayCode extends StatelessWidget {
+  const SignUpVerifayCode({super.key});
 
   @override
   Widget build(BuildContext context) {
-    VerifayCodeControllerImpl controller = Get.put(VerifayCodeControllerImpl());
+    SignUpVerifayCodeControllerImpl controller =
+        Get.put(SignUpVerifayCodeControllerImpl());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgrounmfColor,
@@ -52,7 +54,7 @@ class VerifayCode extends StatelessWidget {
                   //runs when a code is typed in
                   onCodeChanged: (String code) {
                     //handle validation or checks here
-                    controller.goToRestPassword();
+                    controller.goToSuccessPage();
                   },
                   //runs when every textfield is filled
                   onSubmit: (String verificationCode) {
@@ -67,21 +69,6 @@ class VerifayCode extends StatelessWidget {
                   }, // end onSubmit
                 ),
               ),
-              // const SizedBox(
-              //   height: 30,
-              // ),
-              // CustomButtonAuth(
-              //   onPressed: () {},
-              //   title: 'Check',
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // CustomGoToRegisterPageOrLogin(
-              //   textOne: 'Already have an account? ',
-              //   textTwo: 'Sign In',
-              //   onTap: () {},
-              // )
             ],
           )),
     );

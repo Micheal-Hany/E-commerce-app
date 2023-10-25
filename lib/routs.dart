@@ -7,6 +7,7 @@ import 'package:store_app/view/screens/Auth/forget%20password/reset%20password.d
 import 'package:store_app/view/screens/Auth/sign%20up.dart';
 import 'package:store_app/view/screens/Auth/success_signUp.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/verifay%20code.dart';
+import 'package:store_app/view/screens/Auth/vertifay%20code%20sign%20up.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
 
 import 'view/screens/Auth/login.dart';
@@ -23,4 +24,5 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRouts.checkEmail: (p0) => const CheckEmail(),
   // on Bording
   AppRouts.onBording: (p0) => const OnBording(),
+  AppRouts.signUpVerifayCode: (p0) => const SignUpVerifayCode(),
 };

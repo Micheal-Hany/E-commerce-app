@@ -3,7 +3,7 @@ import 'package:store_app/core/constant/routsName.dart';
 
 abstract class CheckEmailController extends GetxController {
   checkEmail();
-  goToSuccessSigup();
+  goToVerifayCode();
 }
 
 class CheckEmailControllerImpl extends CheckEmailController {
@@ -11,7 +11,7 @@ class CheckEmailControllerImpl extends CheckEmailController {
   checkEmail() {}
 
   @override
-  goToSuccessSigup() {
-    Get.toNamed(AppRouts.signUpSuccess);
+  goToVerifayCode() {
+    Get.toNamed(AppRouts.signUpVerifayCode);
   }
 }

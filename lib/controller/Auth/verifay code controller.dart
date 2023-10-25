@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/routsName.dart';
 
-abstract class VerifayPasswordController extends GetxController {
+abstract class VerifayCodeController extends GetxController {
   checkCode();
   goToRestPassword();
 }
 
-class VerifayPasswordControllerImpl extends VerifayPasswordController {
+class VerifayCodeControllerImpl extends VerifayCodeController {
   late String verifayCode;
 
   @override
