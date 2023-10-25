@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/constant/App%20Theme.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
@@ -24,20 +25,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         locale: controller.language,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          fontFamily: "Cairo",
-          textTheme: const TextTheme(
-              displayLarge: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: AppColor.black),
-              bodyLarge: TextStyle(
-                  height: 2,
-                  color: AppColor.grey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17)),
-          primarySwatch: Colors.blue,
-        ),
+        theme: controller.appTheme,
         routes: routes,
         //home: const Test());
 
