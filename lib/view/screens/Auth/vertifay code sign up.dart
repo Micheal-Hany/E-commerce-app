@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/signup%20verifay%20code%20controller.dart';
-import 'package:store_app/controller/Auth/verifay%20code%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';

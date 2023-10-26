@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Auth/sign%20up%20success%20conteoller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +8,8 @@ class SignUpSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SuccessSignUpControllerImpl controller =
+        Get.put(SuccessSignUpControllerImpl());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -37,10 +40,7 @@ class SignUpSuccess extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: CustomButtomAuth(
-                text: "31".tr,
-                onPressed: () {
-                  // controller.signUp();
-                }),
+                text: "31".tr, onPressed: () => controller.goToLoginPage()),
           ),
           const SizedBox(height: 30)
         ]),

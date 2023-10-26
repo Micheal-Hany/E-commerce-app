@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/reset%20password%20contreoller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
-import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
+import 'package:store_app/core/function/input_validtion.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
 import 'package:store_app/view/widgets/Auth/custom%20button%20Auth.dart';
@@ -44,6 +44,7 @@ class ResetPassword extends StatelessWidget {
               //const CustomTextBodyAuth(bodyText: 'Make Your Password Strong'),
               const SizedBox(height: 50),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 20, "password"),
                 mrController: null,
                 iconData: Icons.person,
                 lableTitle: '35'.tr,
@@ -52,6 +53,7 @@ class ResetPassword extends StatelessWidget {
                 height: 30,
               ),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 20, "password"),
                 mrController: null,
                 iconData: Icons.person,
                 lableTitle: '35'.tr,

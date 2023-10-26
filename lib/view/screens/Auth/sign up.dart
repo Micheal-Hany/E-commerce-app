@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/sign%20up%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/function/input_validtion.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20Go%20To%20Register%20Page.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
@@ -44,24 +45,28 @@ class SignUp extends StatelessWidget {
               CustomTextBodyAuth(bodyText: '24'.tr),
               const SizedBox(height: 80),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 15, "username"),
                 mrController: controller.userName,
                 iconData: Icons.person,
                 lableTitle: '20'.tr,
               ),
               const SizedBox(height: 30),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 30, "email"),
                 mrController: controller.email,
                 iconData: Icons.email_outlined,
                 lableTitle: '18'.tr,
               ),
               const SizedBox(height: 30),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 10, 15, "phone"),
                 mrController: controller.phone,
                 iconData: Icons.phone,
                 lableTitle: '21'.tr,
               ),
               const SizedBox(height: 30),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 20, "password"),
                 mrController: controller.password,
                 iconData: Icons.lock,
                 lableTitle: '19'.tr,

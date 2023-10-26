@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/check%20email%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/function/input_validtion.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
@@ -43,6 +44,7 @@ class CheckEmail extends StatelessWidget {
               CustomTextBodyAuth(bodyText: '29'.tr),
               const SizedBox(height: 50),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 7, "phone"),
                 mrController: null,
                 iconData: Icons.numbers_rounded,
                 lableTitle: '40'.tr,

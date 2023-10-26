@@ -3,13 +3,15 @@ import 'package:store_app/core/constant/colors.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
   const CustomTextFormFiled(
-      {super.key, required this.lableTitle, required this.iconData, required this.mrController});
+      {super.key, required this.lableTitle, required this.iconData, required this.mrController,required this.validator});
   final String lableTitle;
   final IconData iconData;
   final TextEditingController? mrController;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: mrController,
       cursorColor: AppColor.grey,
       decoration: InputDecoration(

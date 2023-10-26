@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/forget%20password%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
-import 'package:store_app/view/widgets/Auth/Custom%20Go%20To%20Register%20Page.dart';
+import 'package:store_app/core/function/input_validtion.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
@@ -45,6 +45,7 @@ class ForgetPassword extends StatelessWidget {
               CustomTextBodyAuth(bodyText: '29'.tr),
               const SizedBox(height: 50),
               CustomTextFormFiled(
+                validator: (val) => inputValidtion(val!, 5, 20, "email"),
                 mrController: null,
                 iconData: Icons.person,
                 lableTitle: '12'.tr,
