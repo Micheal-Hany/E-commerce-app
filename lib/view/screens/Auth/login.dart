@@ -65,12 +65,21 @@ class Login extends StatelessWidget {
                         lableTitle: '12'.tr,
                       ),
                       const SizedBox(height: 30),
-                      CustomTextFormFiled(
-                        validator: (val) =>
-                            inputValidtion(val!, 5, 20, "password"),
-                        mrController: controller.password,
-                        iconData: Icons.lock,
-                        lableTitle: '13'.tr,
+                      GetBuilder<LoginControllerImpl>(
+                        builder: (controller) {
+                          return CustomTextFormFiled(
+                            obscureText: controller.showPassword,
+                            onTap: () {
+                              controller.showPass();
+                            },
+                            isNumber: false,
+                            validator: (val) =>
+                                inputValidtion(val!, 5, 20, "password"),
+                            mrController: controller.password,
+                            iconData: Icons.remove_red_eye_outlined,
+                            lableTitle: '13'.tr,
+                          );
+                        },
                       ),
                       const SizedBox(
                         height: 25,

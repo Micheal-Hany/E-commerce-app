@@ -2,27 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/colors.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
-  const CustomTextFormFiled(
-      {super.key,
-      required this.lableTitle,
-      required this.iconData,
-      required this.mrController,
-      required this.validator,
-      this.isNumber = false});
+  const CustomTextFormFiled({
+    super.key,
+    required this.lableTitle,
+    required this.iconData,
+    required this.mrController,
+    required this.validator,
+    this.isNumber = false,
+    this.obscureText,
+    this.onTap,
+  });
+  final void Function()? onTap;
   final String lableTitle;
   final IconData iconData;
   final TextEditingController? mrController;
   final String? Function(String?)? validator;
   final bool isNumber;
+  final bool? obscureText;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: isNumber ? TextInputType.number : TextInputType.none,
+      keyboardType: isNumber ? TextInputType.number : TextInputType.name,
       validator: validator,
       controller: mrController,
+      obscureText: obscureText == null || obscureText == false ? false : true,
       cursorColor: AppColor.grey,
       decoration: InputDecoration(
-        suffixIcon: Icon(iconData),
+        suffixIcon: InkWell(onTap: onTap, child: Icon(iconData)),
         suffixIconColor: AppColor.grey,
         labelStyle: const TextStyle(color: AppColor.grey),
         focusedBorder:

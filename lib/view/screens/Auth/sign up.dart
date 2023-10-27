@@ -76,12 +76,21 @@ class SignUp extends StatelessWidget {
                             lableTitle: '21'.tr,
                           ),
                           const SizedBox(height: 30),
-                          CustomTextFormFiled(
-                            validator: (val) =>
-                                inputValidtion(val!, 5, 20, "password"),
-                            mrController: controller.password,
-                            iconData: Icons.lock,
-                            lableTitle: '19'.tr,
+                          GetBuilder<SignUpControllerImpl>(
+                            builder: (controller) {
+                              return CustomTextFormFiled(
+                                obscureText: controller.showPassword,
+                                onTap: () {
+                                  controller.showPass();
+                                },
+                                isNumber: false,
+                                validator: (val) =>
+                                    inputValidtion(val!, 5, 20, "password"),
+                                mrController: controller.password,
+                                iconData: Icons.lock,
+                                lableTitle: '19'.tr,
+                              );
+                            },
                           ),
                           const SizedBox(
                             height: 25,

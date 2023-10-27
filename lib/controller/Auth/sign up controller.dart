@@ -14,7 +14,11 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController password;
   late TextEditingController userName;
   late TextEditingController phone;
-
+bool showPassword = true;
+  showPass() {
+    showPassword = showPassword == true ? false : true;
+    update();
+  }
   @override
   signUp() {
     var formData = formState.currentState;
