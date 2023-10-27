@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/routsName.dart';
-import 'package:store_app/view/screens/Auth/check%20email.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/Success_RestPassword.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/forget%20password.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/reset%20password.dart';
@@ -21,7 +20,6 @@ Map<String, Widget Function(BuildContext)> routes = {
   AppRouts.verifayCode: (p0) => const VerifayCode(),
   AppRouts.signUpSuccess: (p0) => const SignUpSuccess(),
   AppRouts.resetPasswordSuccess: (p0) => const ResetPasswordSuccess(),
-  AppRouts.checkEmail: (p0) => const CheckEmail(),
   // on Bording
   AppRouts.onBording: (p0) => const OnBording(),
   AppRouts.signUpVerifayCode: (p0) => const SignUpVerifayCode(),

@@ -3,14 +3,21 @@ import 'package:store_app/core/constant/colors.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
   const CustomTextFormFiled(
-      {super.key, required this.lableTitle, required this.iconData, required this.mrController,required this.validator});
+      {super.key,
+      required this.lableTitle,
+      required this.iconData,
+      required this.mrController,
+      required this.validator,
+      this.isNumber = false});
   final String lableTitle;
   final IconData iconData;
   final TextEditingController? mrController;
   final String? Function(String?)? validator;
+  final bool isNumber;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: isNumber ? TextInputType.number : TextInputType.none,
       validator: validator,
       controller: mrController,
       cursorColor: AppColor.grey,
