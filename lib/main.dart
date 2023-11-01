@@ -5,6 +5,7 @@ import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/routs.dart';
+import 'package:store_app/test.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/widgets/language/change_Language.dart';
 
@@ -21,14 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalController controller = Get.put(LocalController());
     return GetMaterialApp(
-        translations: MyTranslation(),
-        debugShowCheckedModeBanner: false,
-        locale: controller.language,
-        title: 'Flutter Demo',
-        theme: controller.appTheme,
-        routes: routes,
-        //home: const Test());
+      translations: MyTranslation(),
+      debugShowCheckedModeBanner: false,
+      locale: controller.language,
+      title: 'Flutter Demo',
+      theme: controller.appTheme,
+      //getPages: routes,
+      
 
-        home: const Language());
+       home: const Test()
+    );
   }
 }

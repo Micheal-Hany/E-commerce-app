@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:store_app/core/function/internet_check.dart';
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -9,6 +10,19 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
+  @override
+  var res;
+  check() async {
+    res = await checkInternet();
+    print(res);
+  }
+
+  @override
+  void initState() {
+    check();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
