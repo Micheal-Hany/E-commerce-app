@@ -1,1 +1,1 @@
-enum StatuesRequest { loading, success, failure, serverFailure, offlinefailure }
+enum StatusRequest { loading, success, failure, serverFailure, offlinefailure }
