@@ -20,7 +20,7 @@ class SignUpControllerImpl extends SignUpController {
   bool showPassword = true;
   SignUpData signUpData = SignUpData(Get.find());
   List data = [];
-  late StatusRequest stateRequest;
+  StatusRequest stateRequest = StatusRequest.none;
   showPass() {
     showPassword = showPassword == true ? false : true;
     update();
@@ -31,6 +31,7 @@ class SignUpControllerImpl extends SignUpController {
     var formData = formState.currentState;
     if (formData!.validate()) {
       stateRequest = StatusRequest.loading;
+      update();
       var response = await signUpData.signUp(
           userName.text, email.text, password.text, phone.text);
       print("response------------------->  $response");
@@ -38,7 +39,8 @@ class SignUpControllerImpl extends SignUpController {
       if (StatusRequest.success == stateRequest) {
         if (response["status"] == "success") {
           data.add(response["data"]);
-          Get.offNamed(AppRouts.signUpVerifayCode);
+          Get.offNamed(AppRouts.signUpVerifayCode,
+              arguments: {"email": email.text});
         } else {
           stateRequest = StatusRequest.failure;
         }
