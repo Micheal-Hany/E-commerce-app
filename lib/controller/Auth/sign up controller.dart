@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
+import 'package:store_app/core/function/handlData.dart';
+import 'package:store_app/data/data%20source/remote/Auth/signup.dart';
 
 abstract class SignUpController extends GetxController {
   signUp();
@@ -15,16 +18,32 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController userName;
   late TextEditingController phone;
   bool showPassword = true;
+  SignUpData signUpData = SignUpData(Get.find());
+  List data = [];
+  late StatusRequest stateRequest;
   showPass() {
     showPassword = showPassword == true ? false : true;
     update();
   }
 
   @override
-  signUp() {
+  signUp() async {
     var formData = formState.currentState;
     if (formData!.validate()) {
-      Get.offNamed(AppRouts.signUpVerifayCode);
+      stateRequest = StatusRequest.loading;
+      var response = await signUpData.signUp(
+          userName.text, email.text, password.text, phone.text);
+      print("response------------------->  $response");
+      stateRequest = handleData(response);
+      if (StatusRequest.success == stateRequest) {
+        if (response["status"] == "success") {
+          data.add(response["data"]);
+          Get.offNamed(AppRouts.signUpVerifayCode);
+        } else {
+          stateRequest = StatusRequest.failure;
+        }
+      }
+      update();
     }
   }
 

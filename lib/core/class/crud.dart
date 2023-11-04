@@ -7,23 +7,17 @@ import 'package:store_app/core/function/internet_check.dart';
 
 class Crud {
   Future<Either<StatusRequest, Map>> postData(String linkurl, Map data) async {
-    try {
-      if (await checkInternet()) {
-        var response = await http.post(Uri.parse(linkurl));
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          Map responsebody = jsonDecode(response.body);
-          return Right(responsebody);
-        } else {
-          return const Left(StatusRequest.serverFailure);
-        }
+    if (await checkInternet()) {
+      var response = await http.post(Uri.parse(linkurl), body: data);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Map responsebody = jsonDecode(response.body.toString());
+        print(responsebody.toString());
+        return Right(responsebody);
       } else {
-        return const Left(StatusRequest.offlinefailure);
+        return const Left(StatusRequest.serverFailure);
       }
-    } catch (e) {
-      print("----------------------");
-      print(e.toString());
-      print("----------------------");
-      return const Left(StatusRequest.serverFailure);
+    } else {
+      return const Left(StatusRequest.offlinefailure);
     }
   }
 }

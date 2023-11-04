@@ -24,13 +24,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalController controller = Get.put(LocalController());
     return GetMaterialApp(
-        translations: MyTranslation(),
-        debugShowCheckedModeBanner: false,
-        locale: controller.language,
-        title: 'Flutter Demo',
-        theme: controller.appTheme,
-        //getPages: routes,
-        initialBinding: InitailBinding(),
-        home: const TestView());
+      translations: MyTranslation(),
+      debugShowCheckedModeBanner: false,
+      locale: controller.language,
+      title: 'Flutter Demo',
+      theme: controller.appTheme,
+      getPages: routes,
+      initialBinding: InitailBinding(),
+      // home: const TestView(),
+    );
   }
 }
