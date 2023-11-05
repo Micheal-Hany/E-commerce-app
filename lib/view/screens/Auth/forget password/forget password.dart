@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Auth/forget%20password%20controller.dart';
+import 'package:store_app/controller/forgetpassword/forget%20password%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/function/input_validtion.dart';
@@ -15,6 +15,10 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     ForgeTPasswordControllerimpl controller =
         Get.put(ForgeTPasswordControllerimpl());
+
+    GlobalKey<FormState> formKey =
+        GlobalKey<FormState>(); // Create a new GlobalKey
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.backgrounmfColor,
@@ -33,7 +37,9 @@ class ForgetPassword extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
-      body: Container(
+      body: Form(
+        key: controller.formState,
+        child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: ListView(
             children: [
@@ -46,7 +52,7 @@ class ForgetPassword extends StatelessWidget {
               const SizedBox(height: 50),
               CustomTextFormFiled(
                 validator: (val) => inputValidtion(val!, 5, 20, "email"),
-                mrController: null,
+                mrController: controller.email,
                 iconData: Icons.person,
                 lableTitle: '12'.tr,
               ),
@@ -54,19 +60,16 @@ class ForgetPassword extends StatelessWidget {
                 height: 30,
               ),
               CustomButtonAuth(
-                onPressed: () => controller.goToVerifayCode(),
+                onPressed: () => controller.checkEmail(),
                 title: '30'.tr,
               ),
               const SizedBox(
                 height: 15,
               ),
-              // CustomGoToRegisterPageOrLogin(
-              //   textOne: 'Already have an account? ',
-              //   textTwo: 'Sign In',
-              //   onTap: () {},
-              // )
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

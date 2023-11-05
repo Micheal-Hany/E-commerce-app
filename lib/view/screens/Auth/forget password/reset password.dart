@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Auth/reset%20password%20contreoller.dart';
+import 'package:store_app/controller/forgetpassword/reset%20password%20contreoller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/function/input_validtion.dart';
@@ -32,49 +32,48 @@ class ResetPassword extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
-      body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: ListView(
-            children: [
-              const SizedBox(
-                height: 30,
-              ),
-              CustomTextAuthTitle(title: '34'.tr),
-              const SizedBox(height: 18),
-              //const CustomTextBodyAuth(bodyText: 'Make Your Password Strong'),
-              const SizedBox(height: 50),
-              CustomTextFormFiled(
-                validator: (val) => inputValidtion(val!, 5, 20, "password"),
-                mrController: null,
-                iconData: Icons.person,
-                lableTitle: '35'.tr,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomTextFormFiled(
-                validator: (val) => inputValidtion(val!, 5, 20, "password"),
-                mrController: null,
-                iconData: Icons.person,
-                lableTitle: '35'.tr,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              CustomButtonAuth(
-                onPressed: () => controller.goToSuccessResetPassword(),
-                title: '33'.tr,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              // CustomGoToRegisterPageOrLogin(
-              //   textOne: 'Already have an account? ',
-              //   textTwo: 'Sign In',
-              //   onTap: () {},
-              // )
-            ],
-          )),
+      body: Form(
+        key: controller.formState,
+        child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: ListView(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomTextAuthTitle(title: '34'.tr),
+                const SizedBox(height: 18),
+                //const CustomTextBodyAuth(bodyText: 'Make Your Password Strong'),
+                const SizedBox(height: 50),
+                CustomTextFormFiled(
+                  // obscureText: true,
+                  validator: (val) => inputValidtion(val!, 5, 20, "password"),
+                  mrController: controller.password,
+                  iconData: Icons.person,
+                  lableTitle: '35'.tr,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomTextFormFiled(
+                  validator: (val) => inputValidtion(val!, 5, 20, "password"),
+                  mrController: controller.rePassword,
+                  iconData: Icons.person,
+                  lableTitle: '35'.tr,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomButtonAuth(
+                  onPressed: () => controller.goToSuccessResetPassword(),
+                  title: '33'.tr,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+              ],
+            )),
+      ),
     );
   }
 }

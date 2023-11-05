@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Auth/verifay%20code%20controller.dart';
+import 'package:store_app/controller/forgetpassword/verifay%20code%20controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
@@ -43,45 +43,16 @@ class VerifayCode extends StatelessWidget {
               const SizedBox(height: 50),
               Container(
                 child: OtpTextField(
-                  borderRadius: BorderRadius.circular(15), clearText: true,
-                  fieldWidth: 50,
-                  numberOfFields: 5,
-                  borderColor: Colors.black,
-                  //set to true to show as box or false to show as dash
-                  showFieldAsBox: true,
-                  //runs when a code is typed in
-                  onCodeChanged: (String code) {
-                    //handle validation or checks here
-                    controller.goToRestPassword();
-                  },
-                  //runs when every textfield is filled
-                  onSubmit: (String verificationCode) {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text("Verification Code"),
-                            content: Text('Code entered is $verificationCode'),
-                          );
-                        });
-                  }, // end onSubmit
-                ),
+                    borderRadius: BorderRadius.circular(15),
+                    clearText: true,
+                    fieldWidth: 50,
+                    numberOfFields: 5,
+                    borderColor: Colors.black,
+                    showFieldAsBox: true,
+                    onSubmit: (String verificationCode) {
+                      controller.checkCode(verificationCode);
+                    }),
               ),
-              // const SizedBox(
-              //   height: 30,
-              // ),
-              // CustomButtonAuth(
-              //   onPressed: () {},
-              //   title: 'Check',
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // CustomGoToRegisterPageOrLogin(
-              //   textOne: 'Already have an account? ',
-              //   textTwo: 'Sign In',
-              //   onTap: () {},
-              // )
             ],
           )),
     );

@@ -27,26 +27,23 @@ class LoginControllerImpl extends LoginController {
   login() async {
     var formDate = formState.currentState;
     if (formDate!.validate()) {
-      var formData = formState.currentState;
-      if (formData!.validate()) {
-        stateRequest = StatusRequest.loading;
-        update();
-        var response = await loginData.login(email.text, password.text);
-        print("response------------------->  $response");
-        stateRequest = handleData(response);
-        if (StatusRequest.success == stateRequest) {
-          if (response["status"] == "success") {
-            Get.offNamed(
-              AppRouts.signUpSuccess,
-            );
-          } else {
-            Get.defaultDialog(
-                title: "Error", middleText: "Email Or Passwordis not correct");
-            stateRequest = StatusRequest.failure;
-          }
+      stateRequest = StatusRequest.loading;
+      update();
+      var response = await loginData.login(email.text, password.text);
+      print("response------------------->  $response");
+      stateRequest = handleData(response);
+      if (StatusRequest.success == stateRequest) {
+        if (response["status"] == "success") {
+          Get.offNamed(
+            AppRouts.signUpSuccess,
+          );
+        } else {
+          Get.defaultDialog(
+              title: "Error", middleText: "Email Or Passwordis not correct");
+          stateRequest = StatusRequest.failure;
         }
-        update();
       }
+      update();
     }
   }
 

@@ -8,8 +8,7 @@ class ResetPasswordSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SuccessRestPasswordControllerImpl controller =
-        Get.put(SuccessRestPasswordControllerImpl());
+    Get.lazyPut(() => SuccessRestPasswordControllerImpl());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -38,10 +37,14 @@ class ResetPasswordSuccess extends StatelessWidget {
           Text("39".tr),
           const Spacer(),
           SizedBox(
-            width: double.infinity,
-            child: CustomButtomAuth(
-                text: "31".tr, onPressed: () => controller.goToLoginPage()),
-          ),
+              width: double.infinity,
+              child: GetBuilder<SuccessRestPasswordControllerImpl>(
+                builder: (controller) {
+                  return CustomButtomAuth(
+                      text: "31".tr,
+                      onPressed: () => controller.goToLoginPage());
+                },
+              )),
           const SizedBox(height: 30)
         ]),
       ),

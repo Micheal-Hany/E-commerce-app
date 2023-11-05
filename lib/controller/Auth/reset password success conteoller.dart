@@ -8,6 +8,6 @@ abstract class SuccessRestPasswordController extends GetxController {
 class SuccessRestPasswordControllerImpl extends SuccessRestPasswordController {
   @override
   goToLoginPage() {
-    Get.offNamed(AppRouts.login);
+    Get.toNamed(AppRouts.login);
   }
 }
