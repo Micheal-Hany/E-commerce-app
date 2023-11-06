@@ -12,19 +12,55 @@ class ViewDataHandleing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return statusRequest == StatusRequest.loading
-        ? Lottie.asset('assets/lattio/loading.json')
+        ? Center(
+            child: Lottie.asset('assets/lattio/loading.json',
+                width: 250, height: 250))
         : statusRequest == StatusRequest.failure
             ? const Center(
                 child: Text('No Data'),
               )
             : statusRequest == StatusRequest.serverFailure
                 ? Center(
-                    child: Lottie.asset('assets/lattio/server_failure.json'),
+                    child: Center(
+                      child: Lottie.asset('assets/lattio/server_failure.json',
+                          width: 250, height: 250),
+                    ),
                   )
                 : statusRequest == StatusRequest.offlinefailure
                     ? Center(
-                        child: Lottie.asset('assets/lattio/failure.json'),
+                        child: Center(
+                          child: Lottie.asset('assets/lattio/failure.json',
+                              width: 250, height: 250),
+                        ),
                       )
                     : widget;
+  }
+}
+
+class ViewDataHandleingRequest extends StatelessWidget {
+  final Widget widget;
+  final StatusRequest statusRequest;
+  const ViewDataHandleingRequest(
+      {super.key, required this.widget, required this.statusRequest});
+
+  @override
+  Widget build(BuildContext context) {
+    return statusRequest == StatusRequest.loading
+        ? Center(
+            child: Lottie.asset('assets/lattio/loading.json',
+                width: 250, height: 250))
+        : statusRequest == StatusRequest.serverFailure
+            ? Center(
+                child: Center(
+                  child: Lottie.asset('assets/lattio/server_failure.json',
+                      width: 250, height: 250),
+                ),
+              )
+            : statusRequest == StatusRequest.offlinefailure
+                ? Center(
+                    child: Lottie.asset('assets/lattio/failure.json',
+                        width: 250, height: 250),
+                  )
+                : widget;
   }
 }

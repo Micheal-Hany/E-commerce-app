@@ -25,8 +25,7 @@ class LoginControllerImpl extends LoginController {
 
   @override
   login() async {
-    var formDate = formState.currentState;
-    if (formDate!.validate()) {
+    if (formState.currentState!.validate()) {
       stateRequest = StatusRequest.loading;
       update();
       var response = await loginData.login(email.text, password.text);

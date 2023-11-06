@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/signup%20verifay%20code%20controller.dart';
+import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
@@ -12,8 +13,7 @@ class SignUpVerifayCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignUpVerifayCodeControllerImpl controller =
-        Get.put(SignUpVerifayCodeControllerImpl());
+    Get.lazyPut(() => SignUpVerifayCodeControllerImpl());
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppColor.backgrounmfColor,
@@ -34,12 +34,9 @@ class SignUpVerifayCode extends StatelessWidget {
         ),
         body: GetBuilder<SignUpVerifayCodeControllerImpl>(
           builder: (controller) {
-            if (controller.stateRequest == StatusRequest.loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return Container(
+            return ViewDataHandleingRequest(
+              statusRequest: controller.stateRequest,
+              widget: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: ListView(
                     children: [
@@ -65,8 +62,8 @@ class SignUpVerifayCode extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ));
-            }
+                  )),
+            );
           },
         ));
   }
