@@ -1,6 +1,6 @@
 import 'package:store_app/Server_linkes.dart';
 import 'package:store_app/core/class/crud.dart';
-import 'package:get/get.dart';
+
 
 class SignUpData {
   Crud crud;
