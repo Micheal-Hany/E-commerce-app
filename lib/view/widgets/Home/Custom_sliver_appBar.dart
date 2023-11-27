@@ -54,15 +54,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .8,
+                      childAspectRatio: .75,
                       crossAxisCount: 2,
-                      mainAxisSpacing: 10.0,
+                      // mainAxisSpacing: 10.0,
                     ),
-                    itemCount: 20,
+                    itemCount: controller.products.length,
                     itemBuilder: (context, index) {
                       return Center(
                           child: CustomItemStack(
-                        controller: controller,
+                        product: controller.products[index],
                       ));
                     },
                   )

@@ -40,6 +40,9 @@ class HomeControllerImpl extends HomeController {
 
         products.addAll(productModels);
         categories.addAll(response["categories"]);
+        print('====================================================');
+        print(productModels);
+        print('====================================================');
       } else {
         stateRequest = StatusRequest.failure;
       }

@@ -10,6 +10,7 @@ import 'package:store_app/view/screens/Auth/vertifay%20code%20sign%20up.dart';
 import 'package:store_app/view/screens/Home/home_page.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
+import 'package:store_app/view/screens/product_detailes.dart';
 
 import 'view/screens/Auth/login.dart';
 
@@ -31,6 +32,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: AppRouts.signUpVerifayCode, page: () => const SignUpVerifayCode()),
   GetPage(name: AppRouts.homePage, page: () => const HomePage()),
+  GetPage(name: AppRouts.productPage, page: () => const ProductDetailes()),
 ];
 
 

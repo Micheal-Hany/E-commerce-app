@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/view/widgets/Home/Custom_bottom_navber_button.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -42,43 +41,6 @@ class HomeScreen extends StatelessWidget {
                             ),
                     ),
                   )
-                  // SizedBox(width: Dimensions.getWidth(context) / 15),
-                  // IconBottomAppBar(
-                  //   onTap: () => controller.changePage(0),
-                  //   widget: Image.asset(
-                  //     'assets/images/home_icon.png',
-                  //     width: 30,
-                  //     height: 30,
-                  //   ),
-                  // ),
-                  // SizedBox(width: Dimensions.getWidth(context) / 8),
-                  // IconBottomAppBar(
-                  //   onTap: () => controller.changePage(1),
-                  //   widget: Image.asset(
-                  //     'assets/images/heart.png',
-                  //     width: 30,
-                  //     height: 30,
-                  //   ),
-                  // ),
-                  // SizedBox(width: Dimensions.getWidth(context) / 8),
-                  // IconBottomAppBar(
-                  //   onTap: () => controller.changePage(2),
-                  //   widget: Image.asset(
-                  //     'assets/images/bag_icon.png',
-                  //     width: 30,
-                  //     height: 30,
-                  //   ),
-                  // ),
-                  // SizedBox(width: Dimensions.getWidth(context) / 8),
-                  // IconBottomAppBar(
-                  //   onTap: () => controller.changePage(3),
-                  //   widget: Image.asset(
-                  //     'assets/images/wallet.png',
-                  //     width: 30,
-                  //     height: 30,
-                  //   ),
-                  // ),
-                  // SizedBox(width: Dimensions.getWidth(context) / 15),
                 ],
               ),
             ),

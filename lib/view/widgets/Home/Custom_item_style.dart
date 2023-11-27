@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -11,7 +10,6 @@ class CustomItemStyle extends StatelessWidget {
     super.key,
     required this.product,
   });
-  // final ItemModel itemModel;
   final ProductModel product;
 
   @override
