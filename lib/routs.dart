@@ -1,4 +1,3 @@
-
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/middleware/myMeddilewere.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/Success_RestPassword.dart';
@@ -8,6 +7,7 @@ import 'package:store_app/view/screens/Auth/sign%20up.dart';
 import 'package:store_app/view/screens/Auth/success_signUp.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/verifay%20code.dart';
 import 'package:store_app/view/screens/Auth/vertifay%20code%20sign%20up.dart';
+import 'package:store_app/view/screens/Home/home_page.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
 
@@ -30,6 +30,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRouts.onBording, page: () => const OnBording()),
   GetPage(
       name: AppRouts.signUpVerifayCode, page: () => const SignUpVerifayCode()),
+  GetPage(name: AppRouts.homePage, page: () => const HomePage()),
 ];
 
 

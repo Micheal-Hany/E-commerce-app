@@ -30,7 +30,10 @@ class CustomSelider extends GetView<onBordingControllerImplment> {
             ),
             const SizedBox(height: 100),
             Text(onboardingList[index].title!,
-                style: Theme.of(context).textTheme.displayMedium),
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium!
+                    .copyWith(color: Colors.black)),
             const SizedBox(height: 15),
             Container(
                 width: double.infinity,
@@ -38,7 +41,10 @@ class CustomSelider extends GetView<onBordingControllerImplment> {
                 child: Text(
                   onboardingList[index].body!,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Colors.black),
                 )),
           ],
         );

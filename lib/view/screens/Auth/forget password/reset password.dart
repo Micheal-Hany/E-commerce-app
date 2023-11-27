@@ -16,7 +16,7 @@ class ResetPassword extends StatelessWidget {
     Get.lazyPut(() => ResetPasswordControllerImpl());
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.backgrounmfColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(

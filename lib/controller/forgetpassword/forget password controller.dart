@@ -29,7 +29,7 @@ class ForgeTPasswordControllerimpl extends ForgeTPasswordController {
           if (response["status"] == "success") {
             Get.toNamed(AppRouts.verifayCode, arguments: {"email": email.text});
           } else {
-            Get.defaultDialog(title: "Error", middleText: "Email Not Found");
+            Get.defaultDialog(title: "48".tr, middleText: "49".tr);
             stateRequest = StatusRequest.failure;
           }
         }

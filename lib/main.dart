@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
       theme: controller.appTheme,
       getPages: routes,
       initialBinding: InitailBinding(),
+      
       // home: const TestView(),
     );
   }

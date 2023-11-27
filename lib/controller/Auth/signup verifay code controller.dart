@@ -30,8 +30,7 @@ class SignUpVerifayCodeControllerImpl extends SignUpVerifayCodeController {
       if (response["status"] == "success") {
         Get.toNamed(AppRouts.signUpSuccess);
       } else {
-        Get.defaultDialog(
-            title: "Warning", middleText: "Veriacation code not correct");
+        Get.defaultDialog(title: "48".tr, middleText: "50".tr);
         stateRequest = StatusRequest.failure;
       }
     }

@@ -8,4 +8,5 @@ class AppRouts {
   static const String resetPasswordSuccess = '/resetPasswordSuccess';
   static const String onBording = '/onBording';
   static const String signUpVerifayCode = '/signUpVerifayCode';
+  static const String homePage = '/homePage';
 }

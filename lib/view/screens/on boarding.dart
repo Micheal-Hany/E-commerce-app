@@ -14,7 +14,7 @@ class OnBording extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(onBordingControllerImplment());
     return const Scaffold(
-      backgroundColor: AppColor.backgrounmfColor,
+      backgroundColor: AppColor.primaryColor,
       body: SafeArea(
         child: Column(
           children: [

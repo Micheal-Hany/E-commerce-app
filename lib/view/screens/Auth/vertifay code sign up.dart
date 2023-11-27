@@ -15,7 +15,7 @@ class SignUpVerifayCode extends StatelessWidget {
     Get.lazyPut(() => SignUpVerifayCodeControllerImpl());
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.backgrounmfColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(

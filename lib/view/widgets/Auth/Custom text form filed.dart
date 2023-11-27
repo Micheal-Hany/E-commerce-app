@@ -27,11 +27,11 @@ class CustomTextFormFiled extends StatelessWidget {
       validator: validator,
       controller: mrController,
       obscureText: obscureText == null || obscureText == false ? false : true,
-      cursorColor: AppColor.grey,
+      cursorColor: AppColor.primaryColorDart,
       decoration: InputDecoration(
         suffixIcon: InkWell(onTap: onTap, child: Icon(iconData)),
-        suffixIconColor: AppColor.grey,
-        labelStyle: const TextStyle(color: AppColor.grey),
+        suffixIconColor: AppColor.primaryColorDart,
+        labelStyle: const TextStyle(color: AppColor.primaryColorDart),
         focusedBorder:
             OutlineInputBorder(borderRadius: BorderRadius.circular(100)),
         contentPadding: const EdgeInsets.symmetric(horizontal: 20),

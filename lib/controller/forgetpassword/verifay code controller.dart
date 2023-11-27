@@ -26,7 +26,7 @@ class VerifayCodeControllerImpl extends VerifayCodeController {
         Get.toNamed(AppRouts.resetPass, arguments: {"email": "$email"});
       } else {
         Get.defaultDialog(
-            title: "Warning", middleText: "Veriacation code not correct");
+            title: "48".tr, middleText: "50".tr);
         stateRequest = StatusRequest.failure;
       }
     }

@@ -12,13 +12,13 @@ class ResetPasswordSuccess extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColor.backgrounmfColor,
+        backgroundColor: AppColor.primaryColor,
         elevation: 0.0,
         title: Text('32'.tr,
             style: Theme.of(context)
                 .textTheme
                 .displayLarge!
-                .copyWith(color: AppColor.grey)),
+                .copyWith(color: AppColor.primaryColor)),
       ),
       body: Container(
         padding: const EdgeInsets.all(15),

@@ -20,7 +20,7 @@ class SignUp extends StatelessWidget {
     Get.lazyPut(() => SignUpControllerImpl());
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.backgrounmfColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(

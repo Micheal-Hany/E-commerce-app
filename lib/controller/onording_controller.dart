@@ -17,7 +17,7 @@ class onBordingControllerImplment extends onbordingController {
   next() {
     currentPage++;
     if (currentPage > onboardingList.length - 1) {
-      myServices.sharedPreferences.setString('onbording', '1');
+      myServices.sharedPreferences.setString('step', '1');
       Get.offAllNamed(AppRouts.login);
     } else {
       pageController.animateToPage(currentPage,

@@ -47,6 +47,17 @@ class MyTranslation extends Translations {
           "39": " تم تغيير كلمه المرور بنجاح",
           "40": "الرجاء ادخال رمز التحقق",
           "41": "رمز التحقق",
+          '42': 'من فضلك أدخل اسم مستخدم صحيح',
+          '43': 'من فضلك أدخل بريد إلكتروني صحيح',
+          '44': 'من فضلك أدخل رقم هاتف صحيح',
+          '45': 'هذا الحقل مطلوب',
+          '46': 'يجب أن يكون أكبر من %d',
+          '47': 'يجب أن يكون أقل من %d',
+          '48': 'خطأ',
+          '49': 'البريد الالكتروني غير موجود',
+          '50': 'من فضلك أدخل رمز التأكيد الصحيح',
+          "51": 'كلمات المرور غير متطابقة',
+          "52": 'حاول مره اخري'
         },
         "en": {
           "1": "Choose Language",
@@ -93,7 +104,18 @@ class MyTranslation extends Translations {
           "38": "successfully registered",
           "39": "successfully reset password",
           "40": "Enter OTP Code",
-          "41": "Verifcation Code"
+          "41": "Verifcation Code",
+          '42': 'Please enter valid Username',
+          '43': 'Please enter a valid Email',
+          '44': 'Please enter valid Phone Number',
+          '45': 'This field is required',
+          '46': 'must be greater than ',
+          '47': 'must be less than ',
+          '48': 'Error',
+          '49': 'Email not found',
+          '50': 'veriacation code not correct',
+          '51': 'passwords do not match',
+          '52': 'try again'
         }
       };
 }

@@ -18,7 +18,7 @@ class ForgetPassword extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.backgrounmfColor,
+          backgroundColor: AppColor.primaryColor,
           elevation: 0,
           centerTitle: true,
           leading: IconButton(
@@ -36,7 +36,7 @@ class ForgetPassword extends StatelessWidget {
         ),
         body: GetBuilder<ForgeTPasswordControllerimpl>(
           builder: (controller) {
-            return ViewDataHandleing(
+            return ViewDataHandleingRequest(
                 widget: Form(
                   key: controller.formState,
                   child: Container(

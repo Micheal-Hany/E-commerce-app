@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cached_network_image: ^3.3.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   firebase_core: ^2.21.0
@@ -75,6 +76,11 @@ flutter:
       fonts:
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf
         - asset: assets/fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf
+          weight: 700
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/static/Inter-Regular.ttf
+        - asset: assets/fonts/Inter/static/Inter-Bold.ttf
           weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

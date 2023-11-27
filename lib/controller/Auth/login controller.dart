@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
+import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/data/data%20source/remote/Auth/login.dart';
 
 abstract class LoginController extends GetxController {
@@ -18,6 +19,7 @@ class LoginControllerImpl extends LoginController {
   bool showPassword = true;
   StatusRequest stateRequest = StatusRequest.none;
   LoginData loginData = LoginData(Get.find());
+  MyServices myServices = Get.find();
   showPass() {
     showPassword = showPassword == true ? false : true;
     update();
@@ -33,8 +35,17 @@ class LoginControllerImpl extends LoginController {
       stateRequest = handleData(response);
       if (StatusRequest.success == stateRequest) {
         if (response["status"] == "success") {
+          myServices.sharedPreferences
+              .setString("id", "${response["data"]["users_id"]}");
+          myServices.sharedPreferences
+              .setString("email", response["data"]["users_email"]);
+          myServices.sharedPreferences
+              .setString("phone", response["data"]["users_phone"]);
+          myServices.sharedPreferences
+              .setString("username", response["data"]["users_name"]);
+          myServices.sharedPreferences.setString("step", "2");
           Get.offNamed(
-            AppRouts.signUpSuccess,
+            AppRouts.homePage,
           );
         } else {
           Get.defaultDialog(
