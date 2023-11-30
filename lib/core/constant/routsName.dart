@@ -10,4 +10,6 @@ class AppRouts {
   static const String signUpVerifayCode = '/signUpVerifayCode';
   static const String homePage = '/homePage';
   static const String productPage = '/productPage';
+  static const String reviewPage = '/reviewPage';
+  static const String addReviewPage = '/addReviewPage';
 }

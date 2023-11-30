@@ -23,8 +23,10 @@ class CustomItemStyle extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
               ),
-              width: Dimensions.getWidth(context) * 0.45,
+              width: Dimensions.getWidth(context) * 0.38,
               height: Dimensions.getHeight(context) * 0.25,
+              // width: 160,
+              // height: 203,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: CachedNetworkImage(

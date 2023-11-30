@@ -48,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: Dimensions.getWidth(context) * .03,
                   ),
-                  CustomCategorylistView(controllerImpl: controller),
+                  const SizedBox(
+                      height: 40,
+                      width: double.infinity,
+                      child: CustomCategorylistView()),
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),

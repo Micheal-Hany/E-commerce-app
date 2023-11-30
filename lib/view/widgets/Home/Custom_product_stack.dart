@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/controller/product-detailes_controller.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/data/model/product_model.dart';
@@ -13,19 +14,22 @@ class CustomItemStack extends StatelessWidget {
   final ProductModel product;
   @override
   Widget build(BuildContext context) {
-    Get.put(ProductDetailesControllerImpl());
-    return GetBuilder<ProductDetailesControllerImpl>(
+    Get.put(HomeControllerImpl());
+    return GetBuilder<HomeControllerImpl>(
       builder: (controller) {
         return GestureDetector(
-          onTap: () => controller.goToProduct(),
+          onTap: () {
+            controller.setProduct(product);
+            controller.goToProductDetailes();
+          },
           child: Stack(
             children: [
               CustomItemStyle(
                 product: product,
               ),
               Positioned(
-                top: Dimensions.getHeight(context) * .018,
-                left: Dimensions.getHeight(context) * .195,
+                top: Dimensions.getHeight(context) * .025,
+                left: Dimensions.getHeight(context) * .18,
                 child: Image.asset(
                   'assets/images/heart.png',
                   width: 25,

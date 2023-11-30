@@ -1,5 +1,6 @@
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/middleware/myMeddilewere.dart';
+import 'package:store_app/view/screens/Add_review_page.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/Success_RestPassword.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/forget%20password.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/reset%20password.dart';
@@ -11,6 +12,7 @@ import 'package:store_app/view/screens/Home/home_page.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
 import 'package:store_app/view/screens/product_detailes.dart';
+import 'package:store_app/view/screens/reviews_page.dart';
 
 import 'view/screens/Auth/login.dart';
 
@@ -32,7 +34,9 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: AppRouts.signUpVerifayCode, page: () => const SignUpVerifayCode()),
   GetPage(name: AppRouts.homePage, page: () => const HomePage()),
-  GetPage(name: AppRouts.productPage, page: () => const ProductDetailes()),
+  GetPage(name: AppRouts.productPage, page: () => const ProductDetails()),
+  GetPage(name: AppRouts.reviewPage, page: () => const ReviewPage()),
+  GetPage(name: AppRouts.addReviewPage, page: () => const AddReviewpage()),
 ];
 
 
