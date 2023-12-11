@@ -16,8 +16,9 @@ class ViewDataHandleing extends StatelessWidget {
             child: Lottie.asset('assets/lattio/loading.json',
                 width: 250, height: 250))
         : statusRequest == StatusRequest.failure
-            ? const Center(
-                child: Text('No Data'),
+            ? Center(
+                child: Lottie.asset('assets/lattio/failure.json',
+                    width: 250, height: 250),
               )
             : statusRequest == StatusRequest.serverFailure
                 ? Center(
@@ -61,6 +62,11 @@ class ViewDataHandleingRequest extends StatelessWidget {
                     child: Lottie.asset('assets/lattio/failure.json',
                         width: 250, height: 250),
                   )
-                : widget;
+                : statusRequest == StatusRequest.offlinefailure
+                    ? Center(
+                        child: Lottie.asset('assets/lattio/failure.json',
+                            width: 250, height: 250),
+                      )
+                    : widget;
   }
 }

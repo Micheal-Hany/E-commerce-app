@@ -1,3 +1,123 @@
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:store_app/core/class/status%20request.dart';
+// import 'package:store_app/core/constant/routsName.dart';
+// import 'package:store_app/core/function/handlData.dart';
+// import 'package:store_app/core/services/Services.dart';
+// import 'package:store_app/data/data%20source/remote/homedata.dart';
+// import 'package:store_app/data/model/categoriesmodel.dart';
+// import 'package:store_app/data/model/product_model.dart';
+
+// abstract class HomeController extends GetxController {
+//   getCategoryData();
+//   getItemsData(String id);
+//   goToProductDetailes();
+//   goToReviewPage();
+//   favProduct();
+// }
+
+// class HomeControllerImpl extends HomeController
+//     with GetSingleTickerProviderStateMixin {
+//   MyServices myServices = Get.find();
+//   String? name;
+//   String? id;
+//   StatusRequest stateRequest = StatusRequest.none;
+//   HomeData homeData = HomeData(Get.find());
+//   List<ProductModel> products = [];
+//   List<CategoriesModel> categories = [];
+
+//   late TabController tabController;
+//   var selectedProduct = ProductModel();
+//   bool isFavoraite = false;
+//   void setProduct(ProductModel product) {
+//     selectedProduct = product;
+//   }
+
+//   @override
+//   void onInit() {
+//     name = myServices.sharedPreferences.getString('username');
+//     id = myServices.sharedPreferences.getString('id');
+//     tabController = TabController(length: 8, vsync: this);
+//     tabController.addListener(_handleTabSelection);
+//     getCategoryData();
+//      getItemsData("${tabController.index}");
+
+//     super.onInit();
+//   }
+
+//   void _handleTabSelection() {
+//     update();
+//   }
+
+//   @override
+
+//   Future<void> getCategoryData() async {
+//     stateRequest = StatusRequest.loading;
+//     var response = await homeData.getCategoryData();
+
+//     stateRequest = handleData(response);
+//     if (StatusRequest.success == stateRequest) {
+//       if (response["status"] == "success") {
+//         List<CategoriesModel> categorory =
+//             (response["categories"] as List<dynamic>)
+//                 .map((item) => CategoriesModel.fromJson(item))
+//                 .toList();
+//         categories.addAll(categorory);
+//       } else {
+//         stateRequest = StatusRequest.failure;
+//       }
+//     }
+
+//     update();
+//   }
+
+//   Future<void> getItemsData(String id) async {
+//     stateRequest = StatusRequest.loading;
+//     var response = await homeData.getItemsData(id);
+
+//     stateRequest = handleData(response);
+//     if (StatusRequest.success == stateRequest) {
+//       if (response["status"] == "success") {
+//         List<ProductModel> productModels = (response["items"] as List<dynamic>)
+//             .map((item) => ProductModel.fromJson(item))
+//             .toList();
+
+//         products.addAll(productModels);
+//       } else {
+//         stateRequest = StatusRequest.failure;
+//       }
+//     }
+
+//     update();
+//   }
+
+//   @override
+//   void onClose() {
+//     tabController.dispose();
+//     super.onClose();
+//   }
+
+//   backToHomePage() {
+//     Get.back();
+//   }
+
+//   @override
+//   goToProductDetailes() {
+//     Get.toNamed(AppRouts.productPage);
+//   }
+
+//   @override
+//   goToReviewPage() {
+//     Get.toNamed(AppRouts.reviewPage);
+//   }
+
+//   @override
+//   favProduct() {
+//     isFavoraite = !isFavoraite;
+//     update();
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
@@ -9,49 +129,13 @@ import 'package:store_app/data/model/categoriesmodel.dart';
 import 'package:store_app/data/model/product_model.dart';
 
 abstract class HomeController extends GetxController {
-  getData();
+  getCategoryData();
+  getItemsData(String id);
   goToProductDetailes();
   goToReviewPage();
+  favProduct();
+  //  onCategorySelected(int categoryId);
 }
-
-// class HomeControllerImpl extends HomeController {
-//   MyServices myServices = Get.find();
-//   String? name;
-//   String? id;
-//   StatusRequest stateRequest = StatusRequest.none;
-//   HomeData homeData = HomeData(Get.find());
-//   List<ProductModel> products = [];
-//   List categories = [];
-//   @override
-//   void onInit() {
-//     getData();
-//     name = myServices.sharedPreferences.getString('username');
-//     id = myServices.sharedPreferences.getString('id');
-//     super.onInit();
-//   }
-
-//   @override
-//   Future<void> getData() async {
-//     stateRequest = StatusRequest.loading;
-//     var response = await homeData.getData();
-
-//     stateRequest = handleData(response);
-//     if (StatusRequest.success == stateRequest) {
-//       if (response["status"] == "success") {
-//         List<ProductModel> productModels = (response["items"] as List<dynamic>)
-//             .map((item) => ProductModel.fromJson(item))
-//             .toList();
-
-//         products.addAll(productModels);
-//         categories.addAll(response["categories"]);
-//       } else {
-//         stateRequest = StatusRequest.failure;
-//       }
-//     }
-
-//     update();
-//   }
-// }
 
 class HomeControllerImpl extends HomeController
     with GetSingleTickerProviderStateMixin {
@@ -65,6 +149,8 @@ class HomeControllerImpl extends HomeController
 
   late TabController tabController;
   var selectedProduct = ProductModel();
+  bool isFavoraite = false;
+  late RxInt selectedCategoryId = 0.obs;
 
   void setProduct(ProductModel product) {
     selectedProduct = product;
@@ -72,42 +158,59 @@ class HomeControllerImpl extends HomeController
 
   @override
   void onInit() {
-    getData();
+    tabController = TabController(length: 7, vsync: this);
+    tabController.addListener(_handleTabSelection);
     name = myServices.sharedPreferences.getString('username');
     id = myServices.sharedPreferences.getString('id');
 
-    // Initialize tabController
-    tabController = TabController(length: 8, vsync: this);
-    tabController.addListener(_handleTabSelection);
+    getCategoryData();
 
     super.onInit();
   }
 
   void _handleTabSelection() {
-    update(); // Trigger a rebuild when a tab is selected
+    update();
   }
 
   @override
-  Future<void> getData() async {
+  Future<void> getCategoryData() async {
     stateRequest = StatusRequest.loading;
-    var response = await homeData.getData();
+    var response = await homeData.getCategories();
 
     stateRequest = handleData(response);
     if (StatusRequest.success == stateRequest) {
       if (response["status"] == "success") {
-        List<ProductModel> productModels = (response["items"] as List<dynamic>)
-            .map((item) => ProductModel.fromJson(item))
-            .toList();
-
-        products.addAll(productModels);
         List<CategoriesModel> categorory =
             (response["categories"] as List<dynamic>)
                 .map((item) => CategoriesModel.fromJson(item))
                 .toList();
         categories.addAll(categorory);
-        print('================================================)');
-        print(categories.first.categoriesNameEn);
-        print('================================================)');
+        selectedCategoryId.value =
+            categories.isNotEmpty ? categories[0].categoriesId! : 0;
+        getItemsData(selectedCategoryId.toString());
+      } else {
+        stateRequest = StatusRequest.failure;
+      }
+    }
+
+    update();
+  }
+
+  @override
+  getItemsData(String id) async {
+    products.clear();
+    stateRequest = StatusRequest.loading;
+    var response = await homeData.getItems(id.toString());
+
+    stateRequest = handleData(response);
+    if (StatusRequest.success == stateRequest) {
+      if (response["status"] == "success") {
+        List<ProductModel> productModels = (response["data"] as List<dynamic>)
+            .map((item) => ProductModel.fromJson(item))
+            .toList();
+
+        products.addAll(productModels);
+        print(products.first.categoriesNameEn);
       } else {
         stateRequest = StatusRequest.failure;
       }
@@ -135,4 +238,16 @@ class HomeControllerImpl extends HomeController
   goToReviewPage() {
     Get.toNamed(AppRouts.reviewPage);
   }
+
+  @override
+  favProduct() {
+    isFavoraite = !isFavoraite;
+    update();
+  }
+
+  // @override
+  // void onCategorySelected(int categoryId) {
+  //   selectedCategoryId.value = categoryId;
+  //   getItemsData("$categoryId");
+  // }
 }

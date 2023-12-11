@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/core/class/handleDataView.dart';
+import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Category_title.dart';
@@ -24,57 +25,68 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxScrolled) {
-        return <Widget>[
-          createSilverAppBar(),
-        ];
-      }, body: GetBuilder<HomeControllerImpl>(
-        builder: (controller) {
-          return ViewDataHandleingRequest(
-            statusRequest: controller.stateRequest,
-            widget: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: Dimensions.getWidth(context) * .03),
-                      child: CustomCategoryTitle(
-                        onTap: () {},
-                      )),
-                  SizedBox(
-                    height: Dimensions.getWidth(context) * .03,
-                  ),
-                  const SizedBox(
-                      height: 40,
-                      width: double.infinity,
-                      child: CustomCategorylistView()),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: .75,
-                      crossAxisCount: 2,
-                      // mainAxisSpacing: 10.0,
-                    ),
-                    itemCount: controller.products.length,
-                    itemBuilder: (context, index) {
-                      return Center(
-                          child: CustomItemStack(
-                        product: controller.products[index],
-                      ));
-                    },
-                  )
-                ],
-              ),
-            ),
-          );
+        headerSliverBuilder: (BuildContext context, bool innerBoxScrolled) {
+          return <Widget>[
+            createSilverAppBar(),
+          ];
         },
-      )),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.getWidth(context) * .03,
+                ),
+                child: CustomCategoryTitle(
+                  onTap: () {},
+                ),
+              ),
+              SizedBox(
+                height: Dimensions.getWidth(context) * .03,
+              ),
+              SizedBox(
+                height: 40,
+                width: double.infinity,
+                child: GetBuilder<HomeControllerImpl>(
+                  builder: (controller) {
+                    return const ViewDataHandleingRequest(
+                      widget: CustomCategorylistView(),
+                      statusRequest: StatusRequest.success,
+                    );
+                  },
+                ),
+              ),
+              GetBuilder<HomeControllerImpl>(
+                builder: (controller) {
+                  return ViewDataHandleing(
+                      widget: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          childAspectRatio: .75,
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: controller.products.length,
+                        itemBuilder: (context, index) {
+                          return Center(
+                            child: CustomItemStack(
+                              product: controller.products[index],
+                            ),
+                          );
+                        },
+                      ),
+                      statusRequest: controller.stateRequest);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

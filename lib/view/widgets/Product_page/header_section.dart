@@ -8,7 +8,7 @@ import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 class HeaderSection extends StatelessWidget {
   final HomeControllerImpl controller;
 
-  const HeaderSection(this.controller, {super.key});
+  const HeaderSection({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

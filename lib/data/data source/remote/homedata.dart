@@ -6,8 +6,19 @@ class HomeData {
 
   HomeData(this.crud);
 
-  getData() async {
+  getCategories() async {
     var response = await crud.postData(AppLink.homePage, {});
+    return response.fold((l) => l, (r) => r);
+  }
+
+  getItems(String categoryId) async {
+    // var response = await crud.postData(AppLink.items, {"categories_id": "1"});
+    var response =
+        await crud.postData("${AppLink.items}?categories_id=$categoryId", {});
+
+    print("-----------------------------");
+    print(response);
+    print("-----------------------------");
     return response.fold((l) => l, (r) => r);
   }
 }

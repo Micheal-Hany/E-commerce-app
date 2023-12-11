@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_controller.dart';
+import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/constant/colors.dart';
@@ -15,40 +16,36 @@ class CustomCategorylistView extends StatelessWidget {
 
     return GetBuilder<HomeControllerImpl>(
       builder: (controller) => Scaffold(
-        body: controller.stateRequest == StatusRequest.loading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
-            : controller.stateRequest == StatusRequest.failure
-                ? const Center(
-                    child: Text('Failed to fetch data'),
-                  )
-                : TabBar(
-                    automaticIndicatorColorAdjustment: true,
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    labelColor: AppColor.primaryColorDart,
-                    dividerColor: Colors.black,
-                    controller: controller.tabController,
-                    isScrollable: true,
-                    tabs: controller.categories
-                        .asMap()
-                        .entries
-                        .map(
-                          (entry) => Tab(
-                            child: CustomCategoryItem(
-                              categoryName:
-                                  "${controller.categories[entry.key].categoriesNameEn}",
-                              image:
-                                  "${controller.categories[entry.key].categoriesImage}",
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: const BoxDecoration(),
-                    labelStyle: CustomStyle.textStyle22.copyWith(fontSize: 15),
-                    unselectedLabelStyle: CustomStyle.textStyle15,
+        body: ViewDataHandleingRequest(
+          statusRequest: controller.stateRequest,
+          widget: TabBar(
+            automaticIndicatorColorAdjustment: true,
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            labelColor: AppColor.primaryColorDart,
+            dividerColor: Colors.black,
+            controller: controller.tabController,
+            isScrollable: true,
+            tabs: controller.categories
+                .map(
+                  (category) => Tab(
+                    child: CustomCategoryItem(
+                      categoryName: "${category.categoriesNameEn}",
+                      image: "${category.categoriesImage}",
+                    ),
                   ),
+                )
+                .toList(),
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicator: const BoxDecoration(),
+            labelStyle: CustomStyle.textStyle22.copyWith(fontSize: 15),
+            unselectedLabelStyle: CustomStyle.textStyle15,
+            onTap: (index) {
+              controller
+                  .getItemsData("${controller.categories[index].categoriesId}");
+              print("${controller.categories[index].categoriesId}");
+            },
+          ),
+        ),
       ),
     );
   }

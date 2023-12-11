@@ -30,7 +30,7 @@ class ProductDetails extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  HeaderSection(controller),
+                  HeaderSection(controller: controller),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),

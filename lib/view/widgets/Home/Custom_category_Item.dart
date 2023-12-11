@@ -12,6 +12,7 @@ class CustomCategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return Container(
       decoration: const BoxDecoration(
           color: Color(0xffF5F6FA),
