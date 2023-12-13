@@ -6,7 +6,7 @@ import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 
 class HeaderSection extends StatelessWidget {
-  final HomeControllerImpl controller;
+  final ProductDetailesControllerImpl controller;
 
   const HeaderSection({super.key, required this.controller});
 
@@ -14,16 +14,18 @@ class HeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: Dimensions.getHeight(context) * 0.5,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              // Use CachedNetworkImageProvider to load images from the internet with caching.
-              image: CachedNetworkImageProvider(
-                controller.selectedProduct.itemImage!,
+        Hero(
+          tag: "${controller.product.itemId}",
+          child: Container(
+            width: double.infinity,
+            height: Dimensions.getHeight(context) * 0.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: CachedNetworkImageProvider(
+                  controller.product.itemImage!,
+                ),
+                // fit: BoxFit.fill,
               ),
-              // fit: BoxFit.fill,
             ),
           ),
         ),

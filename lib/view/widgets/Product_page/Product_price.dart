@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:get/get.dart';
 
 class ProductPrice extends StatelessWidget {
   const ProductPrice({super.key, required this.price});
@@ -9,8 +10,8 @@ class ProductPrice extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Price', style: CustomStyle.textStyle15),
-        const SizedBox(height: 10),
+        Text('61'.tr, style: CustomStyle.textStyle15),
+        const SizedBox(height: 20),
         Text('\$$price', style: CustomStyle.textStyle22),
       ],
     );

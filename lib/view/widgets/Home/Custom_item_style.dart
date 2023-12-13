@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/data/model/product_model.dart';
+import 'package:get/get.dart';
 
 class CustomItemStyle extends StatelessWidget {
   const CustomItemStyle({
@@ -29,13 +31,16 @@ class CustomItemStyle extends StatelessWidget {
               // height: 203,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: CachedNetworkImage(
-                    imageUrl: product.itemImage!,
-                    fit: BoxFit.fill,
-                    placeholder: (context, url) {
-                      return Lottie.asset('assets/lattio/loading.json',
-                          width: 50, height: 50);
-                    },
+                  child: Hero(
+                    tag: "${product.itemId}",
+                    child: CachedNetworkImage(
+                      imageUrl: product.itemImage!,
+                      fit: BoxFit.fill,
+                      placeholder: (context, url) {
+                        return Lottie.asset('assets/lattio/loading.json',
+                            width: 45, height: 45);
+                      },
+                    ),
                   )),
             ),
             Container(
@@ -44,9 +49,16 @@ class CustomItemStyle extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(
                     vertical: Dimensions.getWidth(context) * .009),
-                child: Text(
-                  product.itemNameEn!,
-                  style: CustomStyle.textStyle15.copyWith(color: Colors.black),
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxHeight: Get.height / 20,
+                    maxWidth: Get.width / 2.2,
+                  ),
+                  child: Text(
+                    translateDataBase(product.itemNameAr, product.itemNameEn!),
+                    style:
+                        CustomStyle.textStyle15.copyWith(color: Colors.black),
+                  ),
                 ),
               ),
             ),

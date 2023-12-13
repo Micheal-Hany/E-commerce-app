@@ -57,7 +57,19 @@ class MyTranslation extends Translations {
           '49': 'البريد الالكتروني غير موجود',
           '50': 'من فضلك أدخل رمز التأكيد الصحيح',
           "51": 'كلمات المرور غير متطابقة',
-          "52": 'حاول مره اخري'
+          "52": 'حاول مره اخري',
+          "53": "مرحبًا",
+          "54": "مرحبا في لازا",
+          "55": "ابحث",
+          "56": "اختر القسم",
+          "57": "عرض الكل",
+          "58": "اضف الى العربه",
+          "59": "الوصف",
+          "60": "القسم",
+          "61": "السعر",
+          "62": "التقيمات",
+          "63": "اضف تقييم",
+          "64":"عدد",
         },
         "en": {
           "1": "Choose Language",
@@ -115,7 +127,19 @@ class MyTranslation extends Translations {
           '49': 'Email not found',
           '50': 'veriacation code not correct',
           '51': 'passwords do not match',
-          '52': 'try again'
+          '52': 'try again',
+          "53": "Hello",
+          "54": "Welcome to laza.",
+          "55": "Search",
+          "56": "Choose Category",
+          "57": "All",
+          "58": "Add to Cart",
+          "59": "Description",
+          "60": "Category",
+          "61": "price",
+          "62": "Reveiws",
+          "63": "Add Review",
+          "64":"Count"
         }
       };
 }

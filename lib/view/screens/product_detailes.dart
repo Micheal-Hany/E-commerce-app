@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_controller.dart';
+import 'package:store_app/controller/product-detailes_controller.dart';
+import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
+import 'package:store_app/view/widgets/Product_page/Product_item_counter.dart';
 import 'package:store_app/view/widgets/Product_page/Product_price.dart';
 import 'package:store_app/view/widgets/Product_page/User_review.dart';
 import 'package:store_app/view/widgets/Product_page/decription_section.dart';
@@ -19,9 +23,9 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeControllerImpl());
+    Get.put(ProductDetailesControllerImpl());
 
-    return GetBuilder<HomeControllerImpl>(
+    return GetBuilder<ProductDetailesControllerImpl>(
       builder: (controller) {
         return SafeArea(
           child: Scaffold(
@@ -35,21 +39,27 @@ class ProductDetails extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ProductCategoryAndName(
-                            category:
-                                controller.selectedProduct.categoriesNameEn!,
-                            productName:
-                                controller.selectedProduct.itemNameEn!),
-                        const Spacer(),
-                        ProductPrice(
-                            price: "${controller.selectedProduct.itemPrice!}"),
+                            category: translateDataBase(
+                                controller.product.categoriesNameAr,
+                                controller.product.categoriesNameEn!),
+                            productName: translateDataBase(
+                                controller.product.itemNameAr,
+                                controller.product.itemNameEn!)),
+                        // const Spacer(),
+                        ProductPrice(price: "${controller.product.itemPrice!}"),
                       ],
                     ),
                   ),
                   DescriptionSection(
-                      description:
-                          controller.selectedProduct.itemDecriptionEn!),
+                    description: translateDataBase(
+                        controller.product.itemDecriptionAr,
+                        controller.product.itemDecriptionEn!),
+                  ),
+                  ProductItemCounter(controller: controller),
                   ReviewsSection(onPressed: () => controller.goToReviewPage()),
                   const CustomUserReview(),
                   const SizedBox(height: 40),
@@ -58,7 +68,7 @@ class ProductDetails extends StatelessWidget {
                     width: Dimensions.getWidth(context) * .9,
                     height: Dimensions.getHeight(context) * .06,
                     onPressed: () {},
-                    buttonName: 'Add to Cart',
+                    buttonName: '58'.tr,
                   ),
                 ],
               ),

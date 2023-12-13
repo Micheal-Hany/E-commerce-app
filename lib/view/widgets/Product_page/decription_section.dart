@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:get/get.dart';
 
 class DescriptionSection extends StatelessWidget {
   const DescriptionSection({super.key, required this.description});
@@ -10,13 +11,14 @@ class DescriptionSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Column(
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Description',
-              style:
-                  CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
-            ),
+          Row(
+            children: [
+              Text(
+                '59'.tr,
+                style: CustomStyle.textStyle17
+                    .copyWith(fontWeight: FontWeight.w600),
+              ),
+            ],
           ),
           const SizedBox(
             height: 10,

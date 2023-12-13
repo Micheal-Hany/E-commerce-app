@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:get/get.dart';
 
 class ReviewsSection extends StatelessWidget {
-  const ReviewsSection({super.key,required this.onPressed});
+  const ReviewsSection({super.key, required this.onPressed});
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -11,12 +12,14 @@ class ReviewsSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Reviews',
+          Text('62'.tr,
               style: CustomStyle.textStyle17
                   .copyWith(fontWeight: FontWeight.w600)),
           TextButton(
+            style: const ButtonStyle(
+                padding: MaterialStatePropertyAll(EdgeInsets.zero)),
             onPressed: onPressed,
-            child: const Text('View All', style: CustomStyle.textStyle13),
+            child: Text('57'.tr, style: CustomStyle.textStyle13),
           )
         ],
       ),

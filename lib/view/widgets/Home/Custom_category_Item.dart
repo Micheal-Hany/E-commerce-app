@@ -12,18 +12,17 @@ class CustomCategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
       decoration: const BoxDecoration(
           color: Color(0xffF5F6FA),
-          //  color: Colors.green,
+          // color: Colors.green,
           borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             decoration: BoxDecoration(
-                //  color: Colors.red,
+                // color: Colors.red,
                 color: const Color(0xffFEFEFE),
                 borderRadius: BorderRadius.circular(15)),
             child: Image.network(
@@ -38,10 +37,12 @@ class CustomCategoryItem extends StatelessWidget {
               //color: Colors.blue,
               color: const Color(0xffF5F6FA),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 5),
             child: Tab(
-              child: Text(
-                categoryName,
+              child: Center(
+                child: Text(
+                  categoryName,
+                ),
               ),
             ),
           )

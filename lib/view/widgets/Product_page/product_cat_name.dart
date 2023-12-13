@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:get/get.dart';
 
 class ProductCategoryAndName extends StatelessWidget {
   const ProductCategoryAndName(
@@ -11,9 +12,14 @@ class ProductCategoryAndName extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Category: $category', style: CustomStyle.textStyle15),
-        const SizedBox(height: 10),
-        Text(productName, style: CustomStyle.textStyle22),
+        Text('${'60'.tr}: $category', style: CustomStyle.textStyle15),
+        const SizedBox(height: 20),
+        Container(
+            constraints: BoxConstraints(
+              maxHeight: Get.height / 15,
+              maxWidth: Get.height / 2.6,
+            ),
+            child: Text(productName, style: CustomStyle.textStyle22)),
       ],
     );
   }

@@ -120,17 +120,17 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensions.getWidth(context) * .04),
-              child: const Row(
+              child:   Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello',
+                        '53'.tr,
                         style: CustomStyle.textStyle28,
                       ),
                       Text(
-                        'Welcome to Laza.',
+                        '54'.tr,
                         style: CustomStyle.textStyle15,
                       ),
                     ],

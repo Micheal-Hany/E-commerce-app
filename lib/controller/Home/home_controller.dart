@@ -11,10 +11,8 @@ import 'package:store_app/data/model/product_model.dart';
 abstract class HomeController extends GetxController {
   getCategoryData();
   getItemsData(String id);
-  goToProductDetailes();
-  goToReviewPage();
+  goToProductDetailes(ProductModel product);
   favProduct();
-  //  onCategorySelected(int categoryId);
 }
 
 class HomeControllerImpl extends HomeController
@@ -28,13 +26,9 @@ class HomeControllerImpl extends HomeController
   List<CategoriesModel> categories = [];
 
   late TabController tabController;
-  var selectedProduct = ProductModel();
+
   bool isFavoraite = false;
   late RxInt selectedCategoryId = 0.obs;
-
-  void setProduct(ProductModel product) {
-    selectedProduct = product;
-  }
 
   @override
   void onInit() {
@@ -105,18 +99,9 @@ class HomeControllerImpl extends HomeController
     super.onClose();
   }
 
-  backToHomePage() {
-    Get.back();
-  }
-
   @override
-  goToProductDetailes() {
-    Get.toNamed(AppRouts.productPage);
-  }
-
-  @override
-  goToReviewPage() {
-    Get.toNamed(AppRouts.reviewPage);
+  goToProductDetailes(ProductModel product) {
+    Get.toNamed(AppRouts.productPage, arguments: product);
   }
 
   @override

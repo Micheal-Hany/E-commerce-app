@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:get/get.dart';
 
 class CustomSearchFiled extends StatelessWidget {
   const CustomSearchFiled({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class CustomSearchFiled extends StatelessWidget {
           // cursorColor: Colors.black,
           maxLines: 1,
           decoration: InputDecoration(
-            hintText: 'Search...',
+            hintText: "${'55'.tr}...",
             hintStyle: CustomStyle.textStyle15,
             prefixIcon: Image.asset(
               'assets/images/search_icon.png',

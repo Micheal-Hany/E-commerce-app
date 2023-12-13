@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/review_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:get/get.dart';
 
 class ReviewStatisticsSection extends StatelessWidget {
   final ReviewPageControllerImpl controller;
@@ -27,7 +28,7 @@ class ReviewStatisticsSection extends StatelessWidget {
                   width: Dimensions.getWidth(context) * .01,
                 ),
                 Text(
-                  'Reviews',
+                  '62'.tr,
                   style: CustomStyle.textStyle15
                       .copyWith(color: const Color(0xff1D1E20)),
                 ),
@@ -63,7 +64,7 @@ class ReviewStatisticsSection extends StatelessWidget {
                 color: Colors.white,
               ),
               Text(
-                "Add Review",
+                "63".tr,
                 style: CustomStyle.textStyle13.copyWith(color: Colors.white),
               ),
             ],

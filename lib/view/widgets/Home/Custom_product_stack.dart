@@ -24,8 +24,8 @@ class CustomItemStack extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                controller.setProduct(product);
-                controller.goToProductDetailes();
+                // controller.setProduct(product);
+                controller.goToProductDetailes(product);
               },
               child: CustomItemStyle(
                 product: product,

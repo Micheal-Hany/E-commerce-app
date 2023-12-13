@@ -4,6 +4,7 @@ import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/constant/colors.dart';
+import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/view/widgets/Home/Custom_category_Item.dart';
 import 'package:get/get.dart';
 
@@ -18,32 +19,36 @@ class CustomCategorylistView extends StatelessWidget {
       builder: (controller) => Scaffold(
         body: ViewDataHandleingRequest(
           statusRequest: controller.stateRequest,
-          widget: TabBar(
-            automaticIndicatorColorAdjustment: true,
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-            labelColor: AppColor.primaryColorDart,
-            dividerColor: Colors.black,
-            controller: controller.tabController,
-            isScrollable: true,
-            tabs: controller.categories
-                .map(
-                  (category) => Tab(
-                    child: CustomCategoryItem(
-                      categoryName: "${category.categoriesNameEn}",
-                      image: "${category.categoriesImage}",
+          widget: Container(
+            color: Colors.white,
+            child: TabBar(
+              automaticIndicatorColorAdjustment: true,
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              labelColor: AppColor.primaryColorDart,
+              dividerColor: Colors.black,
+              controller: controller.tabController,
+              isScrollable: true,
+              tabs: controller.categories
+                  .map(
+                    (category) => Tab(
+                      child: CustomCategoryItem(
+                        categoryName:
+                            "${translateDataBase(category.categoriesNameAr, category.categoriesNameEn)}",
+                        image: "${category.categoriesImage}",
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicator: const BoxDecoration(),
-            labelStyle: CustomStyle.textStyle22.copyWith(fontSize: 15),
-            unselectedLabelStyle: CustomStyle.textStyle15,
-            onTap: (index) {
-              controller
-                  .getItemsData("${controller.categories[index].categoriesId}");
-              print("${controller.categories[index].categoriesId}");
-            },
+                  )
+                  .toList(),
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: const BoxDecoration(),
+              labelStyle: CustomStyle.textStyle22.copyWith(fontSize: 15),
+              unselectedLabelStyle: CustomStyle.textStyle15,
+              onTap: (index) {
+                controller.getItemsData(
+                    "${controller.categories[index].categoriesId}");
+                print("${controller.categories[index].categoriesId}");
+              },
+            ),
           ),
         ),
       ),
