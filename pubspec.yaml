@@ -44,7 +44,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   get: ^4.6.6
+  path: ^1.8.0
   shared_preferences: ^2.2.2
+  sqflite: ^2.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

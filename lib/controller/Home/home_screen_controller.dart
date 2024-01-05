@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:store_app/view/screens/Home/cart_page.dart';
 import 'package:store_app/view/screens/Home/favorite_page.dart';
 import 'package:store_app/view/screens/Home/wallet_page.dart';
-import 'package:store_app/view/widgets/Home/Custom_sliver_appBar.dart';
+import 'package:store_app/view/widgets/Home/Custom_Home_Page.dart';
 
 abstract class HaomeScreenContoller extends GetxController {
   changePage(int pageNum);
@@ -23,7 +23,7 @@ class HaomeScreenContollerImpl extends HaomeScreenContoller {
     'assets/images/bag_icon.png',
     'assets/images/wallet.png',
   ];
-  List<String> screensName = ["Home", "Liked", "Cart", "Wallet"];
+  List<String> screensName = ["Home", "Wishlist", "Cart", "Wallet"];
   @override
   changePage(int pageNum) {
     currentPage = pageNum;

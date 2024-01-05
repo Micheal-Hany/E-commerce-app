@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensions.getWidth(context) * .04),
-              child:   Row(
+              child: Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

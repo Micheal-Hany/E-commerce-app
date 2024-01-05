@@ -4,6 +4,7 @@ import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
 import 'package:store_app/core/services/Services.dart';
+import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/data%20source/remote/homedata.dart';
 import 'package:store_app/data/model/categoriesmodel.dart';
 import 'package:store_app/data/model/product_model.dart';
@@ -108,5 +109,18 @@ class HomeControllerImpl extends HomeController
   favProduct() {
     isFavoraite = !isFavoraite;
     update();
+  }
+
+  void addProductToDatabase(ProductModel product) async {
+    ProductModel? existingProduct =
+        await DBHelper.instance().getProductById(product.itemId!);
+
+    if (existingProduct != null) {
+      print('already exists: ${product.itemId}');
+    } else {
+      int productId = await DBHelper.instance().insertLikedProduct(product);
+
+      print('Product inserted with ID: $productId');
+    }
   }
 }

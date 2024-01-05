@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Home/favorite_page_controller.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Home/Custom_bottom_navber_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<FavoriteControllerImpl> {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put(HaomeScreenContollerImpl());
     return GetBuilder<HaomeScreenContollerImpl>(
-      builder: (controller) {
+      builder: (haomeScreenContollerImpl) {
         return Scaffold(
           backgroundColor: const Color(0xffFEFEFE),
           bottomNavigationBar: Material(
@@ -25,18 +26,21 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ...List.generate(
-                    controller.screens.length,
+                    haomeScreenContollerImpl.screens.length,
                     (index) => IconBottomAppBar(
-                      onTap: () => controller.changePage(index),
-                      widget: index != controller.currentPage
+                      onTap: () {
+                        haomeScreenContollerImpl.changePage(index);
+                        controller.getLikedProducts();
+                      },
+                      widget: index != haomeScreenContollerImpl.currentPage
                           ? Image.asset(
-                              controller.screenIcons[index],
+                              haomeScreenContollerImpl.screenIcons[index],
                               width: 30,
                               height: 30,
                             )
                           : Text(
-                              controller.screensName[index],
-                              style: CustomStyle.textStyle15
+                              haomeScreenContollerImpl.screensName[index],
+                              style: CustomStyle.textStyle13
                                   .copyWith(color: const Color(0xff9775FA)),
                             ),
                     ),
@@ -45,7 +49,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          body: controller.screens[controller.currentPage],
+          body: haomeScreenContollerImpl
+              .screens[haomeScreenContollerImpl.currentPage],
         );
       },
     );

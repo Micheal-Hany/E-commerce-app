@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class WalletPage extends StatelessWidget {
@@ -8,7 +7,9 @@ class WalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.green,
+      body: Column(
+        children: [Text("Micheal Hany")],
+      ),
     );
   }
 }
-

@@ -69,7 +69,8 @@ class MyTranslation extends Translations {
           "61": "السعر",
           "62": "التقيمات",
           "63": "اضف تقييم",
-          "64":"عدد",
+          "64": "عدد",
+          "65": "المفضله"
         },
         "en": {
           "1": "Choose Language",
@@ -139,7 +140,8 @@ class MyTranslation extends Translations {
           "61": "price",
           "62": "Reveiws",
           "63": "Add Review",
-          "64":"Count"
+          "64": "Count",
+          "65": "Wishlist"
         }
       };
 }
