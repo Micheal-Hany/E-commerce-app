@@ -14,6 +14,9 @@ class FavoriteControllerImpl extends FavoriteController {
   backToHomePage() {}
   List<ProductModel> products = [];
   StatusRequest stateRequest = StatusRequest.none;
+  goToProductDetailes(ProductModel product) {
+    Get.toNamed(AppRouts.productPage, arguments: product);
+  }
 
   getLikedProducts() async {
     products = await DBHelper.instance().getAllLikedProducts("Liked_Products");
@@ -25,6 +28,11 @@ class FavoriteControllerImpl extends FavoriteController {
       stateRequest = StatusRequest.success;
     }
     update();
+  }
+
+
+  remove(ProductModel product) async {
+    await DBHelper.instance().deleteLikedProduct(product);
   }
 
   @override

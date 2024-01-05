@@ -7,7 +7,7 @@ import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
-import 'package:store_app/view/widgets/Product_page/Product_item_counter.dart';
+import 'package:store_app/view/widgets/cart/Product_item_counter.dart';
 import 'package:store_app/view/widgets/Product_page/Product_price.dart';
 import 'package:store_app/view/widgets/Product_page/User_review.dart';
 import 'package:store_app/view/widgets/Product_page/decription_section.dart';
@@ -59,7 +59,7 @@ class ProductDetails extends StatelessWidget {
                         controller.product.itemDecriptionAr,
                         controller.product.itemDecriptionEn!),
                   ),
-                  ProductItemCounter(controller: controller),
+                //  ProductItemCounter(controller: controller),
                   ReviewsSection(onPressed: () => controller.goToReviewPage()),
                   const CustomUserReview(),
                   const SizedBox(height: 40),

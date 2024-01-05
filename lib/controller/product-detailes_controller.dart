@@ -10,7 +10,7 @@ abstract class ProductDetailesController extends GetxController {
 }
 
 class ProductDetailesControllerImpl extends ProductDetailesController {
-  final RxInt counter = 0.obs;
+  final RxInt counter = 1.obs;
 
   addOne() {
     counter.value += 1;

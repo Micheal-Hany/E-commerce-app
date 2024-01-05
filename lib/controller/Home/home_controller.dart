@@ -13,7 +13,7 @@ abstract class HomeController extends GetxController {
   getCategoryData();
   getItemsData(String id);
   goToProductDetailes(ProductModel product);
-  favProduct();
+  favProduct(ProductModel product);
 }
 
 class HomeControllerImpl extends HomeController
@@ -28,7 +28,7 @@ class HomeControllerImpl extends HomeController
 
   late TabController tabController;
 
-  bool isFavoraite = false;
+  RxSet<int> favoritedProductIds = <int>{}.obs;
   late RxInt selectedCategoryId = 0.obs;
 
   @override
@@ -105,9 +105,17 @@ class HomeControllerImpl extends HomeController
     Get.toNamed(AppRouts.productPage, arguments: product);
   }
 
+  bool isProductFavoraite(ProductModel product) {
+    return favoritedProductIds.contains(product.itemId);
+  }
+
   @override
-  favProduct() {
-    isFavoraite = !isFavoraite;
+  favProduct(ProductModel product) {
+    if (isProductFavoraite(product)) {
+      favoritedProductIds.remove(product.itemId);
+    } else {
+      favoritedProductIds.add(product.itemId!);
+    }
     update();
   }
 
@@ -122,5 +130,8 @@ class HomeControllerImpl extends HomeController
 
       print('Product inserted with ID: $productId');
     }
+  }
+  remove(ProductModel product) async {
+    await DBHelper.instance().deleteLikedProduct(product);
   }
 }

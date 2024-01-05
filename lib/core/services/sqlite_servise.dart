@@ -57,6 +57,15 @@ class DBHelper {
     return await db.insert('Liked_Products', product.toJson());
   }
 
+  Future<int> deleteLikedProduct(ProductModel product) async {
+    final db = await database;
+    return await db.delete(
+      'Liked_Products',
+      where: 'item_id = ?',
+      whereArgs: [product.itemId],
+    );
+  }
+
   Future<List<ProductModel>> getAllLikedProducts(String tableName) async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(tableName);
