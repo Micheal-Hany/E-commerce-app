@@ -23,14 +23,19 @@ class DBHelper {
 
   Future<Database> initDatabase() async {
     String path = join(await getDatabasesPath(), 'ecommerce.db');
-    // await deleteDatabase(join(path, 'ecommerce.db'));
-    _database = await openDatabase(path, version: 1, onCreate: _createTable);
+    //await deleteDatabase(join(path, 'ecommerce.db'));
+    _database = await openDatabase(path, version: 1, onCreate: _createTables);
     return _database;
   }
 
-  Future<void> _createTable(Database db, int version) async {
+  Future<void> _createTables(Database db, int version) async {
+    await _createTable(db, 'Liked_Products');
+    await _createTable(db, 'Cart_Products');
+  }
+
+  Future<void> _createTable(Database db, String tableName) async {
     await db.execute('''
-    CREATE TABLE Liked_Products (
+    CREATE TABLE $tableName (
       item_id INTEGER PRIMARY KEY AUTOINCREMENT,
       item_name_en TEXT,
       item_name_ar TEXT,
@@ -52,21 +57,21 @@ class DBHelper {
   ''');
   }
 
-  Future<int> insertLikedProduct(ProductModel product) async {
+  Future<int> insertProduct(String tableName, ProductModel product) async {
     final db = await database;
-    return await db.insert('Liked_Products', product.toJson());
+    return await db.insert(tableName, product.toJson());
   }
 
-  Future<int> deleteLikedProduct(ProductModel product) async {
+  Future<int> deleteProduct(String tableName, ProductModel product) async {
     final db = await database;
     return await db.delete(
-      'Liked_Products',
+      tableName,
       where: 'item_id = ?',
       whereArgs: [product.itemId],
     );
   }
 
-  Future<List<ProductModel>> getAllLikedProducts(String tableName) async {
+  Future<List<ProductModel>> getAllProducts(String tableName) async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(tableName);
     return List.generate(maps.length, (index) {
@@ -74,10 +79,10 @@ class DBHelper {
     });
   }
 
-  Future<ProductModel?> getProductById(int itemId) async {
+  Future<ProductModel?> getProductById(int itemId, String tableName) async {
     final db = await database;
     List<Map<String, dynamic>> result = await db.query(
-      'Liked_Products',
+      tableName,
       where: 'item_id = ?',
       whereArgs: [itemId],
     );
@@ -88,14 +93,4 @@ class DBHelper {
       return null;
     }
   }
-
-  // Future<int> updateLikedProduct(ProductModel product) async {
-  //   final db = await database;
-  //   return await db.update(
-  //     'Liked_Products',
-  //     product.toJson(),
-  //     where: 'item_id = ?',
-  //     whereArgs: [product.itemId],
-  //   );
-  // }
 }

@@ -39,17 +39,3 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRouts.addReviewPage, page: () => const AddReviewpage()),
 ];
 
-
-// Map<String, Widget Function(BuildContext)> routes = {
-//   // Authentication
-//   AppRouts.login: (p0) => const Login(),
-//   AppRouts.signup: (p0) => const SignUp(),
-//   AppRouts.forgetPass: (p0) => const ForgetPassword(),
-//   AppRouts.resetPass: (p0) => const ResetPassword(),
-//   AppRouts.verifayCode: (p0) => const VerifayCode(),
-//   AppRouts.signUpSuccess: (p0) => const SignUpSuccess(),
-//   AppRouts.resetPasswordSuccess: (p0) => const ResetPasswordSuccess(),
-//   // on Bording
-//   AppRouts.onBording: (p0) => const OnBording(),
-//   AppRouts.signUpVerifayCode: (p0) => const SignUpVerifayCode(),
-// };

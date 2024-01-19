@@ -120,18 +120,20 @@ class HomeControllerImpl extends HomeController
   }
 
   void addProductToDatabase(ProductModel product) async {
-    ProductModel? existingProduct =
-        await DBHelper.instance().getProductById(product.itemId!);
+    ProductModel? existingProduct = await DBHelper.instance()
+        .getProductById(product.itemId!, "Liked_Products");
 
     if (existingProduct != null) {
       print('already exists: ${product.itemId}');
     } else {
-      int productId = await DBHelper.instance().insertLikedProduct(product);
+      int productId =
+          await DBHelper.instance().insertProduct("Liked_Products", product);
 
       print('Product inserted with ID: $productId');
     }
   }
+
   remove(ProductModel product) async {
-    await DBHelper.instance().deleteLikedProduct(product);
+    await DBHelper.instance().deleteProduct("Liked_Products", product);
   }
 }

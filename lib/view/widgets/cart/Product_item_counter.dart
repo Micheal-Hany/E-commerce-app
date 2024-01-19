@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
-import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
+import 'package:store_app/data/model/product_model.dart';
 
 class ProductItemCounter extends StatelessWidget {
   final CartPageControllerImpl controller;
+  final ProductModel product;
 
-  const ProductItemCounter({Key? key, required this.controller})
+  const ProductItemCounter(
+      {Key? key, required this.controller, required this.product})
       : super(key: key);
 
   @override
@@ -59,26 +61,24 @@ class ProductItemCounter extends StatelessWidget {
         ),
         SizedBox(width: Dimensions.getWidth(context) * .2),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            controller.remove(product);
+            controller.getOrderdProducts();
+          },
           child: Container(
-            width: 45, // Increase the width
-            height: 45, // Increase the height
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: const Color(0xffDEDEDE),
-                width: 1.0,
+              width: 35.0, // Updated width to 40.0
+              height: 35.0, // Updated height to 40.0
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xffDEDEDE),
+                  width: 1.0,
+                ),
               ),
-            ),
-            child: CustomCartIcon(
-              backgroundColor: const Color(0xffFEFEFE),
-              onPressed: () {},
-              widget: Image.asset(
+              child: Image.asset(
                 'assets/images/baskect.png',
-              ),
-            ),
-          ),
-        ),
+              )),
+        )
       ],
     );
   }

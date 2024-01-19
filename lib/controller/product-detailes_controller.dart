@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/routsName.dart';
+import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/model/product_model.dart';
 
 abstract class ProductDetailesController extends GetxController {
@@ -10,18 +9,6 @@ abstract class ProductDetailesController extends GetxController {
 }
 
 class ProductDetailesControllerImpl extends ProductDetailesController {
-  final RxInt counter = 1.obs;
-
-  addOne() {
-    counter.value += 1;
-    update();
-  }
-
-  minusOne() {
-    counter.value == 0 ? counter : counter.value -= 1;
-    update();
-  }
-
   final ProductModel product = Get.arguments;
   @override
   goToProduct() {
@@ -35,5 +22,19 @@ class ProductDetailesControllerImpl extends ProductDetailesController {
 
   goToReviewPage() {
     Get.toNamed(AppRouts.reviewPage);
+  }
+
+  void addProductToDatabase(ProductModel product) async {
+    ProductModel? existingProduct = await DBHelper.instance()
+        .getProductById(product.itemId!, "Cart_Products");
+
+    if (existingProduct != null) {
+      print('already exists: ${product.itemId}');
+    } else {
+      int productId =
+          await DBHelper.instance().insertProduct("Cart_Products", product);
+
+      print('Product inserted with ID: $productId');
+    }
   }
 }

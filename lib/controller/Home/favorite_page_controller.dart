@@ -19,7 +19,7 @@ class FavoriteControllerImpl extends FavoriteController {
   }
 
   getLikedProducts() async {
-    products = await DBHelper.instance().getAllLikedProducts("Liked_Products");
+    products = await DBHelper.instance().getAllProducts("Liked_Products");
 
     stateRequest = StatusRequest.loading;
     if (products.isEmpty) {
@@ -30,9 +30,8 @@ class FavoriteControllerImpl extends FavoriteController {
     update();
   }
 
-
   remove(ProductModel product) async {
-    await DBHelper.instance().deleteLikedProduct(product);
+    await DBHelper.instance().deleteProduct("Liked_Products", product);
   }
 
   @override
