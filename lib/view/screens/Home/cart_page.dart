@@ -3,6 +3,7 @@ import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
+import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
 import 'package:store_app/view/widgets/cart/Custom_cart_item_product.dart';
 import 'package:store_app/view/widgets/cart/address_section.dart';
 import 'package:store_app/view/widgets/cart/cart_app_bar.dart';
@@ -15,43 +16,58 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CartPageControllerImpl());
-    return Scaffold(body: GetBuilder<CartPageControllerImpl>(
-      builder: (controller) {
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: Dimensions.getWidth(context) * .02, vertical: 40),
-            child: Column(
-              children: [
-                const CustomCartAppBar(),
-                const SizedBox(
-                  height: 20,
-                ),
-                ViewDataHandleing(
-                  statusRequest: controller.stateRequest,
-                  widget: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.products.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: CustomCartItemDetails(
-                          product: controller.products[index],
-                          controller: controller,
-                        ),
-                      );
-                    },
+    return Scaffold(
+      body: GetBuilder<CartPageControllerImpl>(
+        builder: (controller) {
+          controller.getOrderdProducts();
+          return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.getWidth(context) * .02, vertical: 40),
+              child: Column(
+                children: [
+                  const CustomCartAppBar(),
+                  const SizedBox(height: 20),
+                  ViewDataHandleing(
+                      statusRequest: controller.stateRequest,
+                      widget: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: controller.products.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Obx(() {
+                              final CartPageControllerImpl itemController =
+                                  controller.getItemController(
+                                      controller.products[index].itemId!);
+
+                              return CustomCartItemDetails(
+                                product: controller.products[index],
+                                controller: itemController,
+                              );
+                            }),
+                          );
+                        },
+                      )),
+                  const CustomDeliveryAddress(),
+                  const CustomPaymentMethod(),
+                  const OrderInfoSection(),
+                  SizedBox(height: Dimensions.getWidth(context) * .03),
+                  CustomButton(
+                    buttonName: "Checkout",
+                    onPressed: () {},
+                    backgroundColor: const Color(0xff9775FA),
+                    width: Dimensions.getWidth(context) * .9,
+                    height: Dimensions.getHeight(context) * .06,
                   ),
-                ),
-                const CustomDeliveryAddress(),
-                const CustomPaymentMethod(),
-                const OrderInfoSection()
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      },
-    ));
+          );
+        },
+      ),
+    );
   }
 }

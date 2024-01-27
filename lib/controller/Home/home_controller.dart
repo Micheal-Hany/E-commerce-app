@@ -25,26 +25,20 @@ class HomeControllerImpl extends HomeController
   HomeData homeData = HomeData(Get.find());
   List<ProductModel> products = [];
   List<CategoriesModel> categories = [];
-
   late TabController tabController;
-
   RxSet<int> favoritedProductIds = <int>{}.obs;
   late RxInt selectedCategoryId = 0.obs;
 
   @override
   void onInit() {
     tabController = TabController(length: 7, vsync: this);
-    tabController.addListener(_handleTabSelection);
+    tabController.addListener(() => update());
     name = myServices.sharedPreferences.getString('username');
     id = myServices.sharedPreferences.getString('id');
 
     getCategoryData();
 
     super.onInit();
-  }
-
-  void _handleTabSelection() {
-    update();
   }
 
   @override
@@ -90,7 +84,6 @@ class HomeControllerImpl extends HomeController
         stateRequest = StatusRequest.failure;
       }
     }
-
     update();
   }
 

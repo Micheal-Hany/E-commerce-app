@@ -8,11 +8,14 @@ import 'package:store_app/data/model/product_model.dart';
 import 'package:store_app/view/widgets/cart/Product_item_counter.dart';
 
 class CustomCartItemDetails extends StatelessWidget {
-  const CustomCartItemDetails(
-      {Key? key, required this.controller, required this.product})
-      : super(key: key);
+  const CustomCartItemDetails({
+    Key? key,
+    required this.controller,
+    required this.product,
+  }) : super(key: key);
   final CartPageControllerImpl controller;
   final ProductModel product;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,7 +74,10 @@ class CustomCartItemDetails extends StatelessWidget {
                 SizedBox(
                   height: Dimensions.getHeight(context) * .02,
                 ),
-                ProductItemCounter(controller: controller, product: product),
+                ProductItemCounter(
+                  controller: controller,
+                  product: product,
+                ),
                 SizedBox(
                   height: Dimensions.getHeight(context) * .01,
                 ),

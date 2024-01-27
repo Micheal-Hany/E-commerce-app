@@ -3,13 +3,15 @@ import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/data/model/product_model.dart';
+import 'package:get/get.dart';
 
 class ProductItemCounter extends StatelessWidget {
   final CartPageControllerImpl controller;
   final ProductModel product;
+   
 
   const ProductItemCounter(
-      {Key? key, required this.controller, required this.product})
+      {Key? key, required this.controller, required this.product,})
       : super(key: key);
 
   @override
@@ -17,7 +19,11 @@ class ProductItemCounter extends StatelessWidget {
     return Row(
       children: [
         GestureDetector(
-          onTap: () => controller.minusOne(),
+          onTap: () {
+            controller.minusOne();
+
+            //controller.updatePrices(controller.counter.value);
+          },
           child: Container(
             width: 30,
             height: 30,
@@ -35,14 +41,18 @@ class ProductItemCounter extends StatelessWidget {
           ),
         ),
         SizedBox(width: Dimensions.getWidth(context) * .05),
-        Text(
-          "${controller.counter.value}",
-          style: CustomStyle.textStyle15
-              .copyWith(fontWeight: FontWeight.w600, color: Colors.black),
+        Obx(
+          () => Text(
+            "${controller.counter.value}",
+            style: CustomStyle.textStyle15
+                .copyWith(fontWeight: FontWeight.w600, color: Colors.black),
+          ),
         ),
         SizedBox(width: Dimensions.getWidth(context) * .05),
         GestureDetector(
-          onTap: () => controller.addOne(),
+          onTap: () {
+            controller.addOne();
+          },
           child: Container(
             width: 30,
             height: 30,
@@ -63,11 +73,10 @@ class ProductItemCounter extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.remove(product);
-            controller.getOrderdProducts();
           },
           child: Container(
-              width: 35.0, // Updated width to 40.0
-              height: 35.0, // Updated height to 40.0
+              width: 35.0, 
+              height: 35.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(

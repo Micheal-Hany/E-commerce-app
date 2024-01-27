@@ -4,6 +4,7 @@ import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/view/widgets/Home/Category_title.dart';
 import 'package:store_app/view/widgets/Home/Custom_app_bar.dart';
 import 'package:store_app/view/widgets/Home/Custom_category_listview.dart';
@@ -74,9 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         itemCount: controller.products.length,
                         itemBuilder: (context, index) {
                           return Center(
-                            child: CustomItemStack(
-                              product: controller.products[index],
-                            ),
+                            child: DBHelper.instance().getProductById(
+                                        controller.products[index].itemId!,
+                                        "Liked_Products") !=
+                                    null
+                                ? CustomItemStack(
+                                    product: controller.products[index],
+                                  )
+                                : CustomItemFDavoriteStack(
+                                    product: controller.products[index],
+                                  ),
                           );
                         },
                       ),

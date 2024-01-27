@@ -35,6 +35,7 @@ class LoginControllerImpl extends LoginController {
       stateRequest = handleData(response);
       if (StatusRequest.success == stateRequest) {
         if (response["status"] == "success") {
+          /// if (response["data"]["users_approve"] == "1") {
           myServices.sharedPreferences
               .setString("id", "${response["data"]["users_id"]}");
           myServices.sharedPreferences
@@ -47,6 +48,12 @@ class LoginControllerImpl extends LoginController {
           Get.offNamed(
             AppRouts.homePage,
           );
+          //} else {
+          // Get.toNamed(AppRouts.signUpVerifayCode,
+          //     arguments: {"email": email.text});
+          //Get.toNamed(AppRouts.signUpVerifayCode,
+          //   arguments: {"email": email.text});
+          //}
         } else {
           Get.defaultDialog(
               title: "Error", middleText: "Email Or Passwordis not correct");

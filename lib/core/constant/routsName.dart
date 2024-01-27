@@ -12,4 +12,6 @@ class AppRouts {
   static const String productPage = '/productPage';
   static const String reviewPage = '/reviewPage';
   static const String addReviewPage = '/addReviewPage';
+  static const String addressPage = '/addressPage';
+
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/controller/product-detailes_controller.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/function/responsive_app.dart';
@@ -20,7 +19,6 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ProductDetailesControllerImpl());
-    Get.put(CartPageControllerImpl());
 
     return GetBuilder<ProductDetailesControllerImpl>(
       builder: (productDetailscontroller) {
@@ -48,7 +46,6 @@ class ProductDetails extends StatelessWidget {
                             productName: translateDataBase(
                                 productDetailscontroller.product.itemNameAr,
                                 productDetailscontroller.product.itemNameEn!)),
-                        // const Spacer(),
                         ProductPrice(
                             price:
                                 "${productDetailscontroller.product.itemPrice!}"),
@@ -65,20 +62,15 @@ class ProductDetails extends StatelessWidget {
                           productDetailscontroller.goToReviewPage()),
                   const CustomUserReview(),
                   const SizedBox(height: 40),
-                  GetBuilder<CartPageControllerImpl>(
-                    builder: (controller) {
-                      return CustomButton(
-                        backgroundColor: const Color(0xff9775FA),
-                        width: Dimensions.getWidth(context) * .9,
-                        height: Dimensions.getHeight(context) * .06,
-                        onPressed: () {
-                          productDetailscontroller.addProductToDatabase(
-                              productDetailscontroller.product);
-                          controller.getOrderdProducts();
-                        },
-                        buttonName: '58'.tr,
-                      );
+                  CustomButton(
+                    backgroundColor: const Color(0xff9775FA),
+                    width: Dimensions.getWidth(context) * .9,
+                    height: Dimensions.getHeight(context) * .06,
+                    onPressed: () {
+                      productDetailscontroller.addProductToDatabase(
+                          productDetailscontroller.product);
                     },
+                    buttonName: '58'.tr,
                   )
                 ],
               ),

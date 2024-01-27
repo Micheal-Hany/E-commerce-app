@@ -4,12 +4,8 @@ import 'package:store_app/binding/initbinding.dart';
 
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
-import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/routs.dart';
-
 import 'package:store_app/view/widgets/language/change_Language.dart';
-import 'package:sqflite/sqflite.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

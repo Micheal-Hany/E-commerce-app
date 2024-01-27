@@ -1,3 +1,6 @@
+import 'package:store_app/controller/Home/cart_page_controller.dart';
+import 'package:get/get.dart';
+
 class ProductModel {
   int? itemId;
   String? itemNameEn;

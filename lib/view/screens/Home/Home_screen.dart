@@ -10,6 +10,7 @@ class HomeScreen extends GetView<FavoriteControllerImpl> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(FavoriteControllerImpl());
     Get.put(HaomeScreenContollerImpl());
     return GetBuilder<HaomeScreenContollerImpl>(
       builder: (haomeScreenContollerImpl) {
