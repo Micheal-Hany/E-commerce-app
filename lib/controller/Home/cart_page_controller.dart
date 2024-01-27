@@ -100,4 +100,8 @@ class CartPageControllerImpl extends CartController {
   goToAddressPage() {
     Get.toNamed(AppRouts.addressPage);
   }
+
+  goToPaymentpage() {
+    Get.toNamed(AppRouts.paymentCardPage);
+  }
 }

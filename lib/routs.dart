@@ -12,6 +12,7 @@ import 'package:store_app/view/screens/Home/home_page.dart';
 import 'package:store_app/view/screens/address_page.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
+import 'package:store_app/view/screens/payment_card.dart';
 import 'package:store_app/view/screens/product_detailes.dart';
 import 'package:store_app/view/screens/reviews_page.dart';
 
@@ -39,5 +40,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRouts.reviewPage, page: () => const ReviewPage()),
   GetPage(name: AppRouts.addReviewPage, page: () => const AddReviewpage()),
   GetPage(name: AppRouts.addressPage, page: () => const AddressPage()),
+  GetPage(name: AppRouts.paymentCardPage, page: () => const PaymentCard()),
 ];
-

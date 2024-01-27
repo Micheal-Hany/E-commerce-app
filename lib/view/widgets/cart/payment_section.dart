@@ -1,14 +1,16 @@
-
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/data/model/cart_model.dart';
 import 'package:store_app/view/widgets/cart/pay_methos-details.dart';
+import 'package:get/get.dart';
 
 class CustomPaymentMethod extends StatelessWidget {
   const CustomPaymentMethod({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(CartPageControllerImpl());
     return Column(
       children: [
         Row(
@@ -19,10 +21,14 @@ class CustomPaymentMethod extends StatelessWidget {
               style:
                   CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w500),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.chevron_right_rounded),
-            ),
+            GetBuilder<CartPageControllerImpl>(
+              builder: (controller) {
+                return IconButton(
+                  onPressed: () => controller.goToPaymentpage(),
+                  icon: const Icon(Icons.chevron_right_rounded),
+                );
+              },
+            )
           ],
         ),
         CustomUserCartDetailes(
