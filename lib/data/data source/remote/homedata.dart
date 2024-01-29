@@ -12,13 +12,19 @@ class HomeData {
   }
 
   getItems(String categoryId) async {
-    // var response = await crud.postData(AppLink.items, {"categories_id": "1"});
     var response =
         await crud.postData("${AppLink.items}?categories_id=$categoryId", {});
 
-    print("-----------------------------");
+    // print("-----------------------------");
+    // print(response);
+    // print("-----------------------------");
+    return response.fold((l) => l, (r) => r);
+  }
+
+  search(String search) async {
+    var response = await crud
+        .postData("${AppLink.search}?search=$search", {"search": search});
     print(response);
-    print("-----------------------------");
     return response.fold((l) => l, (r) => r);
   }
 }

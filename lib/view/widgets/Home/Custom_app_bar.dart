@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
@@ -31,5 +30,3 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
-
-

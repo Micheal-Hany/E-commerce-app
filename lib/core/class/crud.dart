@@ -32,7 +32,7 @@ class Crud {
       if (response.statusCode == 200 || response.statusCode == 201) {
         try {
           var responseBody = await jsonDecode(response.body);
-          print(responseBody);
+
           return Right(responseBody);
         } catch (e) {
           print("Error parsing JSON: $e");

@@ -19,7 +19,7 @@ class HomeScreen extends GetView<FavoriteControllerImpl> {
           bottomNavigationBar: Material(
             color: const Color(0xffFEFEFE),
             elevation: 0,
-            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            // borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * .06,
               width: double.infinity,

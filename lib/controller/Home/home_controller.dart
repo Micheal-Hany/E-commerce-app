@@ -18,6 +18,8 @@ abstract class HomeController extends GetxController {
 
 class HomeControllerImpl extends HomeController
     with GetSingleTickerProviderStateMixin {
+  List<ProductModel> searchProducts = [];
+
   MyServices myServices = Get.find();
   String? name;
   String? id;
@@ -28,7 +30,7 @@ class HomeControllerImpl extends HomeController
   late TabController tabController;
   RxSet<int> favoritedProductIds = <int>{}.obs;
   late RxInt selectedCategoryId = 0.obs;
-
+  final TextEditingController searchController = TextEditingController();
   @override
   void onInit() {
     tabController = TabController(length: 7, vsync: this);
@@ -79,7 +81,7 @@ class HomeControllerImpl extends HomeController
             .toList();
 
         products.addAll(productModels);
-        print(products.first.categoriesNameEn);
+        // print(products.first.categoriesNameEn);
       } else {
         stateRequest = StatusRequest.failure;
       }
@@ -128,5 +130,42 @@ class HomeControllerImpl extends HomeController
 
   remove(ProductModel product) async {
     await DBHelper.instance().deleteProduct("Liked_Products", product);
+  }
+
+  bool isSearch = false;
+
+  // searchItems() {
+
+  //   update();
+  // }
+
+  checkSearch(val) {
+    if (val == "") {
+      // getCategoryData();
+      isSearch = false;
+    } else {
+      searchItems();
+      update();
+    }
+    update();
+  }
+
+  searchItems() async {
+    searchProducts.clear();
+    isSearch = true;
+    stateRequest = StatusRequest.loading;
+    var response = await homeData.search(searchController.text);
+    stateRequest = handleData(response);
+    if (StatusRequest.success == stateRequest) {
+      if (response["status"] == "success") {
+        List responceData = response["data"];
+        searchProducts
+            .addAll(responceData.map((e) => ProductModel.fromJson(e)));
+      } else {
+        stateRequest = StatusRequest.failure;
+      }
+    }
+
+    update();
   }
 }

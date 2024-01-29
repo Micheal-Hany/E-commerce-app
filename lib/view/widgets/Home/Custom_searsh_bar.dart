@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 
 class CustomSearchFiled extends StatelessWidget {
-  const CustomSearchFiled({Key? key}) : super(key: key);
-
+  const CustomSearchFiled({Key? key, required this.controller})
+      : super(key: key);
+  @override
+  final HomeControllerImpl controller;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -12,15 +15,26 @@ class CustomSearchFiled extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         color: const Color(0xffF5F6FA),
         child: TextFormField(
+          // controller: controller.searchController,
+          onChanged: (val) {
+            controller.searchController.text = val;
+            controller.checkSearch(val);
+          },
           cursorHeight: 25,
           // cursorColor: Colors.black,
           maxLines: 1,
           decoration: InputDecoration(
             hintText: "${'55'.tr}...",
             hintStyle: CustomStyle.textStyle15,
-            prefixIcon: Image.asset(
-              'assets/images/search_icon.png',
+            prefixIcon: IconButton(
+              onPressed: () => controller.searchItems(),
+              icon: Image.asset(
+                'assets/images/search_icon.png',
+              ),
             ),
+            // prefixIcon: Image.asset(
+            //   'assets/images/search_icon.png',
+            // ),
             enabledBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Color(0xffF5F6FA)),
               borderRadius: BorderRadius.circular(15),
@@ -41,18 +55,18 @@ class CustomSearchFiled extends StatelessWidget {
 }
 
 class CustomSearchBar extends StatelessWidget {
-  const CustomSearchBar({Key? key}) : super(key: key);
-
+  const CustomSearchBar({Key? key, required this.controller}) : super(key: key);
+  final HomeControllerImpl controller;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomSearchFiled(),
-        SizedBox(
+        CustomSearchFiled(controller: controller),
+        const SizedBox(
           width: 5,
         ),
-        CustomNotifacationButton(),
+        const CustomNotifacationButton(),
       ],
     );
   }

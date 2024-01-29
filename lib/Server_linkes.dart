@@ -21,4 +21,5 @@ class AppLink {
 
   static const String homePage = "$server/home.php";
   static const String items = "$server/item/items.php";
+  static const String search = "$server/item/search.php";
 }

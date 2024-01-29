@@ -4,9 +4,10 @@ import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
-import 'package:store_app/core/services/sqlite_servise.dart';
+import 'package:store_app/data/model/product_model.dart';
 import 'package:store_app/view/widgets/Home/Category_title.dart';
 import 'package:store_app/view/widgets/Home/Custom_app_bar.dart';
+import 'package:store_app/view/widgets/Home/Custom_app_drawer.dart';
 import 'package:store_app/view/widgets/Home/Custom_category_listview.dart';
 import 'package:store_app/view/widgets/Home/Custom_product_stack.dart';
 import 'package:store_app/view/widgets/Home/Custom_searsh_bar.dart';
@@ -20,15 +21,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeControllerImpl());
+    final HomeControllerImpl controller = Get.put(HomeControllerImpl());
     return Scaffold(
+      drawer: const Drawer(
+        backgroundColor: Colors.white,
+        // clipBehavior: Clip.antiAliasWithSaveLayer,
+        width: 330,
+        child: CustomAppDrawer(),
+      ),
       backgroundColor: Colors.white,
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxScrolled) {
           return <Widget>[
-            createSilverAppBar(),
+            createSilverAppBar(controller),
           ];
         },
         body: SingleChildScrollView(
@@ -63,32 +72,28 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               GetBuilder<HomeControllerImpl>(
                 builder: (controller) {
-                  return ViewDataHandleing(
-                      widget: GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: .75,
-                          crossAxisCount: 2,
-                        ),
-                        itemCount: controller.products.length,
-                        itemBuilder: (context, index) {
-                          return Center(
-                            child: DBHelper.instance().getProductById(
-                                        controller.products[index].itemId!,
-                                        "Liked_Products") !=
-                                    null
-                                ? CustomItemStack(
-                                    product: controller.products[index],
-                                  )
-                                : CustomItemFDavoriteStack(
-                                    product: controller.products[index],
-                                  ),
-                          );
-                        },
-                      ),
-                      statusRequest: controller.stateRequest);
+                  return !controller.isSearch
+                      ? ViewDataHandleing(
+                          widget: GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: .75,
+                              crossAxisCount: 2,
+                            ),
+                            itemCount: controller.products.length,
+                            itemBuilder: (context, index) {
+                              return Center(
+                                  child: CustomItemStack(
+                                product: controller.products[index],
+                              ));
+                            },
+                          ),
+                          statusRequest: controller.stateRequest)
+                      : CustomSearchData(
+                          searchProducts: controller.searchProducts,
+                        );
                 },
               ),
             ],
@@ -98,8 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  SliverAppBar createSilverAppBar() {
+  SliverAppBar createSilverAppBar(HomeControllerImpl controller) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       elevation: 0,
       backgroundColor: Colors.white,
       actions: const <Widget>[],
@@ -113,7 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: SizedBox(
             height: Dimensions.getWidth(context) * .12,
-            child: const CustomSearchBar()),
+            child: CustomSearchBar(
+              controller: controller,
+            )),
         background: Column(children: [
           SizedBox(
             height: Dimensions.getHeight(context) * .05,
@@ -150,6 +158,30 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ]),
       ),
+    );
+  }
+}
+
+class CustomSearchData extends StatelessWidget {
+  const CustomSearchData({super.key, required this.searchProducts});
+  final List<ProductModel> searchProducts;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //   childAspectRatio: .75,
+      //   crossAxisCount: 2,
+      // ),
+      itemCount: searchProducts.length,
+      itemBuilder: (context, index) {
+        return Center(
+            child: CustomItemStack(
+          product: searchProducts[index],
+        ));
+      },
     );
   }
 }
