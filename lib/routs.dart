@@ -9,6 +9,7 @@ import 'package:store_app/view/screens/Auth/success_signUp.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/verifay%20code.dart';
 import 'package:store_app/view/screens/Auth/vertifay%20code%20sign%20up.dart';
 import 'package:store_app/view/screens/Home/home_page.dart';
+import 'package:store_app/view/screens/add_new_card_page.dart';
 import 'package:store_app/view/screens/address_page.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
@@ -41,4 +42,6 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRouts.addReviewPage, page: () => const AddReviewpage()),
   GetPage(name: AppRouts.addressPage, page: () => const AddressPage()),
   GetPage(name: AppRouts.paymentCardPage, page: () => const PaymentCard()),
+  GetPage(
+      name: AppRouts.addPaymentCardPage, page: () => const AddNewCardPage()),
 ];

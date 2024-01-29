@@ -4,6 +4,7 @@ import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Payment_card/Custom_paymet_app_bar.dart';
 import 'package:store_app/view/widgets/Payment_card/card_details.dart';
+import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
 import 'package:store_app/view/widgets/address_page/swich_key.dart';
 
 class PaymentCard extends StatelessWidget {
@@ -38,7 +39,16 @@ class PaymentCard extends StatelessWidget {
                     controller: controller,
                   ),
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              CustomButton(
+                  buttonName: "Save Card",
+                  onPressed: () {},
+                  backgroundColor: const Color(0xff9775FA),
+                  width: double.infinity - 20,
+                  height: 40)
             ],
           ),
         ),

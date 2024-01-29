@@ -1,6 +1,7 @@
 import 'package:flutter_credit_card/flutter_credit_card.dart'
     as flutter_credit_card;
 import 'package:get/get.dart';
+import 'package:store_app/core/constant/routsName.dart';
 
 class CreditCardController extends GetxController {
   RxString cardNumber = ''.obs;
@@ -25,5 +26,9 @@ class CreditCardController extends GetxController {
 
   void togglePrimaryAddress(bool value) {
     isPrimaryAddress.value = value;
+  }
+
+  gotoAddNewCard() {
+    Get.toNamed(AppRouts.addPaymentCardPage);
   }
 }

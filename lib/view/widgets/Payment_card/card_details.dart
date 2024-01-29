@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
-
+import 'package:store_app/core/constant/Style.dart';
+import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
 
 class MyCreditCardWidget extends StatelessWidget {
   final CreditCardController creditCardController =
@@ -16,7 +17,8 @@ class MyCreditCardWidget extends StatelessWidget {
       child: Column(
         children: [
           CreditCardWidget(
-            cardBgColor: const Color(0xff122D4F),
+            // cardBgColor: const Color(0xff122D4F),
+            cardBgColor: const Color.fromARGB(255, 52, 33, 110),
             cardNumber: creditCardController.cardNumber.value,
             expiryDate: creditCardController.expiryDate.value,
             cardHolderName: creditCardController.cardHolderName.value,
@@ -24,7 +26,13 @@ class MyCreditCardWidget extends StatelessWidget {
             showBackView: creditCardController.isCvvFocused.value,
             onCreditCardWidgetChange: (CreditCardBrand) {},
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 5),
+          CustomButtonAddNewcard(
+              buttonName: "Add New Card",
+              onPressed: () => creditCardController.gotoAddNewCard(),
+              backgroundColor: const Color(0xffF6F2FF),
+              width: double.infinity - 20,
+              height: 40),
           CreditCardForm(
             formKey: GlobalKey<FormState>(),
             cardNumber: creditCardController.cardNumber.value,
@@ -127,6 +135,46 @@ class MyCreditCardWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomButtonAddNewcard extends StatelessWidget {
+  const CustomButtonAddNewcard({
+    Key? key,
+    required this.buttonName,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.width,
+    required this.height,
+  }) : super(key: key);
+
+  final String buttonName;
+  final void Function()? onPressed;
+  final Color backgroundColor;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        border: Border.all(color: Colors.deepPurpleAccent),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(15),
+        ),
+      ),
+      child: TextButton(
+        onPressed: onPressed,
+        child: Text(
+          buttonName,
+          style:
+              CustomStyle.textStyle17.copyWith(color: const Color(0xff9775FA)),
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:store_app/controller/address_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
+import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
 import 'package:store_app/view/widgets/address_page/address_page_app_bar.dart';
 import 'package:store_app/view/widgets/address_page/labled_text_form.dart';
 import 'package:store_app/view/widgets/address_page/swich_key.dart';
@@ -79,7 +80,16 @@ class AddressPage extends StatelessWidget {
                         controller: controller,
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(
+                    height: 150,
+                  ),
+                  CustomButton(
+                      buttonName: "Save Address",
+                      onPressed: () {},
+                      backgroundColor: const Color(0xff9775FA),
+                      width: double.infinity - 20,
+                      height: 40)
                 ],
               ),
             ),
