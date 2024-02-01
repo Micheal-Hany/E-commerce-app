@@ -5,6 +5,7 @@ import 'package:store_app/binding/initbinding.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/routs.dart';
+import 'package:store_app/test.dart';
 import 'package:store_app/view/widgets/language/change_Language.dart';
 
 void main() async {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       getPages: routes,
       initialBinding: InitailBinding(),
 
-      // home: const TestView(),
+      // home: const MyHomePagetwo(),
     );
   }
 }

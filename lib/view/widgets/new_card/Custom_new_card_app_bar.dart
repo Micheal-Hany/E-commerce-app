@@ -27,7 +27,7 @@ class CustomNewCardAppBar extends StatelessWidget {
           width: Dimensions.getWidth(context) / 4.3,
         ),
         Text(
-          "Add New Card",
+          "87".tr,
           style: CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
         ),
       ],

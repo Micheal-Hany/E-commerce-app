@@ -1,7 +1,10 @@
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:store_app/controller/Home/drawer_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Product_page/avatar_image.dart';
+import 'package:get/get.dart';
 
 class CustomDrawerUserInfo extends StatelessWidget {
   const CustomDrawerUserInfo({
@@ -10,15 +13,18 @@ class CustomDrawerUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(DrawerControllaller());
     return Row(
       children: [
         const UserAvatar(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Mrh Raju",
-              style: CustomStyle.textStyle17,
+            GetBuilder<DrawerControllaller>(
+              builder: (controller) => Text(
+                controller.name,
+                style: CustomStyle.textStyle17,
+              ),
             ),
             const SizedBox(
               height: 1,
@@ -26,7 +32,7 @@ class CustomDrawerUserInfo extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Verified Profile",
+                  "109".tr,
                   style: CustomStyle.textStyle13
                       .copyWith(fontWeight: FontWeight.w400),
                 ),

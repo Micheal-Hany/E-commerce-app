@@ -32,7 +32,7 @@ class AddReviewpage extends StatelessWidget {
                   SizedBox(height: Dimensions.getHeight(context) * .1),
                   CustomButton(
                     backgroundColor: const Color(0xff9775FA),
-                    buttonName: "Submit Review",
+                    buttonName: "100".tr,
                     height: Dimensions.getHeight(context) * .06,
                     onPressed: () {},
                     width: Dimensions.getWidth(context) * .7,

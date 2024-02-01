@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:get/get.dart';
 
 class StarRatingSection extends StatelessWidget {
   const StarRatingSection({super.key});
@@ -13,7 +14,7 @@ class StarRatingSection extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Star',
+              '101'.tr,
               style: CustomStyle.textStyle17
                   .copyWith(color: const Color(0xff1D1E20)),
             ),

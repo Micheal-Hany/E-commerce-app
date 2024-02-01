@@ -19,6 +19,7 @@ class CsutomDrawerDatalistView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: CustomDrawerData(
+            
             name: entry.value,
             widget: entry.key,
           ),

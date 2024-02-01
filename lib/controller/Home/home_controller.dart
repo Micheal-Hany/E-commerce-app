@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
@@ -8,6 +10,7 @@ import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/data%20source/remote/homedata.dart';
 import 'package:store_app/data/model/categoriesmodel.dart';
 import 'package:store_app/data/model/product_model.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 abstract class HomeController extends GetxController {
   getCategoryData();
@@ -39,7 +42,7 @@ class HomeControllerImpl extends HomeController
     id = myServices.sharedPreferences.getString('id');
 
     getCategoryData();
-
+    _initSpeech();
     super.onInit();
   }
 
@@ -92,6 +95,7 @@ class HomeControllerImpl extends HomeController
   @override
   void onClose() {
     tabController.dispose();
+
     super.onClose();
   }
 
@@ -134,11 +138,6 @@ class HomeControllerImpl extends HomeController
 
   bool isSearch = false;
 
-  // searchItems() {
-
-  //   update();
-  // }
-
   checkSearch(val) {
     if (val == "") {
       // getCategoryData();
@@ -167,5 +166,42 @@ class HomeControllerImpl extends HomeController
     }
 
     update();
+  }
+
+  final SpeechToText _speechToText = SpeechToText();
+  final RxBool _speechEnabled = false.obs;
+  final RxString _lastWords = ''.obs;
+
+  bool get speechEnabled => _speechEnabled.value;
+  set speechEnabled(bool value) => _speechEnabled.value = value;
+
+  String get lastWords => _lastWords.value;
+
+  void _initSpeech() async {
+    var result = await _speechToText.initialize();
+    if (_speechToText.lastError != null) {
+      print('Speech initialization error: ${_speechToText.lastError}');
+    } else {
+      _speechEnabled.value = true;
+    }
+  }
+
+  void startListening() async {
+    var result = await _speechToText.listen(onResult: _onSpeechResult);
+    if (_speechToText.lastError != null) {
+      print('Speech listening error: ${_speechToText.lastError}');
+    }
+  }
+
+  void stopListening() async {
+    if (_speechEnabled.value) {
+      await _speechToText.stop();
+    }
+  }
+
+  void _onSpeechResult(SpeechRecognitionResult result) {
+    _lastWords.value = result.recognizedWords;
+    searchController.text = result.recognizedWords;
+    print("result is ${result.recognizedWords}");
   }
 }

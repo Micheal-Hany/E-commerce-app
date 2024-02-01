@@ -28,10 +28,11 @@ class CartPage extends StatelessWidget {
               child: Column(
                 children: [
                   const CustomCartAppBar(),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   ViewDataHandleing(
                       statusRequest: controller.stateRequest,
                       widget: ListView.builder(
+                        padding: EdgeInsets.zero,
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: controller.products.length,
@@ -56,7 +57,7 @@ class CartPage extends StatelessWidget {
                   const OrderInfoSection(),
                   SizedBox(height: Dimensions.getWidth(context) * .03),
                   CustomButton(
-                    buttonName: "Checkout",
+                    buttonName: "73".tr,
                     onPressed: () {},
                     backgroundColor: const Color(0xff9775FA),
                     width: Dimensions.getWidth(context) * .9,

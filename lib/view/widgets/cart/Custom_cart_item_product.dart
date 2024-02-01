@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/data/model/product_model.dart';
 import 'package:store_app/view/widgets/cart/Product_item_counter.dart';
 
@@ -30,7 +31,7 @@ class CustomCartItemDetails extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Hero(
-                tag: " ",
+                tag: product.itemId.toString(),
                 child: CachedNetworkImage(
                   imageUrl: product.itemImage!,
                   fit: BoxFit.fill,
@@ -55,7 +56,7 @@ class CustomCartItemDetails extends StatelessWidget {
                     maxWidth: Dimensions.getWidth(context) * .6,
                   ),
                   child: Text(
-                    product.itemNameEn!,
+                    translateDataBase(product.itemNameAr, product.itemNameEn!),
                     style: CustomStyle.textStyle15.copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,

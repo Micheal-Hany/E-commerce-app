@@ -3,6 +3,7 @@ import 'package:store_app/controller/address_page_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
+import 'package:get/get.dart';
 
 class CustomAddressAppBar extends StatelessWidget {
   const CustomAddressAppBar({
@@ -23,7 +24,7 @@ class CustomAddressAppBar extends StatelessWidget {
           width: Dimensions.getWidth(context) / 3.5,
         ),
         Text(
-          "Address",
+          "74".tr,
           style: CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
         ),
       ],

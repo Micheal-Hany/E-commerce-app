@@ -3,7 +3,7 @@ import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
+import 'package:store_app/view/widgets/Payment_card/Custom_add_new_card_button.dart';
 
 class MyCreditCardWidget extends StatelessWidget {
   final CreditCardController creditCardController =
@@ -28,7 +28,7 @@ class MyCreditCardWidget extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           CustomButtonAddNewcard(
-              buttonName: "Add New Card",
+              buttonName: "87".tr,
               onPressed: () => creditCardController.gotoAddNewCard(),
               backgroundColor: const Color(0xffF6F2FF),
               width: double.infinity - 20,
@@ -47,9 +47,9 @@ class MyCreditCardWidget extends StatelessWidget {
             isCardNumberVisible: true,
             isExpiryDateVisible: true,
             enableCvv: true,
-            cvvValidationMessage: 'Please input a valid CVV',
-            dateValidationMessage: 'Please input a valid date',
-            numberValidationMessage: 'Please input a valid number',
+            cvvValidationMessage: '88'.tr,
+            dateValidationMessage: '89'.tr,
+            numberValidationMessage: '90'.tr,
             cardNumberValidator: (String? cardNumber) {
               return null;
             },
@@ -67,114 +67,74 @@ class MyCreditCardWidget extends StatelessWidget {
             },
             autovalidateMode: AutovalidateMode.always,
             disableCardNumberAutoFillHints: false,
-            inputConfiguration: const InputConfiguration(
+            inputConfiguration: InputConfiguration(
               cardNumberDecoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                labelText: 'Number',
-                labelStyle: TextStyle(fontSize: 14, color: Colors.black),
+                labelText: '91'.tr,
+                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
                 hintText: 'XXXX XXXX XXXX XXXX',
-                hintStyle: TextStyle(fontSize: 12),
+                hintStyle: const TextStyle(fontSize: 12),
               ),
               expiryDateDecoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                labelText: 'Expired Date',
-                labelStyle: TextStyle(fontSize: 14, color: Colors.black),
+                labelText: '92'.tr,
+                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
                 hintText: 'XX/XX',
-                hintStyle: TextStyle(fontSize: 12),
+                hintStyle: const TextStyle(fontSize: 12),
               ),
               cvvCodeDecoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                labelText: 'CVV',
-                labelStyle: TextStyle(fontSize: 14, color: Colors.black),
+                labelText: '93'.tr,
+                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
                 hintText: 'XXX',
-                hintStyle: TextStyle(fontSize: 12),
+                hintStyle: const TextStyle(fontSize: 12),
               ),
               cardHolderDecoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                border: OutlineInputBorder(
+                border: const OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                labelText: 'Card Holder',
-                labelStyle: TextStyle(fontSize: 14, color: Colors.black),
+                labelText: '94'.tr,
+                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
                 hintText: 'Card Holder',
-                hintStyle: TextStyle(fontSize: 12),
+                hintStyle: const TextStyle(fontSize: 12),
               ),
-              cardNumberTextStyle: TextStyle(
+              cardNumberTextStyle: const TextStyle(
                 fontSize: 16,
                 color: Colors.black,
               ),
-              cardHolderTextStyle: TextStyle(
+              cardHolderTextStyle: const TextStyle(
                 fontSize: 16,
                 color: Colors.black,
               ),
-              expiryDateTextStyle: TextStyle(
+              expiryDateTextStyle: const TextStyle(
                 fontSize: 16,
                 color: Colors.black,
               ),
-              cvvCodeTextStyle: TextStyle(
+              cvvCodeTextStyle: const TextStyle(
                 fontSize: 16,
                 color: Colors.black,
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CustomButtonAddNewcard extends StatelessWidget {
-  const CustomButtonAddNewcard({
-    Key? key,
-    required this.buttonName,
-    required this.onPressed,
-    required this.backgroundColor,
-    required this.width,
-    required this.height,
-  }) : super(key: key);
-
-  final String buttonName;
-  final void Function()? onPressed;
-  final Color backgroundColor;
-  final double width;
-  final double height;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        border: Border.all(color: Colors.deepPurpleAccent),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(15),
-        ),
-      ),
-      child: TextButton(
-        onPressed: onPressed,
-        child: Text(
-          buttonName,
-          style:
-              CustomStyle.textStyle17.copyWith(color: const Color(0xff9775FA)),
-        ),
       ),
     );
   }

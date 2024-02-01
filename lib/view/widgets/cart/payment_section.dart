@@ -17,7 +17,7 @@ class CustomPaymentMethod extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Payment Method",
+              "68".tr,
               style:
                   CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w500),
             ),

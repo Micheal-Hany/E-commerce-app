@@ -31,8 +31,8 @@ class AddressPage extends StatelessWidget {
                   CustomAddressAppBar(controller: controller),
                   SizedBox(height: Dimensions.getHeight(context) * .05),
                   LabeledTextField(
-                    hintText: 'Mrh Raju',
-                    label: 'Name',
+                    hintText: '82'.tr,
+                    label: '75'.tr,
                     controller: controller.nameController,
                   ),
                   SizedBox(height: Dimensions.getHeight(context) * .013),
@@ -40,14 +40,14 @@ class AddressPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       LabeledTextField(
-                        hintText: 'Bangladesh',
-                        label: 'Country',
+                        hintText: '83'.tr,
+                        label: '76'.tr,
                         controller: controller.countryController,
                         width: Dimensions.getWidth(context) / 2.2,
                       ),
                       LabeledTextField(
-                        hintText: 'Sylhet',
-                        label: 'City',
+                        hintText: '84'.tr,
+                        label: '77'.tr,
                         controller: controller.cityController,
                         width: Dimensions.getWidth(context) / 2.2,
                       ),
@@ -56,13 +56,13 @@ class AddressPage extends StatelessWidget {
                   SizedBox(height: Dimensions.getHeight(context) * .013),
                   LabeledTextField(
                     hintText: '+880 1453-987533',
-                    label: 'Phone Number',
+                    label: '78'.tr,
                     controller: controller.phoneNumberController,
                   ),
                   SizedBox(height: Dimensions.getHeight(context) * .013),
                   LabeledTextField(
-                    hintText: 'Chhatak, Sunamgonj 12/8AB',
-                    label: 'Address',
+                    hintText: '85'.tr,
+                    label: '79'.tr,
                     controller: controller.addressController,
                   ),
                   SizedBox(height: Dimensions.getHeight(context) * .013),
@@ -70,7 +70,7 @@ class AddressPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Save as primary address",
+                        "80".tr,
                         style: CustomStyle.textStyle15.copyWith(
                           fontWeight: FontWeight.w500,
                           color: const Color(0xff1D1E20),
@@ -85,7 +85,7 @@ class AddressPage extends StatelessWidget {
                     height: 150,
                   ),
                   CustomButton(
-                      buttonName: "Save Address",
+                      buttonName: "81".tr,
                       onPressed: () {},
                       backgroundColor: const Color(0xff9775FA),
                       width: double.infinity - 20,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
 import 'package:store_app/view/widgets/address_page/labled_text_form.dart';
+import 'package:get/get.dart';
 
 class NewCardDataSection extends StatelessWidget {
   const NewCardDataSection({super.key});
@@ -10,13 +11,13 @@ class NewCardDataSection extends StatelessWidget {
     return Column(
       children: [
         LabeledTextField(
-            hintText: "Mrh Raju",
-            label: "Card Owner",
+            hintText: "82".tr,
+            label: "94".tr,
             controller: TextEditingController()),
         const SizedBox(height: 15),
         LabeledTextField(
             hintText: "5254 7634 8734 7690",
-            label: "Card Number",
+            label: "91".tr,
             controller: TextEditingController()),
         const SizedBox(height: 15),
         Row(
@@ -25,7 +26,7 @@ class NewCardDataSection extends StatelessWidget {
             LabeledTextField(
                 width: 180,
                 hintText: "24/24",
-                label: "EXP",
+                label: "92".tr,
                 controller: TextEditingController()),
             LabeledTextField(
                 width: 180,
@@ -38,7 +39,7 @@ class NewCardDataSection extends StatelessWidget {
           height: 220,
         ),
         CustomButton(
-            buttonName: "Add Card",
+            buttonName: "97".tr,
             onPressed: () {},
             backgroundColor: const Color(0xff9775FA),
             width: double.infinity - 20,

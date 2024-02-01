@@ -17,7 +17,7 @@ class CustomDeliveryAddress extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Delivery Address",
+              "67".tr,
               style:
                   CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w500),
             ),

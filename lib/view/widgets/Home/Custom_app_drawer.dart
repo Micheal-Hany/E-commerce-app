@@ -25,12 +25,13 @@ class CustomAppDrawer extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: CustomCartIcon(
-                    widget: Image.asset("assets/images/menu (1).png"),
-                    onPressed: () {},
-                    backgroundColor: const Color(0xffF5F5F5)),
+              Row(
+                children: [
+                  CustomCartIcon(
+                      widget: Image.asset("assets/images/menu (1).png"),
+                      onPressed: () {},
+                      backgroundColor: const Color(0xffF5F5F5)),
+                ],
               ),
               const SizedBox(
                 height: 30,
@@ -49,7 +50,7 @@ class CustomAppDrawer extends StatelessWidget {
                     width: 15,
                   ),
                   Text(
-                    "Dark Mode",
+                    "107".tr,
                     style: CustomStyle.textStyle15.copyWith(
                         fontWeight: FontWeight.w400,
                         color: const Color(0xff1D1E20)),
@@ -74,7 +75,7 @@ class CustomAppDrawer extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      "Logout",
+                      "108".tr,
                       style: CustomStyle.textStyle15.copyWith(
                           fontWeight: FontWeight.w400,
                           color: const Color(0xffFF5757)),

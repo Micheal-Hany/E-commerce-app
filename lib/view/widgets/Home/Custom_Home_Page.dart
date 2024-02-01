@@ -12,6 +12,7 @@ import 'package:store_app/view/widgets/Home/Custom_category_listview.dart';
 import 'package:store_app/view/widgets/Home/Custom_product_stack.dart';
 import 'package:store_app/view/widgets/Home/Custom_searsh_bar.dart';
 import 'package:get/get.dart';
+import 'package:store_app/view/widgets/drawer/Custom_search_data.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -92,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                           statusRequest: controller.stateRequest)
                       : CustomSearchData(
+                          controller: controller,
                           searchProducts: controller.searchProducts,
                         );
                 },
@@ -158,30 +160,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ]),
       ),
-    );
-  }
-}
-
-class CustomSearchData extends StatelessWidget {
-  const CustomSearchData({super.key, required this.searchProducts});
-  final List<ProductModel> searchProducts;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //   childAspectRatio: .75,
-      //   crossAxisCount: 2,
-      // ),
-      itemCount: searchProducts.length,
-      itemBuilder: (context, index) {
-        return Center(
-            child: CustomItemStack(
-          product: searchProducts[index],
-        ));
-      },
     );
   }
 }

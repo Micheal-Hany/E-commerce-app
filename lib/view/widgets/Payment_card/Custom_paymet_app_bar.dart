@@ -28,7 +28,7 @@ class CustomPaymentcardAppBar extends StatelessWidget {
           width: Dimensions.getWidth(context) / 3.7,
         ),
         Text(
-          "Payment",
+          "86".tr,
           style: CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
         ),
       ],

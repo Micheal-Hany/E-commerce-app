@@ -16,7 +16,7 @@ class OrderInfoSection extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  "Order Info",
+                  "69".tr,
                   style: CustomStyle.textStyle17
                       .copyWith(fontWeight: FontWeight.w500),
                 )
@@ -29,7 +29,7 @@ class OrderInfoSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Subtotal",
+                  "70".tr,
                   style: CustomStyle.textStyle15
                       .copyWith(color: const Color(0xff8F959E)),
                 ),
@@ -46,7 +46,7 @@ class OrderInfoSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Shipping cost",
+                  "71".tr,
                   style: CustomStyle.textStyle15
                       .copyWith(color: const Color(0xff8F959E)),
                 ),
@@ -63,7 +63,7 @@ class OrderInfoSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Total",
+                  "72".tr,
                   style: CustomStyle.textStyle15
                       .copyWith(color: const Color(0xff8F959E)),
                 ),
