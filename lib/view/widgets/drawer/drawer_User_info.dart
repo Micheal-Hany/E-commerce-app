@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Home/drawer_controller.dart';
+import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Product_page/avatar_image.dart';
 import 'package:get/get.dart';
@@ -13,14 +13,14 @@ class CustomDrawerUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(DrawerControllaller());
+    Get.put(HaomeScreenContollerImpl());
     return Row(
       children: [
         const UserAvatar(),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GetBuilder<DrawerControllaller>(
+            GetBuilder<HaomeScreenContollerImpl>(
               builder: (controller) => Text(
                 controller.name,
                 style: CustomStyle.textStyle17,

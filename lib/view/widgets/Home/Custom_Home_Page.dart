@@ -4,7 +4,6 @@ import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
-import 'package:store_app/data/model/product_model.dart';
 import 'package:store_app/view/widgets/Home/Category_title.dart';
 import 'package:store_app/view/widgets/Home/Custom_app_bar.dart';
 import 'package:store_app/view/widgets/Home/Custom_app_drawer.dart';
@@ -28,11 +27,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final HomeControllerImpl controller = Get.put(HomeControllerImpl());
     return Scaffold(
-      drawer: const Drawer(
-        backgroundColor: Colors.white,
-        // clipBehavior: Clip.antiAliasWithSaveLayer,
+      key: scaffoldKey,
+      drawer: Drawer(
+        backgroundColor: const Color(0xffFFFFFF),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         width: 330,
-        child: CustomAppDrawer(),
+        child: CustomAppDrawer(scaffoldKey: scaffoldKey),
       ),
       backgroundColor: Colors.white,
       body: NestedScrollView(
@@ -108,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
   SliverAppBar createSilverAppBar(HomeControllerImpl controller) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
-      elevation: 0,
+      scrolledUnderElevation: 0.0,
       backgroundColor: Colors.white,
       actions: const <Widget>[],
       expandedHeight: Dimensions.getHeight(context) * .25,
@@ -131,7 +131,9 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: Dimensions.getWidth(context) * .02),
-              child: const CustomAppBar()),
+              child: CustomAppBar(
+                scaffoldKey: scaffoldKey,
+              )),
           SizedBox(
             height: Dimensions.getHeight(context) * .02,
           ),

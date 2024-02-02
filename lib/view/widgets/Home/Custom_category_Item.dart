@@ -5,7 +5,7 @@ class CustomCategoryItem extends StatelessWidget {
   const CustomCategoryItem({
     super.key,
     required this.categoryName,
-    required this.image,
+    required this.image, required TextStyle textStyle,
   });
   final String categoryName;
   final String image;

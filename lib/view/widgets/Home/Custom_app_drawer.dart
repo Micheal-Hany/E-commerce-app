@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Home/drawer_controller.dart';
-import 'package:store_app/controller/address_page_controller.dart';
+import 'package:store_app/controller/Home/home_controller.dart';
+import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
-import 'package:store_app/view/widgets/address_page/swich_key.dart';
 import 'package:get/get.dart';
 import 'package:store_app/view/widgets/drawer/drawer-data_listview.dart';
 import 'package:store_app/view/widgets/drawer/drawer_User_info.dart';
@@ -11,79 +10,67 @@ import 'package:store_app/view/widgets/drawer/drawer_User_info.dart';
 class CustomAppDrawer extends StatelessWidget {
   const CustomAppDrawer({
     super.key,
+    required this.scaffoldKey,
   });
-
+  final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
-    Get.put(DrawerControllaller());
-    return GetBuilder<DrawerControllaller>(
+    Get.put(HaomeScreenContollerImpl());
+    return GetBuilder<HaomeScreenContollerImpl>(
       builder: (controller) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
-                children: [
-                  CustomCartIcon(
-                      widget: Image.asset("assets/images/menu (1).png"),
-                      onPressed: () {},
-                      backgroundColor: const Color(0xffF5F5F5)),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              const CustomDrawerUserInfo(),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Image.asset("assets/images/sun.png"),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    "107".tr,
-                    style: CustomStyle.textStyle15.copyWith(
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xff1D1E20)),
-                  ),
-                  const Spacer(),
-                  SwitchExample(controller: AddressPageController())
-                ],
-              ),
-              CsutomDrawerDatalistView(controllaller: controller),
-              const SizedBox(
-                height: 180,
-              ),
-              GestureDetector(
-                onTap: () => controller.logOut(),
-                child: Row(
+        return Container(
+          color: const Color(0xffFFFFFF),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
                   children: [
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    Image.asset("assets/images/Logout.png"),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "108".tr,
-                      style: CustomStyle.textStyle15.copyWith(
-                          fontWeight: FontWeight.w400,
-                          color: const Color(0xffFF5757)),
-                    ),
+                    CustomCartIcon(
+                        widget: Image.asset("assets/images/menu (1).png"),
+                        onPressed: () =>
+                            scaffoldKey.currentState!.closeDrawer(),
+                        backgroundColor: const Color(0xffF5F5F5)),
                   ],
                 ),
-              )
-            ],
+                const SizedBox(
+                  height: 30,
+                ),
+                const CustomDrawerUserInfo(),
+                const SizedBox(
+                  height: 30,
+                ),
+                CsutomDrawerDatalistView(
+                  controller: controller,
+                ),
+                const SizedBox(
+                  height: 150,
+                ),
+                GestureDetector(
+                  onTap: () => controller.logOut(),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Image.asset("assets/images/Logout.png"),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "108".tr,
+                        style: CustomStyle.textStyle15.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: const Color(0xffFF5757)),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         );
       },

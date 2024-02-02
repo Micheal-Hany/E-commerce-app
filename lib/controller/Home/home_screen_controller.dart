@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/constant/routsName.dart';
+import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/view/screens/Home/cart_page.dart';
 import 'package:store_app/view/screens/Home/favorite_page.dart';
 import 'package:store_app/view/screens/Home/wallet_page.dart';
@@ -28,5 +30,23 @@ class HaomeScreenContollerImpl extends HaomeScreenContoller {
   changePage(int pageNum) {
     currentPage = pageNum;
     update();
+  }
+  final MyServices myServices = Get.find();
+   logOut() {
+    myServices.sharedPreferences.clear();
+    Get.toNamed(AppRouts.login);
+  }
+   var name = "";
+
+  @override
+  void onInit() {
+    var usernameFromSharedPreferences =
+        myServices.sharedPreferences.get("username");
+
+    name = usernameFromSharedPreferences != null
+        ? usernameFromSharedPreferences.toString()
+        : "";
+
+    super.onInit();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
+// import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
@@ -204,4 +204,6 @@ class HomeControllerImpl extends HomeController
     searchController.text = result.recognizedWords;
     print("result is ${result.recognizedWords}");
   }
+
+ 
 }

@@ -25,11 +25,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: controller.language,
       title: 'Flutter Demo',
-      theme: controller.appTheme,
+      theme: Themes.lightTheme,
       getPages: routes,
       initialBinding: InitailBinding(),
 
       // home: const MyHomePagetwo(),
     );
   }
+}
+
+class Themes {
+  static final ThemeData lightTheme = ThemeData.light(useMaterial3: true);
+  static final ThemeData darkTheme = ThemeData.dark(useMaterial3: true);
 }
