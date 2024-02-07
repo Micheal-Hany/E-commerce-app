@@ -74,6 +74,7 @@ class Login extends StatelessWidget {
                           controller.showPass();
                         },
                         isNumber: false,
+                        
                         validator: (val) =>
                             inputValidtion(val!, 5, 20, "password"),
                         mrController: controller.password,

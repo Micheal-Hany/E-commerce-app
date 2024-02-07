@@ -23,6 +23,8 @@ class CustomItemStyle extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
+                // color: const Color(0xff8F959E),
+                
                 borderRadius: BorderRadius.circular(15),
               ),
               width: Dimensions.getWidth(context) * 0.38,

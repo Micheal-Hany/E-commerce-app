@@ -40,7 +40,7 @@ class HomeScreen extends GetView<FavoriteControllerImpl> {
                               height: 30,
                             )
                           : Text(
-                              haomeScreenContollerImpl.screensName[index],
+                              haomeScreenContollerImpl.getScreenname()[index],
                               style: CustomStyle.textStyle13
                                   .copyWith(color: const Color(0xff9775FA)),
                             ),

@@ -12,22 +12,25 @@ class CustomFavoriteAppBar extends GetView<HaomeScreenContollerImpl> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      // mainAxisAlignment: MainAxisAlignment.,
       children: [
         CustomCartIcon(
           backgroundColor: const Color(0xffFEFEFE),
           onPressed: () => controller.changePage(0),
           widget: const Icon(Icons.arrow_back_rounded),
         ),
+        const SizedBox(
+          width: 100,
+        ),
         Text(
           '65'.tr,
           style: CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
         ),
-        CustomCartIcon(
-          backgroundColor: const Color(0xffFEFEFE),
-          onPressed: () {},
-          widget: Image.asset('assets/images/bag.PNG'),
-        ),
+        // CustomCartIcon(
+        //   backgroundColor: const Color(0xffFEFEFE),
+        //   onPressed: () {},
+        //   widget: Image.asset('assets/images/bag.PNG'),
+        // ),
       ],
     );
   }

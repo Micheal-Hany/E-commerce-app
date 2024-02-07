@@ -19,7 +19,9 @@ class CustomPaymentcardAppBar extends StatelessWidget {
           builder: (controller) {
             return CustomCartIcon(
               backgroundColor: const Color(0xffFEFEFE),
-              onPressed: () => controller.backTocartPage(),
+              onPressed: () {
+                controller.backTocartPage();
+              },
               widget: const Icon(Icons.arrow_back_rounded),
             );
           },

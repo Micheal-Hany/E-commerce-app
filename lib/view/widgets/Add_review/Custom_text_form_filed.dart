@@ -9,17 +9,19 @@ class CustomTextField extends StatelessWidget {
   final width;
   final height;
   final lable;
-  const CustomTextField({
-    Key? key,
-    required this.hintText,
-    this.keyboardType = TextInputType.text,
-    this.isMultiline = false,
-    this.onChanged,
-    required this.controller,
-    this.width,
-    this.height,
-    this.lable,
-  }) : super(key: key);
+  final String? Function(String?)? validator;
+  const CustomTextField(
+      {Key? key,
+      required this.hintText,
+      this.keyboardType = TextInputType.text,
+      this.isMultiline = false,
+      this.onChanged,
+      required this.controller,
+      this.width,
+      this.height,
+      this.lable,
+      this.validator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class CustomTextField extends StatelessWidget {
       child: SizedBox(
         height: 60,
         child: TextFormField(
+          validator: validator,
           cursorHeight: 23,
           cursorColor: Colors.black,
           maxLines: isMultiline ? null : 1,

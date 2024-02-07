@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_app/controller/Home/wallet_controller.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/view/screens/Home/cart_page.dart';
@@ -12,6 +13,7 @@ abstract class HaomeScreenContoller extends GetxController {
 }
 
 class HaomeScreenContollerImpl extends HaomeScreenContoller {
+  WalletController walletController = Get.put(WalletController());
   int currentPage = 0;
   List<Widget> screens = [
     const MyHomePage(),
@@ -25,21 +27,29 @@ class HaomeScreenContollerImpl extends HaomeScreenContoller {
     'assets/images/bag_icon.png',
     'assets/images/wallet.png',
   ];
-  List<String> screensName = ["Home", "Wishlist", "Cart", "Wallet"];
+
+  getScreenname() {
+    List<String> screensName = ["113".tr, "114".tr, "115".tr, "116".tr];
+    return screensName;
+  }
+
   @override
   changePage(int pageNum) {
     currentPage = pageNum;
     update();
   }
+
   final MyServices myServices = Get.find();
-   logOut() {
+  logOut() {
     myServices.sharedPreferences.clear();
     Get.toNamed(AppRouts.login);
   }
-   var name = "";
+
+  var name = "";
 
   @override
   void onInit() {
+    getScreenname();
     var usernameFromSharedPreferences =
         myServices.sharedPreferences.get("username");
 

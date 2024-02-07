@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/model/product_model.dart';
@@ -9,6 +10,7 @@ abstract class ProductDetailesController extends GetxController {
 }
 
 class ProductDetailesControllerImpl extends ProductDetailesController {
+  CartPageControllerImpl controller = Get.put(CartPageControllerImpl());
   final ProductModel product = Get.arguments;
   @override
   goToProduct() {
@@ -36,5 +38,8 @@ class ProductDetailesControllerImpl extends ProductDetailesController {
 
       print('Product inserted with ID: $productId');
     }
+    // controller.onInit();
+    controller.getOrderdProducts();
+    update();
   }
 }

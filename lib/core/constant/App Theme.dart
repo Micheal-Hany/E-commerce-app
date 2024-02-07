@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/colors.dart';
 
 ThemeData themeEnglish = ThemeData(
+  useMaterial3: true,
   fontFamily: "Ciaro",
   textTheme: const TextTheme(
       displayLarge: TextStyle(
@@ -23,6 +24,7 @@ ThemeData themeEnglish = ThemeData(
 );
 
 ThemeData themeArabic = ThemeData(
+  useMaterial3: true,
   fontFamily: "Ciaro",
   textTheme: const TextTheme(
       displayLarge: TextStyle(

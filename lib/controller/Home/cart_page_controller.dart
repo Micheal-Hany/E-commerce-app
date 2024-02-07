@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:store_app/controller/ViewAvailableAddressesController.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
+import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/model/product_model.dart';
 
@@ -9,17 +11,17 @@ abstract class CartController extends GetxController {}
 class CartPageControllerImpl extends CartController {
   Map<int, CartPageControllerImpl> itemControllers = {};
   RxInt counter = 1.obs;
-
-  // CartPageControllerImpl() {
-  //   counter = (itemControllers[0]!.counter ?? 1) as RxInt;
-  // }
+  MyServices myServices = Get.find();
 
   final RxDouble subTotalPrice = 0.0.obs;
   final RxDouble shipingCost = 0.0.obs;
   RxDouble totalCost = 0.0.obs;
   RxList<ProductModel> products = <ProductModel>[].obs;
-  StatusRequest stateRequest = StatusRequest.none;
 
+  StatusRequest stateRequest = StatusRequest.none;
+  String country = "";
+  String city = "";
+  String cardNumber = "";
   CartPageControllerImpl getItemController(int index) {
     if (!itemControllers.containsKey(index)) {
       itemControllers[index] = CartPageControllerImpl();
@@ -28,8 +30,8 @@ class CartPageControllerImpl extends CartController {
   }
 
   void updatePrices(int amount) {
-    calcSubTotalPrice(counter.value);
-    calcShippingCost(counter.value);
+    calcSubTotalPrice(amount);
+    calcShippingCost(amount);
     calcTotalCost();
   }
 
@@ -39,41 +41,42 @@ class CartPageControllerImpl extends CartController {
       total += (element.itemPrice!);
     }
 
-    subTotalPrice.value = total;
+    subTotalPrice.value = total * amount;
 
-    return total * counter.value;
+    print("calcSubTotalPrice $total * $amount  = ${total * amount}");
+    return total * amount;
   }
 
   double calcShippingCost(int amount) {
     double total = 0.0;
     for (ProductModel element in products) {
-      total += (element.itemPrice!) ~/ 15;
+      total += (element.itemPrice!) ~/ 10;
     }
 
-    shipingCost.value = total;
+    shipingCost.value = total * amount;
+    print("calcShippingCost $total * $amount = ${total * amount}");
 
-    return total * counter.value;
+    return total * amount;
   }
 
   double calcTotalCost() {
+    totalCost.value = shipingCost.value + subTotalPrice.value;
     return shipingCost.value + subTotalPrice.value;
   }
 
   addOne() {
-    counter.value += 1;
-
     updatePrices(counter.value);
+    return counter.value += 1;
   }
 
   minusOne() {
-    counter.value == 1 ? counter.value : counter.value -= 1;
-
     updatePrices(counter.value);
+    return counter.value == 1 ? counter.value : counter.value -= 1;
   }
 
   getOrderdProducts() async {
     products.value = await DBHelper.instance().getAllProducts("Cart_Products");
-
+    print(products);
     stateRequest = StatusRequest.loading;
     if (products.isEmpty) {
       stateRequest = StatusRequest.failure;
@@ -86,22 +89,49 @@ class CartPageControllerImpl extends CartController {
   remove(ProductModel product) async {
     await DBHelper.instance().deleteProduct("Cart_Products", product);
     getOrderdProducts();
-    calcSubTotalPrice(counter.value);
-    calcShippingCost(counter.value);
-    calcTotalCost();
+    // updatePrices(counter.value);
+    update();
+  }
+
+  getDeliverAddress() {
+    var countryFromSharedPreferences =
+        myServices.sharedPreferences.get("country");
+
+    country = countryFromSharedPreferences != null
+        ? countryFromSharedPreferences.toString()
+        : "110".tr;
+    var cityFromSharedPreferences = myServices.sharedPreferences.get("city");
+
+    city = cityFromSharedPreferences != null
+        ? cityFromSharedPreferences.toString()
+        : "";
+    update();
+  }
+
+  getCardNumber() {
+    var cardNumberFromSharedPreferences =
+        myServices.sharedPreferences.get("card_number");
+
+    cardNumber = cardNumberFromSharedPreferences != null
+        ? cardNumberFromSharedPreferences.toString()
+        : "111".tr;
+    update();
   }
 
   @override
   void onInit() {
+    updatePrices(counter.value);
+    getDeliverAddress();
+    getCardNumber();
     getOrderdProducts();
     super.onInit();
   }
 
   goToAddressPage() {
-    Get.toNamed(AppRouts.addressPage);
+    Get.toNamed(AppRouts.viewAvalibleAddresses);
   }
 
-  goToPaymentpage() {
-    Get.toNamed(AppRouts.paymentCardPage);
+  goToViewAvalibleCard() {
+    Get.toNamed(AppRouts.viewAvailableCards);
   }
 }

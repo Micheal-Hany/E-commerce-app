@@ -15,11 +15,12 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartPageControllerImpl());
+    Get.put(
+      CartPageControllerImpl(),
+    );
     return Scaffold(
       body: GetBuilder<CartPageControllerImpl>(
         builder: (controller) {
-          controller.getOrderdProducts();
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -37,19 +38,18 @@ class CartPage extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: controller.products.length,
                         itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Obx(() {
-                              final CartPageControllerImpl itemController =
-                                  controller.getItemController(
-                                      controller.products[index].itemId!);
+                          // final CartPageControllerImpl itemController = Get.put(
+                          //     CartPageControllerImpl(),
+                          //     tag: "${controller.products[index].itemId}");
+                          // controller.getItemController(
+                          //     controller.products[index].itemId!);
 
-                              return CustomCartItemDetails(
+                          return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: CustomCartItemDetails(
                                 product: controller.products[index],
-                                controller: itemController,
-                              );
-                            }),
-                          );
+                                controller: controller,
+                              ));
                         },
                       )),
                   const CustomDeliveryAddress(),

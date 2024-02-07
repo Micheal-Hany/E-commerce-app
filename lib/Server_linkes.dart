@@ -1,5 +1,7 @@
 class AppLink {
-  static const String server = "http://10.0.2.2/ecommerce";
+  static const String server = "http://192.168.1.5/ecommerce";
+  // local IP 192.168.1.5
+  // server IP 10.0.2.2
   static const String usersData = "$server/test.php";
   //=========================== Image ==============================
 // localhost/ecommerce/home.php

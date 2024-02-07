@@ -8,21 +8,26 @@ import 'package:get/get.dart';
 class ProductItemCounter extends StatelessWidget {
   final CartPageControllerImpl controller;
   final ProductModel product;
-   
 
-  const ProductItemCounter(
-      {Key? key, required this.controller, required this.product,})
-      : super(key: key);
+  const ProductItemCounter({
+    Key? key,
+    required this.controller,
+    required this.product,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int count = controller.counter.value;
+
     return Row(
       children: [
         GestureDetector(
           onTap: () {
             controller.minusOne();
+            print(count);
+            //controller.updatePrices(count);
 
-            //controller.updatePrices(controller.counter.value);
+            controller.updatePrices(controller.counter.value);
           },
           child: Container(
             width: 30,
@@ -52,6 +57,7 @@ class ProductItemCounter extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.addOne();
+            controller.updatePrices(controller.counter.value);
           },
           child: Container(
             width: 30,
@@ -73,9 +79,11 @@ class ProductItemCounter extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.remove(product);
+            controller.updatePrices(controller.counter.value);
+            controller.getOrderdProducts();
           },
           child: Container(
-              width: 35.0, 
+              width: 35.0,
               height: 35.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,

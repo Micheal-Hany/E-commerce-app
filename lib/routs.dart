@@ -9,13 +9,16 @@ import 'package:store_app/view/screens/Auth/success_signUp.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/verifay%20code.dart';
 import 'package:store_app/view/screens/Auth/vertifay%20code%20sign%20up.dart';
 import 'package:store_app/view/screens/Home/home_page.dart';
+import 'package:store_app/view/screens/Map_page.dart';
+import 'package:store_app/view/screens/View_available_addresses.dart';
 import 'package:store_app/view/screens/add_new_card_page.dart';
-import 'package:store_app/view/screens/address_page.dart';
+import 'package:store_app/view/screens/AddressPageFildes.dart';
 import 'package:store_app/view/screens/language.dart';
 import 'package:store_app/view/screens/on%20boarding.dart';
 import 'package:store_app/view/screens/payment_card.dart';
 import 'package:store_app/view/screens/product_detailes.dart';
 import 'package:store_app/view/screens/reviews_page.dart';
+import 'package:store_app/view/screens/view_avalible_cards-page.dart';
 
 import 'view/screens/Auth/login.dart';
 
@@ -40,8 +43,17 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRouts.productPage, page: () => const ProductDetails()),
   GetPage(name: AppRouts.reviewPage, page: () => const ReviewPage()),
   GetPage(name: AppRouts.addReviewPage, page: () => const AddReviewpage()),
-  GetPage(name: AppRouts.addressPage, page: () => const AddressPage()),
+  GetPage(name: AppRouts.addressPage, page: () => const MapAddressPage()),
+  GetPage(
+      name: AppRouts.addAddressPageFildes,
+      page: () => const AddressPageFildes()),
   GetPage(name: AppRouts.paymentCardPage, page: () => const PaymentCard()),
   GetPage(
       name: AppRouts.addPaymentCardPage, page: () => const AddNewCardPage()),
+  GetPage(
+      name: AppRouts.viewAvalibleAddresses,
+      page: () => const ViewAvailableAddresses()),
+  GetPage(
+      name: AppRouts.viewAvailableCards,
+      page: () => const ViewAvailableCards()),
 ];

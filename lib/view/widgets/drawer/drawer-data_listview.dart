@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
-import 'package:store_app/controller/address_page_controller.dart';
+import 'package:store_app/controller/address_fildes_page_controller.dart';
 import 'package:store_app/view/widgets/address_page/swich_key.dart';
 import 'package:store_app/view/widgets/drawer/CustomDrawerRow.dart';
 
@@ -24,7 +24,7 @@ class CsutomDrawerDatalistView extends StatelessWidget {
               iconPath: "assets/images/sun.png",
               labelKey: "107",
             ),
-            SwitchExample(controller: AddressPageController()),
+            SwitchExample(),
           ],
         ),
         DrawerRow(

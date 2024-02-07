@@ -8,10 +8,8 @@ class OrderInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartPageControllerImpl());
-    return GetBuilder<CartPageControllerImpl>(
-      builder: (controller) {
-        return Column(
+    final controller = Get.put(CartPageControllerImpl());
+    return Obx(() => Column(
           children: [
             Row(
               children: [
@@ -34,7 +32,7 @@ class OrderInfoSection extends StatelessWidget {
                       .copyWith(color: const Color(0xff8F959E)),
                 ),
                 Text(
-                  "\$${controller.calcSubTotalPrice(controller.counter.value)}",
+                  "\$${controller.subTotalPrice}",
                   style: CustomStyle.textStyle15.copyWith(color: Colors.black),
                 )
               ],
@@ -51,7 +49,7 @@ class OrderInfoSection extends StatelessWidget {
                       .copyWith(color: const Color(0xff8F959E)),
                 ),
                 Text(
-                  "\$${controller.calcShippingCost(controller.counter.value)}",
+                  "\$${controller.shipingCost}",
                   style: CustomStyle.textStyle15.copyWith(color: Colors.black),
                 )
               ],
@@ -68,14 +66,12 @@ class OrderInfoSection extends StatelessWidget {
                       .copyWith(color: const Color(0xff8F959E)),
                 ),
                 Text(
-                  "\$${controller.calcTotalCost()}",
+                  "\$${controller.totalCost}",
                   style: CustomStyle.textStyle15.copyWith(color: Colors.black),
                 )
               ],
             ),
           ],
-        );
-      },
-    );
+        ));
   }
 }

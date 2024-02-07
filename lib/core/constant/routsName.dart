@@ -15,5 +15,9 @@ class AppRouts {
   static const String addressPage = '/addressPage';
   static const String paymentCardPage = '/paymentCardPage';
   static const String addPaymentCardPage = '/addPaymentCardPage';
+  static const String viewAvalibleAddresses = '/viewAvalibleAddresses';
+  static const String addAddressPageFildes = '/addAddressPageFildes';
+  static const String viewAvailableCards = '/viewAvailableCards';
 
+  
 }

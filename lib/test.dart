@@ -1,9 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:store_app/core/function/internet_check.dart';
-import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_to_text.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MyHomePagetwo extends StatefulWidget {
   const MyHomePagetwo({Key? key}) : super(key: key);
@@ -13,89 +10,51 @@ class MyHomePagetwo extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePagetwo> {
-  final SpeechToText _speechToText = SpeechToText();
-  bool _speechEnabled = false;
-  String _lastWords = '';
+  // Google Maps controller
+  late GoogleMapController mapController;
+
+  // Initial camera position (you can set your preferred location)
+  final LatLng _initialCameraPosition = const LatLng(37.7749, -122.4194);
+
+  // Completer to handle the initialization of Google Maps
+  final Completer<GoogleMapController> _controller = Completer();
 
   @override
   void initState() {
     super.initState();
-    _initSpeech();
-  }
-
-  /// This has to happen only once per app
-  void _initSpeech() async {
-    _speechEnabled = await _speechToText.initialize();
-    setState(() {});
-  }
-
-  /// Each time to start a speech recognition session
-  void _startListening() async {
-    await _speechToText.listen(onResult: _onSpeechResult);
-    setState(() {});
-  }
-
-  /// Manually stop the active speech recognition session
-  /// Note that there are also timeouts that each platform enforces
-  /// and the SpeechToText plugin supports setting timeouts on the
-  /// listen method.
-  void _stopListening() async {
-    await _speechToText.stop();
-    setState(() {});
-  }
-
-  /// This is the callback that the SpeechToText plugin calls when
-  /// the platform returns recognized words.
-  void _onSpeechResult(SpeechRecognitionResult result) {
-    setState(() {
-      _lastWords = result.recognizedWords;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Speech Demo'),
+        title: const Text('Google Maps Demo'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: const EdgeInsets.all(16),
-              child: const Text(
-                'Recognized words:',
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  // If listening is active show the recognized words
-                  _speechToText.isListening
-                      ? _lastWords
-                      // If listening isn't active but could be tell the user
-                      // how to start it, otherwise indicate that speech
-                      // recognition is not yet ready or not supported on
-                      // the target device
-                      : _speechEnabled
-                          ? 'Tap the microphone to start listening...'
-                          : 'Speech not available',
-                ),
-              ),
-            ),
-          ],
+      body: GoogleMap(
+       
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+        
+        initialCameraPosition: CameraPosition(
+          target: _initialCameraPosition,
+          zoom: 10.0,
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:
-            // If not yet listening for speech start, otherwise stop
-            _speechToText.isNotListening ? _startListening : _stopListening,
-        tooltip: 'Listen',
-        child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+        onPressed: () {
+          // Add your logic for the floating action button
+          // For example, you can zoom to a specific location
+          _goToLocation();
+        },
+        child: const Icon(Icons.map_rounded),
       ),
     );
+  }
+
+  // Function to move the camera to a specific location
+  Future<void> _goToLocation() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newLatLng(_initialCameraPosition));
   }
 }

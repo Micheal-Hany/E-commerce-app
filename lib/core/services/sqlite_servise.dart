@@ -1,5 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:store_app/controller/payment_card_controller.dart';
+import 'package:store_app/data/model/address_model.dart';
 import 'package:store_app/data/model/product_model.dart';
 
 class DBHelper {
@@ -21,19 +23,20 @@ class DBHelper {
     return _database;
   }
 
-  Future<Database> initDatabase() async {
+  Future<void> initDatabase() async {
     String path = join(await getDatabasesPath(), 'ecommerce.db');
     //await deleteDatabase(join(path, 'ecommerce.db'));
     _database = await openDatabase(path, version: 1, onCreate: _createTables);
-    return _database;
   }
 
   Future<void> _createTables(Database db, int version) async {
-    await _createTable(db, 'Liked_Products');
-    await _createTable(db, 'Cart_Products');
+    await _createProductTable(db, 'Liked_Products');
+    await _createProductTable(db, 'Cart_Products');
+    await _createAddressTable(db, 'addresses');
+    await _createCardTable(db, 'cards');
   }
 
-  Future<void> _createTable(Database db, String tableName) async {
+  Future<void> _createProductTable(Database db, String tableName) async {
     await db.execute('''
     CREATE TABLE $tableName (
       item_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -57,9 +60,44 @@ class DBHelper {
   ''');
   }
 
+  Future<void> _createAddressTable(Database db, String tableName) async {
+    await db.execute('''
+    CREATE TABLE $tableName (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      street TEXT,
+      subLocality TEXT,
+      locality TEXT,
+      postalCode TEXT,
+      country TEXT
+    )
+  ''');
+  }
+
+  Future<void> _createCardTable(Database db, String tableName) async {
+    await db.execute('''
+    CREATE TABLE $tableName (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      cardNumber TEXT,
+      expiryDate TEXT,
+      cardHolderName TEXT,
+      cvvCode TEXT
+    )
+  ''');
+  }
+
   Future<int> insertProduct(String tableName, ProductModel product) async {
     final db = await database;
     return await db.insert(tableName, product.toJson());
+  }
+
+  Future<int> insertCard(String tableName, CardModel card) async {
+    final db = await database;
+    return await db.insert(tableName, card.toJson());
+  }
+
+  Future<int> insertAddress(String tableName, AddressModel addressModel) async {
+    final db = await database;
+    return await db.insert(tableName, addressModel.toJson());
   }
 
   Future<int> deleteProduct(String tableName, ProductModel product) async {
@@ -71,11 +109,45 @@ class DBHelper {
     );
   }
 
+  Future<int> deleteCard(String tableName, CardModel card) async {
+    final db = await database;
+    return await db.delete(
+      tableName,
+      where: 'id = ?',
+      whereArgs: [card.id],
+    );
+  }
+
+  Future<int> deleteAddress(String tableName, AddressModel addressModel) async {
+    final db = await database;
+    return await db.delete(
+      tableName,
+      where: 'id = ?',
+      whereArgs: [addressModel.id],
+    );
+  }
+
   Future<List<ProductModel>> getAllProducts(String tableName) async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query(tableName);
     return List.generate(maps.length, (index) {
       return ProductModel.fromJson(maps[index]);
+    });
+  }
+
+  Future<List<AddressModel>> getAllAddresses(String tableName) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(tableName);
+    return List.generate(maps.length, (index) {
+      return AddressModel.fromJson(maps[index]);
+    });
+  }
+
+  Future<List<CardModel>> getAllCards(String tableName) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(tableName);
+    return List.generate(maps.length, (index) {
+      return CardModel.fromJson(maps[index]);
     });
   }
 

@@ -11,33 +11,30 @@ class CustomPaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(CartPageControllerImpl());
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GetBuilder<CartPageControllerImpl>(
+      builder: (controller) {
+        return Column(
           children: [
-            Text(
-              "68".tr,
-              style:
-                  CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w500),
-            ),
-            GetBuilder<CartPageControllerImpl>(
-              builder: (controller) {
-                return IconButton(
-                  onPressed: () => controller.goToPaymentpage(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "68".tr,
+                  style: CustomStyle.textStyle17
+                      .copyWith(fontWeight: FontWeight.w500),
+                ),
+                IconButton(
+                  onPressed: () => controller.goToViewAvalibleCard(),
                   icon: const Icon(Icons.chevron_right_rounded),
-                );
-              },
+                )
+              ],
+            ),
+            CustomUserCardDetailes(
+              cardNumber: controller.cardNumber,
             )
           ],
-        ),
-        CustomUserCartDetailes(
-            cart: CartModel(
-                cardNumber: "**** 7690",
-                cardOwner: "cardOwner",
-                expDate: "expDate",
-                cvv: "cvv"))
-      ],
+        );
+      },
     );
   }
 }

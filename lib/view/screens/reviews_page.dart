@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/review_page_controller.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
-import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 import 'package:store_app/view/widgets/Product_page/User_review.dart';
 import 'package:store_app/view/widgets/reviews_page/reviews_page_app_bar.dart';
 import 'package:store_app/view/widgets/reviews_page/reviews_statistics.dart';

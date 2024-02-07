@@ -6,10 +6,10 @@ import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Payment_card/Custom_add_new_card_button.dart';
 
 class MyCreditCardWidget extends StatelessWidget {
-  final CreditCardController creditCardController =
-      Get.put(CreditCardController());
+  final CreditCardController creditCardController;
 
-  MyCreditCardWidget({Key? key}) : super(key: key);
+  const MyCreditCardWidget({Key? key, required this.creditCardController})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +19,26 @@ class MyCreditCardWidget extends StatelessWidget {
           CreditCardWidget(
             // cardBgColor: const Color(0xff122D4F),
             cardBgColor: const Color.fromARGB(255, 52, 33, 110),
-            cardNumber: creditCardController.cardNumber.value,
-            expiryDate: creditCardController.expiryDate.value,
-            cardHolderName: creditCardController.cardHolderName.value,
-            cvvCode: creditCardController.cvvCode.value,
-            showBackView: creditCardController.isCvvFocused.value,
+            cardNumber: creditCardController.cardNumber,
+            expiryDate: creditCardController.expiryDate,
+            cardHolderName: creditCardController.cardHolderName,
+            cvvCode: creditCardController.cvvCode,
+            showBackView: creditCardController.isCvvFocused,
             onCreditCardWidgetChange: (CreditCardBrand) {},
           ),
           const SizedBox(height: 5),
-          CustomButtonAddNewcard(
-              buttonName: "87".tr,
-              onPressed: () => creditCardController.gotoAddNewCard(),
-              backgroundColor: const Color(0xffF6F2FF),
-              width: double.infinity - 20,
-              height: 40),
+          // CustomButtonAddNewcard(
+          //     buttonName: "87".tr,
+          //     onPressed: () => creditCardController.gotoAddNewCard(),
+          //     backgroundColor: const Color(0xffF6F2FF),
+          //     width: double.infinity - 20,
+          //     height: 40),
           CreditCardForm(
-            formKey: GlobalKey<FormState>(),
-            cardNumber: creditCardController.cardNumber.value,
-            expiryDate: creditCardController.expiryDate.value,
-            cardHolderName: creditCardController.cardHolderName.value,
-            cvvCode: creditCardController.cvvCode.value,
+            formKey: creditCardController.formState,
+            cardNumber: creditCardController.cardNumber,
+            expiryDate: creditCardController.expiryDate,
+            cardHolderName: creditCardController.cardHolderName,
+            cvvCode: creditCardController.cvvCode,
             onCreditCardModelChange:
                 creditCardController.onCreditCardModelChange,
             obscureCvv: true,
@@ -51,19 +51,24 @@ class MyCreditCardWidget extends StatelessWidget {
             dateValidationMessage: '89'.tr,
             numberValidationMessage: '90'.tr,
             cardNumberValidator: (String? cardNumber) {
+              if (cardNumber!.length < 16) {
+                return "Card number is too short";
+              }
               return null;
             },
             expiryDateValidator: (String? expiryDate) {
+              if (expiryDate!.isEmpty) {
+                return "Expiry error";
+              }
               return null;
             },
             cvvValidator: (String? cvv) {
+              if (cvv!.length < 4) return "CVV error";
               return null;
             },
             cardHolderValidator: (String? cardHolderName) {
+              if (cardHolderName!.length < 5) return "Name error";
               return null;
-            },
-            onFormComplete: () {
-              // callback to execute at the end of filling card data
             },
             autovalidateMode: AutovalidateMode.always,
             disableCardNumberAutoFillHints: false,

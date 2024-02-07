@@ -5,7 +5,8 @@ class CustomCategoryItem extends StatelessWidget {
   const CustomCategoryItem({
     super.key,
     required this.categoryName,
-    required this.image, required TextStyle textStyle,
+    required this.image,
+    required TextStyle textStyle,
   });
   final String categoryName;
   final String image;
@@ -37,7 +38,7 @@ class CustomCategoryItem extends StatelessWidget {
               //color: Colors.blue,
               color: const Color(0xffF5F6FA),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Tab(
               child: Center(
                 child: Text(

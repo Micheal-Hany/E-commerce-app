@@ -29,12 +29,14 @@ class MyApp extends StatelessWidget {
       getPages: routes,
       initialBinding: InitailBinding(),
 
-      // home: const MyHomePagetwo(),
+      //home: const MyHomePagetwo(),
     );
   }
 }
 
 class Themes {
-  static final ThemeData lightTheme = ThemeData.light(useMaterial3: true);
+  static final ThemeData lightTheme = ThemeData.light(
+    useMaterial3: true,
+  );
   static final ThemeData darkTheme = ThemeData.dark(useMaterial3: true);
 }
