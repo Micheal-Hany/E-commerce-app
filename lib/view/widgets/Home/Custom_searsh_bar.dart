@@ -17,22 +17,26 @@ class CustomNotifacationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Color(0xff9775FA),
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      child: IconButton(
-        icon: Image.asset(
-          'assets/images/Voice.png',
-          color: Colors.white,
-          height: 30,
-          width: 30,
+        decoration: const BoxDecoration(
+          color: Color(0xff9775FA),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        onPressed: () => !controller.speechEnabled
-            ? controller.stopListening()
-            : controller.startListening(),
-      ),
-    );
+        child: GetBuilder<HomeControllerImpl>(
+          builder: (controller) {
+            print(controller.speechEnabled);
+            return IconButton(
+              icon: !controller.speechEnabled
+                  ? const Icon(
+                      Icons.mic_off,
+                      color: Colors.white,
+                    )
+                  : const Icon(Icons.mic, color: Colors.white),
+              onPressed: () => !controller.speechEnabled
+                  ? controller.stopListening()
+                  : controller.startListening(),
+            );
+          },
+        ));
   }
 }
 

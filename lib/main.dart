@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/binding/initbinding.dart';
+import 'package:store_app/controller/Home/wallet_controller.dart';
 import 'package:store_app/core/constant/App%20Theme.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
@@ -19,12 +20,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LocalController controller = Get.put(LocalController());
+    WalletController walletController = Get.put(WalletController());
     return GetMaterialApp(
       translations: MyTranslation(),
       debugShowCheckedModeBanner: false,
       locale: controller.language,
       title: 'Flutter Demo',
-      theme: Themes.lightTheme,
+      theme: walletController.getCurrantTheme(),
       getPages: routes,
       initialBinding: InitailBinding(),
 
@@ -32,4 +34,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

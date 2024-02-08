@@ -7,6 +7,7 @@ import 'package:store_app/main.dart';
 class WalletController extends GetxController {
   RxString selectedLanguage = 'en'.obs; // Default language is English
   RxBool isDarkMode = false.obs; // Default mode is light mode
+  MyServices myServices = Get.find();
   void changeLang(String langCode) {
     Locale locale = Locale(langCode);
 
@@ -22,14 +23,31 @@ class WalletController extends GetxController {
     }
   }
 
+  // void toggleTheme() {
+  //   isDarkMode.value = !isDarkMode.value;
+  //   myServices.sharedPreferences.setBool('isDarkMode', isDarkMode.value);
+  //   updateTheme();
+  // }
+
+  // void updateTheme() {
+  //   if (isDarkMode.value) {
+  //     Get.changeTheme(Themes.darkTheme);
+  //   } else {
+  //     Get.changeTheme(Themes.lightTheme);
+  //   }
+  // }
+  @override
+  void onInit() {
+    super.onInit();
+    // Initialize the value of isDarkMode from SharedPreferences
+    isDarkMode.value =
+        myServices.sharedPreferences.getBool('isDarkMode') ?? false;
+    updateTheme(); // Ensure theme is updated based on the initial value
+  }
+
   void toggleTheme() {
-    // Toggle the theme mode
     isDarkMode.value = !isDarkMode.value;
-    // Save the theme preference
-    Get.find<MyServices>()
-        .sharedPreferences
-        .setBool('isDarkMode', isDarkMode.value);
-    // Update theme
+    myServices.sharedPreferences.setBool('isDarkMode', isDarkMode.value);
     updateTheme();
   }
 
@@ -39,5 +57,9 @@ class WalletController extends GetxController {
     } else {
       Get.changeTheme(Themes.lightTheme);
     }
+  }
+
+  getCurrantTheme() {
+    isDarkMode.value ? Themes.darkTheme : Themes.lightTheme;
   }
 }

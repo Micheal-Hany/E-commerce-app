@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/core/function/translate_database.dart';
@@ -19,10 +20,9 @@ class CustomCartItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
       decoration: BoxDecoration(
-          color: const Color(0xffF5F6FA),
+          color: context.myTheme.cardColor,
           borderRadius: BorderRadius.circular(15)),
       child: Row(
         children: [
@@ -57,22 +57,15 @@ class CustomCartItemDetails extends StatelessWidget {
                     maxWidth: Dimensions.getWidth(context) * .6,
                   ),
                   child: Text(
-                    translateDataBase(product.itemNameAr, product.itemNameEn!),
-                    style: CustomStyle.textStyle15.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                      translateDataBase(
+                          product.itemNameAr, product.itemNameEn!),
+                      style: context.bodySmall!.copyWith(fontSize: 15)),
                 ),
                 SizedBox(
                   height: Dimensions.getHeight(context) * .01,
                 ),
-                Text(
-                  "\$${product.itemPrice} (-\$4.00 Tax)",
-                  style: CustomStyle.textStyle11.copyWith(
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                Text("\$${product.itemPrice} (-\$4.00 Tax)",
+                    style: context.bodySmall!.copyWith(fontSize: 11)),
                 SizedBox(
                   height: Dimensions.getHeight(context) * .02,
                 ),

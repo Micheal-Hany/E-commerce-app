@@ -33,35 +33,32 @@ class CartPageControllerImpl extends CartController {
     calcSubTotalPrice(amount);
     calcShippingCost(amount);
     calcTotalCost();
+    update();
   }
 
-  double calcSubTotalPrice(int amount) {
-    double total = 0.0;
-    for (ProductModel element in products) {
-      total += (element.itemPrice!);
+  void calcSubTotalPrice(int amount) {
+    // Assuming each product has a price attribute
+    double subtotal = 0.0;
+    for (ProductModel product in products) {
+      subtotal += product.itemPrice! * amount; // Multiply by the amount
     }
-
-    subTotalPrice.value = total * amount;
-
-    print("calcSubTotalPrice $total * $amount  = ${total * amount}");
-    return total * amount;
+    subTotalPrice.value = subtotal;
+    update();
   }
 
-  double calcShippingCost(int amount) {
-    double total = 0.0;
-    for (ProductModel element in products) {
-      total += (element.itemPrice!) ~/ 10;
-    }
+  // Function to calculate shipping cost based on the amount
+  void calcShippingCost(int amount) {
+    double shippingCost = 0.0;
 
-    shipingCost.value = total * amount;
-    print("calcShippingCost $total * $amount = ${total * amount}");
-
-    return total * amount;
+    shippingCost = amount * 5.0;
+    shipingCost.value = shippingCost;
+    update();
   }
 
-  double calcTotalCost() {
-    totalCost.value = shipingCost.value + subTotalPrice.value;
-    return shipingCost.value + subTotalPrice.value;
+  // Function to calculate total cost based on subtotal and shipping cost
+  void calcTotalCost() {
+    totalCost.value = subTotalPrice.value + shipingCost.value;
+    update();
   }
 
   addOne() {

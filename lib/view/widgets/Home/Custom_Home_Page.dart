@@ -263,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('53'.tr, style: context.headlineMedium),
+                      Text('53'.tr, style: context.headlineLarge),
                       Text('54'.tr,
                           style: context.bodyMedium
                               ?.copyWith(color: ColorConstant.manatee)),

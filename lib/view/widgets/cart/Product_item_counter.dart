@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/data/model/product_model.dart';
@@ -47,11 +48,8 @@ class ProductItemCounter extends StatelessWidget {
         ),
         SizedBox(width: Dimensions.getWidth(context) * .05),
         Obx(
-          () => Text(
-            "${controller.counter.value}",
-            style: CustomStyle.textStyle15
-                .copyWith(fontWeight: FontWeight.w600, color: Colors.black),
-          ),
+          () => Text("${controller.counter.value}",
+              style: context.bodySmall!.copyWith(fontSize: 15)),
         ),
         SizedBox(width: Dimensions.getWidth(context) * .05),
         GestureDetector(

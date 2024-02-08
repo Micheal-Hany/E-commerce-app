@@ -23,6 +23,9 @@ class HomeControllerImpl extends HomeController
     with GetSingleTickerProviderStateMixin {
   List<ProductModel> searchProducts = [];
 
+  final SpeechToText _speechToText = SpeechToText();
+  final RxBool _speechEnabled = false.obs;
+  final RxString _lastWords = ''.obs;
   MyServices myServices = Get.find();
   String? name;
   String? id;
@@ -168,10 +171,6 @@ class HomeControllerImpl extends HomeController
     update();
   }
 
-  final SpeechToText _speechToText = SpeechToText();
-  final RxBool _speechEnabled = false.obs;
-  final RxString _lastWords = ''.obs;
-
   bool get speechEnabled => _speechEnabled.value;
   set speechEnabled(bool value) => _speechEnabled.value = value;
 
@@ -204,6 +203,4 @@ class HomeControllerImpl extends HomeController
     searchController.text = result.recognizedWords;
     print("result is ${result.recognizedWords}");
   }
-
- 
 }
