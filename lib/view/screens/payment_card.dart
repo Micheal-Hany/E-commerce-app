@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Payment_card/Custom_paymet_app_bar.dart';
@@ -33,9 +34,8 @@ class PaymentCard extends StatelessWidget {
                       children: [
                         Text(
                           "95".tr,
-                          style: CustomStyle.textStyle15.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xff1D1E20),
+                          style: context.bodySmall!.copyWith(
+                            fontSize: 15,
                           ),
                         ),
                         SwitchSavePayment(

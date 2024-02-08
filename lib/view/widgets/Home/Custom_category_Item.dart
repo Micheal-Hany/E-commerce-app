@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:store_app/main.dart';
 
 class CustomCategoryItem extends StatelessWidget {
   const CustomCategoryItem({
@@ -14,17 +16,17 @@ class CustomCategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          color: Color(0xffF5F6FA),
+      decoration: BoxDecoration(
+          color: context.myTheme.cardColor,
           // color: Colors.green,
-          borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderRadius: const BorderRadius.all(Radius.circular(15))),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             decoration: BoxDecoration(
                 // color: Colors.red,
-                color: const Color(0xffFEFEFE),
+                color: context.myTheme.scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(15)),
             child: Image.network(
               image,
@@ -36,7 +38,7 @@ class CustomCategoryItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               //color: Colors.blue,
-              color: const Color(0xffF5F6FA),
+              color: context.myTheme.cardColor,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Tab(

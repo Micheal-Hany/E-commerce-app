@@ -65,36 +65,33 @@ class CustomCategorylistView extends StatelessWidget {
       builder: (controller) => Scaffold(
         body: ViewDataHandleingRequest(
           statusRequest: controller.stateRequest,
-          widget: Container(
-            color: Colors.white,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: controller.categories.length,
-              itemBuilder: (context, index) {
-                final category = controller.categories[index];
-                final isSelected = index == controller.tabController.index;
+          widget: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.categories.length,
+            itemBuilder: (context, index) {
+              final category = controller.categories[index];
+              final isSelected = index == controller.tabController.index;
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      controller.tabController.animateTo(index);
-                      controller.getItemsData("${category.categoriesId}");
-                      print("${category.categoriesId}");
-                    },
-                    child: CustomCategoryItem(
-                      categoryName:
-                          "${translateDataBase(category.categoriesNameAr, category.categoriesNameEn)}",
-                      image: "${category.categoriesImage}",
-                      textStyle: isSelected
-                          ? CustomStyle.textStyle22.copyWith(
-                              fontSize: 15, color: AppColor.primaryColorDart)
-                          : CustomStyle.textStyle15,
-                    ),
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    controller.tabController.animateTo(index);
+                    controller.getItemsData("${category.categoriesId}");
+                    print("${category.categoriesId}");
+                  },
+                  child: CustomCategoryItem(
+                    categoryName:
+                        "${translateDataBase(category.categoriesNameAr, category.categoriesNameEn)}",
+                    image: "${category.categoriesImage}",
+                    textStyle: isSelected
+                        ? CustomStyle.textStyle22.copyWith(
+                            fontSize: 15, color: AppColor.primaryColorDart)
+                        : CustomStyle.textStyle15,
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),

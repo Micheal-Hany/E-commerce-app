@@ -17,7 +17,7 @@ class CustomCartIcon extends StatelessWidget {
       width: Dimensions.getWidth(context) * .11,
       height: Dimensions.getHeight(context) * .051,
       decoration: BoxDecoration(
-        color: const Color(0xffF5F6FA),
+        color: Theme.of(context).appBarTheme.backgroundColor,
         borderRadius: BorderRadius.circular(50),
       ),
       child: IconButton(

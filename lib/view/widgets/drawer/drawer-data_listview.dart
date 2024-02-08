@@ -17,34 +17,38 @@ class CsutomDrawerDatalistView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const DrawerRow(
-              iconPath: "assets/images/sun.png",
+            DrawerRow(
+              widget: Icon(Icons.sunny),
               labelKey: "107",
             ),
             SwitchExample(),
           ],
         ),
         DrawerRow(
-            iconPath: "assets/images/Info Circle.png",
+            widget: const Icon(Icons.info_outline_rounded),
             labelKey: "102",
             onTap: () => controller.changePage(3)),
         DrawerRow(
-            iconPath: "assets/images/Bag (1).png",
+            widget: const Icon(Icons.shopping_cart_checkout),
+            // iconPath: "assets/images/Bag (1).png",
             labelKey: "103",
             onTap: () => controller.changePage(2)),
         DrawerRow(
-            iconPath: "assets/images/Wallet (1).png",
+            widget: const Icon(Icons.wallet_rounded),
+            // iconPath: "assets/images/Wallet (1).png",
             labelKey: "104",
             onTap: () => controller.changePage(3)),
         DrawerRow(
-            iconPath: "assets/images/Heart (1).png",
+            widget: const Icon(Icons.favorite_border_rounded),
+            // iconPath: "assets/images/Heart (1).png",
             labelKey: "105",
             onTap: () => controller.changePage(1)),
         DrawerRow(
-            iconPath: "assets/images/Setting.png",
+            widget: const Icon(Icons.settings),
+            // iconPath: "assets/images/Setting.png",
             labelKey: "106",
             onTap: () => controller.changePage(3)),
       ],

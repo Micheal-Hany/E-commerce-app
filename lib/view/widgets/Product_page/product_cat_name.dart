@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,8 @@ class ProductCategoryAndName extends StatelessWidget {
               maxHeight: Get.height / 15,
               maxWidth: Get.height / 2.6,
             ),
-            child: Text(productName, style: CustomStyle.textStyle22)),
+            child: Text(productName,
+                style: context.bodyLargeW600!.copyWith(fontSize: 22))),
       ],
     );
   }

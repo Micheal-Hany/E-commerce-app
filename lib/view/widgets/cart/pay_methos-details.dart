@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:store_app/controller/view-avalible_card_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/data/model/cart_model.dart';
@@ -44,9 +45,8 @@ class CustomUserCartDetailes extends StatelessWidget {
                   ),
                   child: Text(
                     "Visa Classic",
-                    style: CustomStyle.textStyle15.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
+                    style: context.bodySmall!.copyWith(
+                      fontSize: 15,
                     ),
                   ),
                 ),
@@ -56,8 +56,8 @@ class CustomUserCartDetailes extends StatelessWidget {
                 Text(
                   cardModel.cardNumber,
                   // "${cardNumber.substring(0, 4)} **** **** ${cardNumber.substring(14)}",
-                  style: CustomStyle.textStyle11.copyWith(
-                    fontWeight: FontWeight.w400,
+                  style: context.bodySmall!.copyWith(
+                    fontSize: 11,
                   ),
                 ),
               ],
@@ -134,9 +134,8 @@ class CustomUserCardDetailes extends StatelessWidget {
                   ),
                   child: Text(
                     "112".tr,
-                    style: CustomStyle.textStyle15.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
+                    style: context.bodySmall!.copyWith(
+                      fontSize: 15,
                     ),
                   ),
                 ),
@@ -146,8 +145,8 @@ class CustomUserCardDetailes extends StatelessWidget {
                 Text(
                   cardNumber,
                   // "${cardNumber.substring(0, 4)} **** **** ${cardNumber.substring(14)}",
-                  style: CustomStyle.textStyle11.copyWith(
-                    fontWeight: FontWeight.w400,
+                  style: context.bodySmall!.copyWith(
+                    fontSize: 11,
                   ),
                 ),
               ],

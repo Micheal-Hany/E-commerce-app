@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/ViewAvailableAddressesController.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
@@ -40,7 +41,9 @@ class ViewAvailableAddresses extends StatelessWidget {
                             children: [
                               Text(
                                 "120".tr,
-                                style: CustomStyle.textStyle17,
+                                style: context.bodySmall!.copyWith(
+                                  fontSize: 17,
+                                ),
                               ),
                             ],
                           ),
@@ -67,9 +70,13 @@ class ViewAvailableAddresses extends StatelessWidget {
                           ),
                         ],
                       )
-                    : Text(
-                        "119".tr,
-                        style: CustomStyle.textStyle17,
+                    : Center(
+                        child: Text(
+                          "119".tr,
+                          style: context.bodySmall!.copyWith(
+                            fontSize: 17,
+                          ),
+                        ),
                       )),
             CustomButton(
                 buttonName: "118".tr,
@@ -102,7 +109,9 @@ class CustomViewAvailableAddressAppbar
         ),
         Text(
           "117".tr,
-          style: CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
+          style: context.bodySmall!.copyWith(
+            fontSize: 17,
+          ),
         ),
       ],
     );

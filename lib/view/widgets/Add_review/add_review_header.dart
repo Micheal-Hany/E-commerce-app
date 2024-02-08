@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/add_review_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
@@ -25,8 +26,9 @@ class AddReviewHeaderSection extends StatelessWidget {
               horizontal: Dimensions.getWidth(context) / 4.5),
           child: Text(
             '98'.tr,
-            style:
-                CustomStyle.textStyle17.copyWith(fontWeight: FontWeight.w600),
+            style: context.bodySmall!.copyWith(
+              fontSize: 17,
+            ),
           ),
         )
       ],

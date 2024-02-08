@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/data/model/address_model.dart';
 import 'package:store_app/view/screens/Map_page.dart';
@@ -21,8 +22,7 @@ class CustomDeliveryAddress extends StatelessWidget {
               children: [
                 Text(
                   "67".tr,
-                  style: CustomStyle.textStyle17
-                      .copyWith(fontWeight: FontWeight.w500),
+                  style: context.bodySmall!.copyWith(fontSize: 17),
                 ),
                 IconButton(
                   onPressed: () => controller.goToAddressPage(),

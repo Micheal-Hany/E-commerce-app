@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/binding/initbinding.dart';
-
+import 'package:store_app/core/constant/App%20Theme.dart';
 import 'package:store_app/core/localization/translation.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/routs.dart';
-import 'package:store_app/test.dart';
 import 'package:store_app/view/widgets/language/change_Language.dart';
 
 void main() async {
@@ -34,9 +33,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Themes {
-  static final ThemeData lightTheme = ThemeData.light(
-    useMaterial3: true,
-  );
-  static final ThemeData darkTheme = ThemeData.dark(useMaterial3: true);
-}

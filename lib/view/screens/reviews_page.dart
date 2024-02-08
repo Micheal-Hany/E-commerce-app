@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/review_page_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Product_page/User_review.dart';
 import 'package:store_app/view/widgets/reviews_page/reviews_page_app_bar.dart';
@@ -15,7 +16,7 @@ class ReviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(ReviewPageControllerImpl());
     return Scaffold(
-      backgroundColor: const Color(0xffFEFEFE),
+      backgroundColor: context.myTheme.scaffoldBackgroundColor,
       body: GetBuilder<ReviewPageControllerImpl>(
         builder: (controller) {
           return SingleChildScrollView(

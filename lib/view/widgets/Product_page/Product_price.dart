@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,7 @@ class ProductPrice extends StatelessWidget {
       children: [
         Text('61'.tr, style: CustomStyle.textStyle15),
         const SizedBox(height: 20),
-        Text('\$$price', style: CustomStyle.textStyle22),
+        Text('\$$price', style: context.bodyLargeW600),
       ],
     );
   }

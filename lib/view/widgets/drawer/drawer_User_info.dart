@@ -2,7 +2,11 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:store_app/core/constant/colors.dart';
+import 'package:store_app/core/function/responsive_app.dart';
+import 'package:store_app/main.dart';
 import 'package:store_app/view/widgets/Product_page/avatar_image.dart';
 import 'package:get/get.dart';
 
@@ -17,34 +21,52 @@ class CustomDrawerUserInfo extends StatelessWidget {
     return Row(
       children: [
         const UserAvatar(),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GetBuilder<HaomeScreenContollerImpl>(
-              builder: (controller) => Text(
-                controller.name,
-                style: CustomStyle.textStyle17,
-              ),
-            ),
-            const SizedBox(
-              height: 1,
-            ),
-            Row(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "109".tr,
-                  style: CustomStyle.textStyle13
-                      .copyWith(fontWeight: FontWeight.w400),
+                GetBuilder<HaomeScreenContollerImpl>(
+                  builder: (controller) => Text(
+                    controller.name,
+                    style: context.bodyLargeW500,
+                  ),
                 ),
                 const SizedBox(
-                  width: 5,
+                  height: 1,
                 ),
-                const Icon(
-                  Icons.check_circle_rounded,
-                  color: Color(0xff4AC76D),
-                  size: 15,
-                )
+                Row(
+                  children: [
+                    Text(
+                      "109".tr,
+                      style: context.bodySmall
+                          ?.copyWith(color: ColorConstant.manatee),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    const Icon(
+                      Icons.check_circle_rounded,
+                      color: Color(0xff4AC76D),
+                      size: 15,
+                    ),
+                  ],
+                ),
               ],
+            ),
+            SizedBox(
+              width: Dimensions.getWidth(context) * .15,
+            ),
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                  color: context.theme.cardColor,
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0))),
+              child: Text(
+                '3 Orders',
+                style: TextStyle(color: ColorConstant.manatee),
+              ),
             )
           ],
         )

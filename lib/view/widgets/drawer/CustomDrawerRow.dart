@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
+import 'package:store_app/main.dart';
 
 class DrawerRow extends StatelessWidget {
   const DrawerRow({
     Key? key,
-    required this.iconPath,
     required this.labelKey,
     this.onTap,
+    required this.widget,
   }) : super(key: key);
 
-  final String iconPath;
+  final Widget widget;
   final String labelKey;
   final void Function()? onTap;
   @override
@@ -22,15 +23,9 @@ class DrawerRow extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(width: 10),
-            Image.asset(iconPath),
+            widget,
             const SizedBox(width: 15),
-            Text(
-              labelKey.tr,
-              style: CustomStyle.textStyle15.copyWith(
-                fontWeight: FontWeight.w400,
-                color: const Color(0xff1D1E20),
-              ),
-            ),
+            Text(labelKey.tr, style: context.bodySmall!.copyWith(fontSize: 14)),
           ],
         ),
       ),

@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/data/model/product_model.dart';
 import 'package:get/get.dart';
+import 'package:store_app/main.dart';
 
 class CustomItemStyle extends StatelessWidget {
   const CustomItemStyle({
@@ -24,7 +26,7 @@ class CustomItemStyle extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 // color: const Color(0xff8F959E),
-                
+
                 borderRadius: BorderRadius.circular(15),
               ),
               width: Dimensions.getWidth(context) * 0.38,
@@ -58,16 +60,13 @@ class CustomItemStyle extends StatelessWidget {
                   ),
                   child: Text(
                     translateDataBase(product.itemNameAr, product.itemNameEn!),
-                    style:
-                        CustomStyle.textStyle15.copyWith(color: Colors.black),
+                    style: context.bodySmall!.copyWith(fontSize: 15),
                   ),
                 ),
               ),
             ),
-            Text(
-              '\$${product.itemPrice}',
-              style: CustomStyle.textStyle13.copyWith(color: Colors.black),
-            ),
+            Text('\$${product.itemPrice}',
+                style: context.bodySmall!.copyWith(fontSize: 12)),
           ]),
     );
   }

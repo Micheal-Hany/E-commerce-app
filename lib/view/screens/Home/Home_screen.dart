@@ -15,11 +15,9 @@ class HomeScreen extends GetView<FavoriteControllerImpl> {
     return GetBuilder<HaomeScreenContollerImpl>(
       builder: (haomeScreenContollerImpl) {
         return Scaffold(
-          backgroundColor: const Color(0xffFEFEFE),
           bottomNavigationBar: Material(
-            color: const Color(0xffFEFEFE),
+            color: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
-            // borderRadius: const BorderRadius.all(Radius.circular(10)),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * .06,
               width: double.infinity,

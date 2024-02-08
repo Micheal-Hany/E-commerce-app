@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:store_app/main.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 import 'package:get/get.dart';
 import 'package:store_app/view/widgets/drawer/drawer-data_listview.dart';
@@ -19,7 +21,7 @@ class CustomAppDrawer extends StatelessWidget {
     return GetBuilder<HaomeScreenContollerImpl>(
       builder: (controller) {
         return Container(
-          color: const Color(0xffFFFFFF),
+          color: context.myTheme.scaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -30,10 +32,11 @@ class CustomAppDrawer extends StatelessWidget {
                 Row(
                   children: [
                     CustomCartIcon(
-                        widget: Image.asset("assets/images/menu (1).png"),
+                        widget: const Icon(Icons.close_rounded),
+                        // widget: Image.asset("assets/images/menu (1).png"),
                         onPressed: () =>
                             scaffoldKey.currentState!.closeDrawer(),
-                        backgroundColor: const Color(0xffF5F5F5)),
+                        backgroundColor: context.myTheme.cardColor),
                   ],
                 ),
                 const SizedBox(
@@ -56,7 +59,11 @@ class CustomAppDrawer extends StatelessWidget {
                       const SizedBox(
                         width: 15,
                       ),
-                      Image.asset("assets/images/Logout.png"),
+                      const Icon(
+                        Icons.logout_outlined,
+                        color: Colors.red,
+                      ),
+                      // Image.asset("assets/images/Logout.png"),
                       const SizedBox(
                         width: 10,
                       ),

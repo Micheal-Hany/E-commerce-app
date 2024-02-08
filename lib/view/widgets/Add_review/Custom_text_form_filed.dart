@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -28,7 +29,7 @@ class CustomTextField extends StatelessWidget {
     return Container(
       width: width,
       decoration: BoxDecoration(
-        color: const Color(0xffF5F6FA),
+        color: context.myTheme.cardColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: SizedBox(
@@ -43,17 +44,17 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
             //label: Text(lable),
             hintText: hintText,
-            hintStyle: const TextStyle(fontSize: 16),
+            hintStyle: context.bodySmall!.copyWith(fontSize: 16),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffFEFEFE)),
+              borderSide: BorderSide(color: context.myTheme.cardColor),
               borderRadius: BorderRadius.circular(10),
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffFEFEFE)),
+              borderSide: BorderSide(color: context.myTheme.cardColor),
               borderRadius: BorderRadius.circular(10),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffFEFEFE)),
+              borderSide: BorderSide(color: context.myTheme.cardColor),
               borderRadius: BorderRadius.circular(10),
             ),
           ),

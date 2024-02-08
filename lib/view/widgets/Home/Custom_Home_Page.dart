@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/class/status%20request.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
+import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/function/responsive_app.dart';
+import 'package:store_app/main.dart';
 import 'package:store_app/view/widgets/Home/Category_title.dart';
 import 'package:store_app/view/widgets/Home/Custom_app_bar.dart';
 import 'package:store_app/view/widgets/Home/Custom_app_drawer.dart';
@@ -181,14 +184,13 @@ class _MyHomePageState extends State<MyHomePage> {
     final HomeControllerImpl controller = Get.put(HomeControllerImpl());
 
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       key: _scaffoldKey,
       drawer: Drawer(
-        backgroundColor: const Color(0xffFFFFFF),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         width: 330,
         child: CustomAppDrawer(scaffoldKey: _scaffoldKey),
       ),
-      backgroundColor: Colors.white,
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxScrolled) {
           return <Widget>[
@@ -227,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return SliverAppBar(
       automaticallyImplyLeading: false,
       scrolledUnderElevation: 0.0,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       actions: const <Widget>[],
       expandedHeight: Dimensions.getHeight(context) * .25,
       floating: false,
@@ -261,8 +263,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('53'.tr, style: CustomStyle.textStyle28),
-                      Text('54'.tr, style: CustomStyle.textStyle15),
+                      Text('53'.tr, style: context.headlineMedium),
+                      Text('54'.tr,
+                          style: context.bodyMedium
+                              ?.copyWith(color: ColorConstant.manatee)),
                     ],
                   ),
                 ],
@@ -288,6 +292,7 @@ class CustomProductCridView extends StatelessWidget {
         return !controller.isSearch
             ? ViewDataHandleing(
                 widget: GridView.builder(
+                  padding: EdgeInsets.zero,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

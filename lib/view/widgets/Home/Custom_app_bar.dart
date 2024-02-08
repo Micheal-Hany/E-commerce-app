@@ -18,21 +18,16 @@ class CustomAppBar extends GetView<HaomeScreenContollerImpl> {
     return Row(
       children: [
         CustomCartIcon(
-            backgroundColor: const Color(0xffF5F6FA),
-            onPressed: () => scaffoldKey.currentState!.openDrawer(),
-            widget: Image.asset(
-              'assets/images/menu.png',
-            )),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          onPressed: () => scaffoldKey.currentState!.openDrawer(),
+          widget: const Icon(Icons.menu_open_rounded),
+        ),
         const Spacer(),
         Stack(
           children: [
-            CustomSettingLogo(
-              imageIcon: Image.asset(
-                'assets/images/bag.PNG',
-                width: Dimensions.getWidth(context) * .078,
-                height: Dimensions.getHeight(context) * .038,
-              ),
-              backgroundColor: const Color(0xffF5F6FA),
+            CustomCartIcon(
+              widget: const Icon(Icons.shopping_cart_checkout_rounded),
+              backgroundColor: Theme.of(context).colorScheme.background,
               onPressed: () => controller.changePage(2),
             ),
             Container(

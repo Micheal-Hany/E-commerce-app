@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Payment_card/Custom_add_new_card_button.dart';
 
@@ -17,8 +18,8 @@ class MyCreditCardWidget extends StatelessWidget {
       child: Column(
         children: [
           CreditCardWidget(
-            // cardBgColor: const Color(0xff122D4F),
-            cardBgColor: const Color.fromARGB(255, 52, 33, 110),
+            cardBgColor: const Color(0xff122D4F),
+            // cardBgColor: Color.fromARGB(255, 243, 176, 101),
             cardNumber: creditCardController.cardNumber,
             expiryDate: creditCardController.expiryDate,
             cardHolderName: creditCardController.cardHolderName,
@@ -70,7 +71,7 @@ class MyCreditCardWidget extends StatelessWidget {
               if (cardHolderName!.length < 5) return "Name error";
               return null;
             },
-            autovalidateMode: AutovalidateMode.always,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             disableCardNumberAutoFillHints: false,
             inputConfiguration: InputConfiguration(
               cardNumberDecoration: InputDecoration(
@@ -81,9 +82,13 @@ class MyCreditCardWidget extends StatelessWidget {
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 labelText: '91'.tr,
-                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
+                labelStyle: context.bodySmall!.copyWith(
+                  fontSize: 14,
+                ),
                 hintText: 'XXXX XXXX XXXX XXXX',
-                hintStyle: const TextStyle(fontSize: 12),
+                hintStyle: context.bodySmall!.copyWith(
+                  fontSize: 12,
+                ),
               ),
               expiryDateDecoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -93,9 +98,13 @@ class MyCreditCardWidget extends StatelessWidget {
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 labelText: '92'.tr,
-                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
+                labelStyle: context.bodySmall!.copyWith(
+                  fontSize: 14,
+                ),
                 hintText: 'XX/XX',
-                hintStyle: const TextStyle(fontSize: 12),
+                hintStyle: context.bodySmall!.copyWith(
+                  fontSize: 12,
+                ),
               ),
               cvvCodeDecoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -105,9 +114,13 @@ class MyCreditCardWidget extends StatelessWidget {
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 labelText: '93'.tr,
-                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
+                labelStyle: context.bodySmall!.copyWith(
+                  fontSize: 14,
+                ),
                 hintText: 'XXX',
-                hintStyle: const TextStyle(fontSize: 12),
+                hintStyle: context.bodySmall!.copyWith(
+                  fontSize: 12,
+                ),
               ),
               cardHolderDecoration: InputDecoration(
                 focusedBorder: const OutlineInputBorder(
@@ -117,9 +130,13 @@ class MyCreditCardWidget extends StatelessWidget {
                     borderSide: BorderSide(color: Color(0xffFEFEFE)),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 labelText: '94'.tr,
-                labelStyle: const TextStyle(fontSize: 14, color: Colors.black),
+                labelStyle: context.bodySmall!.copyWith(
+                  fontSize: 14,
+                ),
                 hintText: 'Card Holder',
-                hintStyle: const TextStyle(fontSize: 12),
+                hintStyle: context.bodySmall!.copyWith(
+                  fontSize: 12,
+                ),
               ),
               cardNumberTextStyle: const TextStyle(
                 fontSize: 16,

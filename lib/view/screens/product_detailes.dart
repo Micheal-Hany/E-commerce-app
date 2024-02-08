@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/product-detailes_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
@@ -24,12 +25,13 @@ class ProductDetails extends StatelessWidget {
       builder: (productDetailscontroller) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: AppColor.primaryColor,
+            backgroundColor: context.myTheme.scaffoldBackgroundColor,
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  HeaderSection(controller: productDetailscontroller),
+                  HeaderSection(
+                      productDetailesControllerImpl: productDetailscontroller),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 10),

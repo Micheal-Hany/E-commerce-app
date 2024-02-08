@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +16,9 @@ class DescriptionSection extends StatelessWidget {
             children: [
               Text(
                 '59'.tr,
-                style: CustomStyle.textStyle17
-                    .copyWith(fontWeight: FontWeight.w600),
+                style: context.bodySmall!.copyWith(
+                  fontSize: 17,
+                ),
               ),
             ],
           ),

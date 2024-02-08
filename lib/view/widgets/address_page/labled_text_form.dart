@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Add_review/Custom_text_form_filed.dart';
 
@@ -24,11 +25,13 @@ class LabeledTextField extends StatelessWidget {
       children: [
         Text(
           label,
-          style:
-              CustomStyle.textStyle17.copyWith(color: const Color(0xff1D1E20)),
+          style: context.bodySmall!.copyWith(
+            fontSize: 17,
+          ),
         ),
         const SizedBox(height: 8.0),
         CustomTextField(
+        
           validator: validator,
           isMultiline: false,
           keyboardType: TextInputType.text,

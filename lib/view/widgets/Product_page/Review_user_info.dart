@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 
 class UserInfo extends StatelessWidget {
@@ -11,19 +12,22 @@ class UserInfo extends StatelessWidget {
       children: [
         Text(
           'Ronald Richards',
-          style:
-              CustomStyle.textStyle15.copyWith(color: const Color(0xff1D1E20)),
+          style: context.bodySmall!.copyWith(
+            fontSize: 15,
+          ),
         ),
-        const Row(
+        Row(
           children: [
-            Icon(
+            const Icon(
               Icons.access_time_rounded,
               size: 18,
             ),
-            SizedBox(width: 4),
+            const SizedBox(width: 4),
             Text(
               '13 Sep, 2023',
-              style: CustomStyle.textStyle11,
+              style: context.bodySmall!.copyWith(
+                fontSize: 11,
+              ),
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/constant/colors.dart';
 
@@ -13,13 +14,16 @@ class RatingInfo extends StatelessWidget {
           children: [
             Text(
               '4.8',
-              style: CustomStyle.textStyle15
-                  .copyWith(color: AppColor.primaryColorDart),
+              style: context.bodySmall!.copyWith(
+                fontSize: 15,
+              ),
             ),
             const SizedBox(width: 5),
-            const Text(
+            Text(
               'rating',
-              style: CustomStyle.textStyle11,
+              style: context.bodySmall!.copyWith(
+                fontSize: 12,
+              ),
             ),
           ],
         ),

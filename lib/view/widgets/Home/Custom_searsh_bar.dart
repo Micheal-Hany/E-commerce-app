@@ -3,55 +3,8 @@ import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-
-// class CustomSearchFiled extends StatelessWidget {
-//   const CustomSearchFiled({Key? key, required this.controller})
-//       : super(key: key);
-//   @override
-//   final HomeControllerImpl controller;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//       child: Material(
-//         borderRadius: BorderRadius.circular(15),
-//         color: const Color(0xffF5F6FA),
-//         child: TextFormField(
-//           // controller: controller.searchController,
-//           onChanged: (val) {
-//             controller.searchController.text = val;
-//             controller.checkSearch(val);
-//           },
-//           cursorHeight: 25,
-//           // cursorColor: Colors.black,
-//           maxLines: 1,
-//           decoration: InputDecoration(
-//             hintText: "${'55'.tr}...",
-//             hintStyle: CustomStyle.textStyle15,
-//             prefixIcon: IconButton(
-//               onPressed: () => controller.searchItems(),
-//               icon: Image.asset(
-//                 'assets/images/search_icon.png',
-//               ),
-//             ),
-
-//             enabledBorder: OutlineInputBorder(
-//               borderSide: const BorderSide(color: Color(0xffF5F6FA)),
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//             border: OutlineInputBorder(
-//               borderSide: const BorderSide(color: Color(0xffF5F6FA)),
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//             focusedBorder: OutlineInputBorder(
-//               borderSide: const BorderSide(color: Color(0xffF5F6FA)),
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:store_app/core/constant/colors.dart';
+import 'package:store_app/main.dart';
 
 class CustomNotifacationButton extends StatelessWidget {
   const CustomNotifacationButton({
@@ -66,7 +19,7 @@ class CustomNotifacationButton extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         color: Color(0xff9775FA),
-        borderRadius: BorderRadius.all(Radius.circular(15)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: IconButton(
         icon: Image.asset(
@@ -95,30 +48,31 @@ class CustomSearchFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Material(
-        borderRadius: BorderRadius.circular(15),
-        color: const Color(0xffF5F6FA),
-        child: TextFormField(
+        borderRadius: BorderRadius.circular(10),
+        color: context.theme.cardColor,
+        child: TextField(
           controller: controller.searchController,
           onChanged: (val) => controller.checkSearch(val),
           cursorHeight: 25,
           maxLines: 1,
           decoration: InputDecoration(
+            fillColor: context.theme.cardColor,
+            hintStyle: TextStyle(color: ColorConstant.manatee),
             hintText: "${'55'.tr}...",
-            hintStyle: CustomStyle.textStyle15,
             prefixIcon: IconButton(
-              onPressed: () => controller.searchItems(),
-              icon: Image.asset('assets/images/search_icon.png'),
-            ),
+                onPressed: () => controller.searchItems(),
+                icon: Image.asset('assets/images/search_icon.png'),
+                color: ColorConstant.manatee),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffF5F6FA)),
+              borderSide: BorderSide(color: context.theme.cardColor),
               borderRadius: BorderRadius.circular(15),
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffF5F6FA)),
+              borderSide: BorderSide(color: context.theme.cardColor),
               borderRadius: BorderRadius.circular(15),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Color(0xffF5F6FA)),
+              borderSide: BorderSide(color: context.theme.cardColor),
               borderRadius: BorderRadius.circular(15),
             ),
           ),
@@ -145,28 +99,3 @@ class CustomSearchBar extends StatelessWidget {
     );
   }
 }
-
-// class CustomNotifacationButton extends StatelessWidget {
-//   const CustomNotifacationButton({
-//     super.key,
-//     required this.controller,
-//   });
-//   final HomeControllerImpl controller;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       decoration: const BoxDecoration(
-//           color: Color(0xff9775FA),
-//           borderRadius: BorderRadius.all(Radius.circular(15))),
-//       child: IconButton(
-//         icon: Image.asset(
-//           'assets/images/Voice.png',
-//           color: Colors.white,
-//           height: 30,
-//           width: 30,
-//         ),
-//         onPressed: () => controller.startListening(),
-//       ),
-//     );
-//   }
-// }

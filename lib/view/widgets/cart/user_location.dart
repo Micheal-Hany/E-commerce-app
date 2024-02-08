@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/ViewAvailableAddressesController.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/data/model/address_model.dart';
@@ -40,21 +41,16 @@ class CustomUserLocationDetailes extends StatelessWidget {
                   constraints: BoxConstraints(
                     maxWidth: Dimensions.getWidth(context) * .6,
                   ),
-                  child: Text(
-                    country ?? "Add One",
-                    style: CustomStyle.textStyle15.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  child: Text(country,
+                      style: context.bodySmall!.copyWith(fontSize: 15)),
                 ),
                 SizedBox(
                   height: Dimensions.getHeight(context) * .01,
                 ),
                 Text(
                   city,
-                  style: CustomStyle.textStyle11.copyWith(
-                    fontWeight: FontWeight.w400,
+                  style: context.bodySmall!.copyWith(
+                    fontSize: 11,
                   ),
                 ),
               ],
@@ -105,9 +101,8 @@ class CustomUserDeliverAddress extends StatelessWidget {
                   ),
                   child: Text(
                     "${address.country} (${address.locality})",
-                    style: CustomStyle.textStyle15.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
+                    style: context.bodySmall!.copyWith(
+                      fontSize: 15,
                     ),
                   ),
                 ),
@@ -116,8 +111,8 @@ class CustomUserDeliverAddress extends StatelessWidget {
                 ),
                 Text(
                   address.street,
-                  style: CustomStyle.textStyle11.copyWith(
-                    fontWeight: FontWeight.w400,
+                  style: context.bodySmall!.copyWith(
+                    fontSize: 11,
                   ),
                 ),
               ],
