@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
@@ -21,6 +22,22 @@ class DBHelper {
       await initDatabase();
     }
     return _database;
+  }
+
+  updateValue(
+      String tableName, String columnName, int newValue, int itemId) async {
+    final db = await database;
+    try {
+      await db.update(
+        tableName, // Table name
+        {columnName: newValue}, // Values to update
+        where: 'item_id = ?', // WHERE clause
+        whereArgs: [itemId],
+      );
+    } catch (e) {
+      print('Error updating value: $e');
+      // Handle error as needed
+    }
   }
 
   Future<void> initDatabase() async {

@@ -1,44 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/onording_controller.dart';
+import 'package:flutter/services.dart';
+import 'package:store_app/controller/onBoarding_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/colors.dart';
-import 'package:store_app/view/widgets/on%20boarding/custom%20selider.dart';
-
-import '../widgets/on boarding/Custom button.dart';
-import '../widgets/on boarding/dottes controller.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store_app/controller/onBoarding_controller.dart';
+import 'package:store_app/core/constant/colors.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
+import 'package:store_app/view/widgets/on%20boarding/buttom_container.dart';
 
-class OnBording extends StatelessWidget {
-  const OnBording({super.key});
+class OnBoarding extends StatelessWidget {
+  const OnBoarding({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    Get.put(onBordingControllerImplment());
-    return const Scaffold(
-      backgroundColor: AppColor.primaryColor,
+    return Scaffold(
+      backgroundColor: ColorConstant.primary,
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            SizedBox(
-              height: 40,
+            Align(
+              alignment: Alignment.center,
+              child: Image.asset('assets/images/intro.png'),
             ),
-            Expanded(
-              flex: 3,
-              child: CustomSelider(),
+            const Align(
+              alignment: Alignment.bottomCenter,
+              child: OnBoardingBottomContainer(),
             ),
-            Expanded(
-                flex: 1,
-                child: Column(
-                  children: [
-                    DottesController(),
-                    Spacer(
-                      flex: 2,
-                    ),
-                    CustomButtonOnBoarding()
-                  ],
-                )),
           ],
         ),
       ),
     );
   }
 }
+

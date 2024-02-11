@@ -5,5 +5,6 @@ class InitailBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(Crud());
+    // Get.put();
   }
 }

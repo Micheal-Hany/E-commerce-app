@@ -10,6 +10,7 @@ class OrderInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(CartPageControllerImpl());
+    // print(controller.shipingCost);
     return Obx(() => Column(
           children: [
             Row(

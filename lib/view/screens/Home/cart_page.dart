@@ -38,18 +38,16 @@ class CartPage extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: controller.products.length,
                         itemBuilder: (context, index) {
-                          // final CartPageControllerImpl itemController = Get.put(
-                          //     CartPageControllerImpl(),
-                          //     tag: "${controller.products[index].itemId}");
-                          // controller.getItemController(
-                          //     controller.products[index].itemId!);
-
+                          // final product = controller.products[index];
+                          // final itemController =
+                          //     controller.getItemController(product.itemId!);
                           return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: CustomCartItemDetails(
-                                product: controller.products[index],
-                                controller: controller,
-                              ));
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: CustomCartItemDetails(
+                              product: controller.products[index],
+                              controller: controller,
+                            ),
+                          );
                         },
                       )),
                   const CustomDeliveryAddress(),

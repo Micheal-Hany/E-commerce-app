@@ -71,10 +71,12 @@ class ViewAvailableCards extends StatelessWidget {
                           ),
                         ],
                       )
-                    : Text(
-                        "124".tr,
-                        style: context.bodySmall!.copyWith(
-                          fontSize: 17,
+                    : Center(
+                        child: Text(
+                          "124".tr,
+                          style: context.bodySmall!.copyWith(
+                            fontSize: 17,
+                          ),
                         ),
                       )),
             CustomButton(

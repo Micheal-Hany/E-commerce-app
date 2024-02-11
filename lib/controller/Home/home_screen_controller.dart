@@ -42,7 +42,7 @@ class HaomeScreenContollerImpl extends HaomeScreenContoller {
   final MyServices myServices = Get.find();
   logOut() {
     myServices.sharedPreferences.clear();
-    Get.toNamed(AppRouts.login);
+    Get.offNamed(AppRouts.login);
   }
 
   var name = "";

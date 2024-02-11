@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Auth/login%20controller.dart';
 import 'package:store_app/core/class/handleDataView.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/function/exit_alert.dart';
@@ -10,6 +11,8 @@ import 'package:store_app/view/widgets/Auth/Custom%20text%20bodyAuth.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
 import 'package:store_app/view/widgets/Auth/custom%20button%20Auth.dart';
+import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
+import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -19,23 +22,7 @@ class Login extends StatelessWidget {
     LoginControllerImpl controller = Get.put(LoginControllerImpl());
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColor.primaryColor,
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              size: 17, color: Colors.black),
-          onPressed: () => Get.back(),
-        ),
-        iconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 35, 35, 35),
-        ),
-        title: Text(
-          '9'.tr,
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-      ),
+    
       body: ViewDataHandleingRequest(
         statusRequest: controller.stateRequest,
         widget: WillPopScope(
@@ -47,18 +34,21 @@ class Login extends StatelessWidget {
               // autovalidateMode: AutovalidateMode.always,
               child: ListView(
                 children: [
+                  Row(
+                    children: [
+                      CustomCartIcon(
+                          widget: const Icon(Icons.arrow_back_rounded),
+                          onPressed: () {},
+                          backgroundColor: ColorConstant.manatee)
+                    ],
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
-                  Image.asset(
-                    'assets/images/logo.png',
-                    width: 100,
-                    height: 100,
-                  ),
                   CustomTextAuthTitle(title: '10'.tr),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 10),
                   CustomTextBodyAuth(bodyText: '11'.tr),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 230),
                   CustomTextFormFiled(
                     validator: (val) => inputValidtion(val!, 5, 20, "email"),
                     mrController: controller.email,
@@ -74,7 +64,6 @@ class Login extends StatelessWidget {
                           controller.showPass();
                         },
                         isNumber: false,
-                        
                         validator: (val) =>
                             inputValidtion(val!, 5, 20, "password"),
                         mrController: controller.password,
@@ -96,12 +85,12 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  CustomButtonAuth(
-                    onPressed: () {
-                      controller.login();
-                    },
-                    title: '15'.tr,
-                  ),
+                  CustomButton(
+                      buttonName: '15'.tr,
+                      onPressed: () => controller.login(),
+                      backgroundColor: ColorConstant.primary,
+                      width: double.infinity - 20,
+                      height: 40),
                   const SizedBox(
                     height: 15,
                   ),

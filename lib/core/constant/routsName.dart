@@ -18,6 +18,9 @@ class AppRouts {
   static const String viewAvalibleAddresses = '/viewAvalibleAddresses';
   static const String addAddressPageFildes = '/addAddressPageFildes';
   static const String viewAvailableCards = '/viewAvailableCards';
+  static const String signInWithPage = '/signInWithPage';
+
+  
 
   
 }

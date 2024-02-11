@@ -18,17 +18,13 @@ class ProductItemCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int count = controller.counter.value;
-
     return Row(
       children: [
         GestureDetector(
           onTap: () {
             controller.minusOne();
-            print(count);
-            //controller.updatePrices(count);
-
-            controller.updatePrices(controller.counter.value);
+            controller.getOrderdProducts();
+            // controller.updatePrices();
           },
           child: Container(
             width: 30,
@@ -55,7 +51,8 @@ class ProductItemCounter extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.addOne();
-            controller.updatePrices(controller.counter.value);
+            controller.getOrderdProducts();
+            // controller.updatePrices();
           },
           child: Container(
             width: 30,
@@ -77,8 +74,8 @@ class ProductItemCounter extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.remove(product);
-            controller.updatePrices(controller.counter.value);
             controller.getOrderdProducts();
+            // controller.updatePrices();
           },
           child: Container(
               width: 35.0,

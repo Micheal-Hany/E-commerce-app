@@ -5,6 +5,7 @@ import 'package:store_app/view/screens/Auth/forget%20password/Success_RestPasswo
 import 'package:store_app/view/screens/Auth/forget%20password/forget%20password.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/reset%20password.dart';
 import 'package:store_app/view/screens/Auth/sign%20up.dart';
+import 'package:store_app/view/screens/Auth/sign_in_with.dart';
 import 'package:store_app/view/screens/Auth/success_signUp.dart';
 import 'package:store_app/view/screens/Auth/forget%20password/verifay%20code.dart';
 import 'package:store_app/view/screens/Auth/vertifay%20code%20sign%20up.dart';
@@ -36,7 +37,7 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: AppRouts.resetPasswordSuccess,
       page: () => const ResetPasswordSuccess()),
-  GetPage(name: AppRouts.onBording, page: () => const OnBording()),
+  GetPage(name: AppRouts.onBording, page: () => const OnBoarding()),
   GetPage(
       name: AppRouts.signUpVerifayCode, page: () => const SignUpVerifayCode()),
   GetPage(name: AppRouts.homePage, page: () => const HomePage()),
@@ -56,4 +57,5 @@ List<GetPage<dynamic>>? routes = [
   GetPage(
       name: AppRouts.viewAvailableCards,
       page: () => const ViewAvailableCards()),
+  GetPage(name: AppRouts.signInWithPage, page: () => const SignInWithPage()),
 ];

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:store_app/controller/ViewAvailableAddressesController.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/services/Services.dart';
@@ -22,6 +21,7 @@ class CartPageControllerImpl extends CartController {
   String country = "";
   String city = "";
   String cardNumber = "";
+
   CartPageControllerImpl getItemController(int index) {
     if (!itemControllers.containsKey(index)) {
       itemControllers[index] = CartPageControllerImpl();
@@ -29,64 +29,30 @@ class CartPageControllerImpl extends CartController {
     return itemControllers[index]!;
   }
 
-  void updatePrices(int amount) {
-    calcSubTotalPrice(amount);
-    calcShippingCost(amount);
+  void updatePrices() {
+    calcSubTotalPrice();
+    calcShippingCost();
     calcTotalCost();
     update();
   }
 
-  void calcSubTotalPrice(int amount) {
-    // Assuming each product has a price attribute
-    double subtotal = 0.0;
-    for (ProductModel product in products) {
-      subtotal += product.itemPrice! * amount; // Multiply by the amount
-    }
-    subTotalPrice.value = subtotal;
-    update();
-  }
-
-  // Function to calculate shipping cost based on the amount
-  void calcShippingCost(int amount) {
-    double shippingCost = 0.0;
-
-    shippingCost = amount * 5.0;
-    shipingCost.value = shippingCost;
-    update();
-  }
-
-  // Function to calculate total cost based on subtotal and shipping cost
-  void calcTotalCost() {
-    totalCost.value = subTotalPrice.value + shipingCost.value;
-    update();
-  }
-
-  addOne() {
-    updatePrices(counter.value);
-    return counter.value += 1;
-  }
-
-  minusOne() {
-    updatePrices(counter.value);
-    return counter.value == 1 ? counter.value : counter.value -= 1;
-  }
-
   getOrderdProducts() async {
     products.value = await DBHelper.instance().getAllProducts("Cart_Products");
-    print(products);
+
     stateRequest = StatusRequest.loading;
     if (products.isEmpty) {
       stateRequest = StatusRequest.failure;
     } else {
       stateRequest = StatusRequest.success;
     }
+    updatePrices();
     update();
   }
 
   remove(ProductModel product) async {
     await DBHelper.instance().deleteProduct("Cart_Products", product);
     getOrderdProducts();
-    // updatePrices(counter.value);
+    print("updating orderd products");
     update();
   }
 
@@ -117,7 +83,6 @@ class CartPageControllerImpl extends CartController {
 
   @override
   void onInit() {
-    updatePrices(counter.value);
     getDeliverAddress();
     getCardNumber();
     getOrderdProducts();
@@ -130,5 +95,40 @@ class CartPageControllerImpl extends CartController {
 
   goToViewAvalibleCard() {
     Get.toNamed(AppRouts.viewAvailableCards);
+  }
+
+  void addOne() {
+    counter.value++;
+    update();
+  }
+
+  void minusOne() {
+    counter.value == 1 ? counter.value : counter.value--;
+    update();
+  }
+
+  void calcShippingCost() {
+    shipingCost.value = 0.0;
+    for (ProductModel products in products) {
+      shipingCost.value += (products.itemPrice! ~/ 5) * counter.value;
+    }
+    print(" shipingCost ${shipingCost.value}");
+    update();
+  }
+
+  void calcSubTotalPrice() {
+    subTotalPrice.value = 0.0;
+    for (ProductModel products in products) {
+      subTotalPrice.value += products.itemPrice! * counter.value;
+    }
+    print("subTotalPrice${subTotalPrice.value}");
+    update();
+  }
+
+  void calcTotalCost() {
+    totalCost.value = 0.0;
+    totalCost.value = subTotalPrice.value + shipingCost.value;
+    print(totalCost.value);
+    update();
   }
 }

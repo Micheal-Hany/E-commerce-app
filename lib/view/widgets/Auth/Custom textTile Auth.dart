@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 
 class CustomTextAuthTitle extends StatelessWidget {
   const CustomTextAuthTitle({super.key, required this.title});
@@ -7,9 +8,8 @@ class CustomTextAuthTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 28),
+      style: context.headlineLarge,
       textAlign: TextAlign.center,
     );
   }
 }
-

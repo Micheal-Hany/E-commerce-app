@@ -14,8 +14,7 @@ class MyTranslation extends Translations {
           "8": "متابعه",
           "9": "تسجيل الدخول",
           "10": "اهلا بك",
-          "11":
-              "يمكنك تسجيل الدخول من خلال البريد وكلمة المرور او من خلال وسائل التواصل الاجتماعي",
+          "11": "يرجى إدخال البيانات الخاصة بك للمتابعة",
           "12": "ادخل البريد الالكتروني",
           "13": "ادخل كلمة المرور",
           "14": "هل نسيت كلمة المرور",
@@ -145,9 +144,8 @@ class MyTranslation extends Translations {
               "The order can be tracked at every stage \n until it reaches you",
           "8": "Continue",
           "9": "Sign In",
-          "10": "Welcome Back",
-          "11":
-              "Sign In Your Email And Password Or  Continue With Social Media",
+          "10": "Welcome",
+          "11": "please enter your data to continue",
           "12": "Enter Your Email",
           "13": "Enter Your Password",
           "14": "Forget Password",
