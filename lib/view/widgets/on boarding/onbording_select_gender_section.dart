@@ -17,12 +17,12 @@ class OnBoardingGenderSelection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OnBoardingGenderButton(
-                  label: 'Men',
+                  label: '147'.tr,
                   onTap: () => controller.selectGender(true),
                   isSelected: controller.isMale.value,
                 ),
                 OnBoardingGenderButton(
-                  label: 'Women',
+                  label: '148'.tr,
                   onTap: () => controller.selectGender(false),
                   isSelected: !controller.isMale.value,
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
+
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 import 'package:get/get.dart';
@@ -13,13 +13,14 @@ class CustomPaymentcardAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CreditCardController());
+    Get.find<CreditCardController>();
     return Row(
       children: [
         GetBuilder<CreditCardController>(
           builder: (controller) {
             return CustomCartIcon(
-              backgroundColor: const Color(0xffFEFEFE),
+          backgroundColor: context.theme.cardColor,
+
               onPressed: () {
                 controller.backTocartPage();
               },

@@ -1,54 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:store_app/controller/order_track_controller.dart';
 import 'package:store_app/core/constant/App%20Theme.dart';
+import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/services/Services.dart';
-import 'package:store_app/main.dart';
 
 class WalletController extends GetxController {
   RxString selectedLanguage = 'en'.obs; // Default language is English
   RxBool isDarkMode = false.obs; // Default mode is light mode
   MyServices myServices = Get.find();
+  OrderTrackController orderTrackController = Get.put(OrderTrackController());
+
   void changeLang(String langCode) {
     Locale locale = Locale(langCode);
-
     Get.find<MyServices>().sharedPreferences.setString("lang", langCode);
-
     Get.updateLocale(locale);
     selectedLanguage.value = langCode;
 
-    if (locale.languageCode == 'ar') {
-      Get.changeTheme(themeArabic);
-    } else {
-      Get.changeTheme(themeEnglish);
-    }
+    updateTheme();
   }
 
-  // void toggleTheme() {
-  //   isDarkMode.value = !isDarkMode.value;
-  //   myServices.sharedPreferences.setBool('isDarkMode', isDarkMode.value);
-  //   updateTheme();
-  // }
-
-  // void updateTheme() {
-  //   if (isDarkMode.value) {
-  //     Get.changeTheme(Themes.darkTheme);
-  //   } else {
-  //     Get.changeTheme(Themes.lightTheme);
-  //   }
-  // }
   @override
   void onInit() {
     super.onInit();
-    // Initialize the value of isDarkMode from SharedPreferences
+
     isDarkMode.value =
         myServices.sharedPreferences.getBool('isDarkMode') ?? false;
-    updateTheme(); // Ensure theme is updated based on the initial value
+    updateTheme();
   }
 
   void toggleTheme() {
     isDarkMode.value = !isDarkMode.value;
     myServices.sharedPreferences.setBool('isDarkMode', isDarkMode.value);
     updateTheme();
+  }
+
+  goToOrdersPage() {
+    orderTrackController.getOrders();
+    Get.toNamed(AppRouts.orderTrackPage);
   }
 
   void updateTheme() {

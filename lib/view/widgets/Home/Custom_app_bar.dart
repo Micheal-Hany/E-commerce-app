@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
-import 'package:store_app/view/widgets/Home/Custom_setting_logo.dart';
 import 'package:get/get.dart';
 
-class CustomAppBar extends GetView<HaomeScreenContollerImpl> {
-  const CustomAppBar({super.key, required this.scaffoldKey});
+class CustomHomeAppBar extends GetView<HaomeScreenContollerImpl> {
+  const CustomHomeAppBar({super.key, required this.scaffoldKey});
   final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
     final CartPageControllerImpl cartController =
-        Get.put(CartPageControllerImpl());
+        Get.find<CartPageControllerImpl>();
 
     return Row(
       children: [
         CustomCartIcon(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: context.myTheme.cardColor,
+         
           onPressed: () => scaffoldKey.currentState!.openDrawer(),
           widget: const Icon(Icons.menu_open_rounded),
         ),
@@ -27,7 +27,7 @@ class CustomAppBar extends GetView<HaomeScreenContollerImpl> {
           children: [
             CustomCartIcon(
               widget: const Icon(Icons.shopping_cart_checkout_rounded),
-              backgroundColor: Theme.of(context).colorScheme.background,
+              backgroundColor: context.myTheme.cardColor,
               onPressed: () => controller.changePage(2),
             ),
             Container(

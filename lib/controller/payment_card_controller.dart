@@ -27,11 +27,11 @@ class CreditCardController extends GetxController {
 
   void onCreditCardModelChange(
       flutter_credit_card.CreditCardModel creditCardModel) {
-    cardNumber = creditCardModel.cardNumber ?? '';
-    expiryDate = creditCardModel.expiryDate ?? '';
-    cardHolderName = creditCardModel.cardHolderName ?? '';
-    cvvCode = creditCardModel.cvvCode ?? '';
-    isCvvFocused = creditCardModel.isCvvFocused ?? false;
+    cardNumber = creditCardModel.cardNumber;
+    expiryDate = creditCardModel.expiryDate;
+    cardHolderName = creditCardModel.cardHolderName;
+    cvvCode = creditCardModel.cvvCode;
+    isCvvFocused = creditCardModel.isCvvFocused;
   }
 
   backTocartPage() {
@@ -48,8 +48,6 @@ class CreditCardController extends GetxController {
 
   saveCardDetailes() async {
     if (formState.currentState!.validate()) {
-     
-     
       try {
         await DBHelper.instance().insertCard(
             "cards",
@@ -59,6 +57,11 @@ class CreditCardController extends GetxController {
                 expiryDate: expiryDate,
                 cardHolderName: cardHolderName,
                 cvvCode: cvvCode));
+        cardNumber = '';
+        expiryDate = '';
+        cardHolderName = '';
+        cvvCode = '';
+
         print('Address added to the database successfully.');
       } catch (e) {
         print('Error adding address to the database: $e');

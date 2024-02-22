@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 
 class ReviewsSection extends StatelessWidget {

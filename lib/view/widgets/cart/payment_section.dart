@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/data/model/cart_model.dart';
 import 'package:store_app/view/widgets/cart/pay_methos-details.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +9,8 @@ class CustomPaymentMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartPageControllerImpl());
+
+    Get.find<CartPageControllerImpl>();
     return GetBuilder<CartPageControllerImpl>(
       builder: (controller) {
         return Column(

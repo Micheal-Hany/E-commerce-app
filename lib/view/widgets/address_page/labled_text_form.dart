@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Add_review/Custom_text_form_filed.dart';
 
 class LabeledTextField extends StatelessWidget {
@@ -31,12 +30,12 @@ class LabeledTextField extends StatelessWidget {
         ),
         const SizedBox(height: 8.0),
         CustomTextField(
-        
+          controller: controller,
           validator: validator,
           isMultiline: false,
           keyboardType: TextInputType.text,
           onChanged: (text) {},
-          controller: controller,
+
           width: width,
           // height: 10.0,
           hintText: hintText,

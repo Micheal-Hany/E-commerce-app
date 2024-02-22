@@ -3,86 +3,70 @@ import 'package:store_app/controller/forgetpassword/reset%20password%20contreoll
 import 'package:store_app/core/class/handleDataView.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:get/get.dart';
-import 'package:store_app/core/function/input_validtion.dart';
-import 'package:store_app/view/widgets/Auth/Custom%20text%20form%20filed.dart';
 import 'package:store_app/view/widgets/Auth/Custom%20textTile%20Auth.dart';
-import 'package:store_app/view/widgets/Auth/custom%20button%20Auth.dart';
+import 'package:store_app/view/widgets/Product_page/CustomButton.dart';
+import 'package:fancy_password_field/fancy_password_field.dart';
 
 class ResetPassword extends StatelessWidget {
   const ResetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => ResetPasswordControllerImpl());
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColor.primaryColor,
-          elevation: 0,
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                size: 17, color: Colors.black),
-            onPressed: () => Get.back(),
+    // Get.lazyPut(() => ResetPasswordControllerImpl());
+    Get.find<ResetPasswordControllerImpl>();
+    
+
+    return Scaffold(body: GetBuilder<ResetPasswordControllerImpl>(
+      builder: (controller) {
+        controller.onInit();
+        controller.email=Get.arguments['email'];
+        return ViewDataHandleing(
+          statusRequest: controller.stateRequest,
+          widget: Form(
+            child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: ListView(
+                  children: [
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    CustomTextAuthTitle(title: '34'.tr),
+                    const SizedBox(height: 18),
+                    //const CustomTextBodyAuth(bodyText: 'Make Your Password Strong'),
+                    const SizedBox(height: 50),
+
+                    const SizedBox(
+                      height: 30,
+                    ),
+
+                    FancyPasswordField(
+                      controller: controller.password,
+                      validationRules: {
+                        DigitValidationRule(),
+                        UppercaseValidationRule(),
+                        LowercaseValidationRule(),
+                        SpecialCharacterValidationRule(),
+                        MinCharactersValidationRule(6),
+                        MaxCharactersValidationRule(12),
+                      },
+                    ),
+                    const SizedBox(
+                      height: 100,
+                    ),
+                    CustomButton(
+                        buttonName: "33".tr,
+                        onPressed: () async {
+                          controller.goToSuccessResetPassword(
+                              controller.password.text);
+                        },
+                        backgroundColor: ColorConstant.primary,
+                        width: double.infinity - 20,
+                        height: 40),
+                  ],
+                )),
           ),
-          iconTheme: const IconThemeData(
-            color: Color.fromARGB(255, 35, 35, 35),
-          ),
-          title: Text(
-            '35'.tr,
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-        ),
-        body: GetBuilder<ResetPasswordControllerImpl>(
-          builder: (controller) {
-            return ViewDataHandleing(
-              statusRequest: controller.stateRequest,
-              widget: Form(
-                key: controller.formState,
-                child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: ListView(
-                      children: [
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        CustomTextAuthTitle(title: '34'.tr),
-                        const SizedBox(height: 18),
-                        //const CustomTextBodyAuth(bodyText: 'Make Your Password Strong'),
-                        const SizedBox(height: 50),
-                        CustomTextFormFiled(
-                          // obscureText: true,
-                          validator: (val) =>
-                              inputValidtion(val!, 5, 20, "password"),
-                          mrController: controller.password,
-                          iconData: Icons.person,
-                          lableTitle: '35'.tr,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        CustomTextFormFiled(
-                          validator: (val) =>
-                              inputValidtion(val!, 5, 20, "password"),
-                          mrController: controller.rePassword,
-                          iconData: Icons.person,
-                          lableTitle: '35'.tr,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        CustomButtonAuth(
-                          onPressed: () =>
-                              controller.goToSuccessResetPassword(),
-                          title: '33'.tr,
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                      ],
-                    )),
-              ),
-            );
-          },
-        ));
+        );
+      },
+    ));
   }
 }

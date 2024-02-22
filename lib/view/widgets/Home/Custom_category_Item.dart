@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/function/responsive_app.dart';
-import 'package:store_app/main.dart';
 
 class CustomCategoryItem extends StatelessWidget {
   const CustomCategoryItem({

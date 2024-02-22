@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/main.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +15,7 @@ class CustomFavoriteAppBar extends GetView<HaomeScreenContollerImpl> {
       // mainAxisAlignment: MainAxisAlignment.,
       children: [
         CustomCartIcon(
-          backgroundColor: const Color(0xffFEFEFE),
+          backgroundColor: context.myTheme.cardColor,
           onPressed: () => controller.changePage(0),
           widget: const Icon(Icons.arrow_back_rounded),
         ),
@@ -26,7 +24,7 @@ class CustomFavoriteAppBar extends GetView<HaomeScreenContollerImpl> {
         ),
         Text(
           '65'.tr,
-          style: context.bodySmall!.copyWith(fontSize: 17),
+          style: context.bodyLarge,
         ),
         // CustomCartIcon(
         //   backgroundColor: const Color(0xffFEFEFE),

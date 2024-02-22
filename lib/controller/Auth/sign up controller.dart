@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
+import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/data/data%20source/remote/Auth/signup.dart';
 
 abstract class SignUpController extends GetxController {
@@ -18,6 +19,7 @@ class SignUpControllerImpl extends SignUpController {
   late TextEditingController userName;
   late TextEditingController phone;
   bool showPassword = true;
+  MyServices myServices = Get.find();
   SignUpData signUpData = SignUpData(Get.find());
   List data = [];
   StatusRequest stateRequest = StatusRequest.none;
@@ -41,6 +43,12 @@ class SignUpControllerImpl extends SignUpController {
           data.add(response["data"]);
           Get.offNamed(AppRouts.signUpVerifayCode,
               arguments: {"email": email.text});
+          myServices.sharedPreferences
+              .setString("username", response["data"]["users_name"]);
+          email.clear();
+          password.clear();
+          phone.clear();
+          userName.clear();
         } else {
           stateRequest = StatusRequest.failure;
         }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/controller/Home/home_controller.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/main.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 import 'package:get/get.dart';
 import 'package:store_app/view/widgets/drawer/drawer-data_listview.dart';
@@ -17,9 +15,11 @@ class CustomAppDrawer extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
-    Get.put(HaomeScreenContollerImpl());
+    Get.find<HaomeScreenContollerImpl>();
+
     return GetBuilder<HaomeScreenContollerImpl>(
       builder: (controller) {
+        controller.onInit();
         return Container(
           color: context.myTheme.scaffoldBackgroundColor,
           child: Padding(
@@ -33,7 +33,6 @@ class CustomAppDrawer extends StatelessWidget {
                   children: [
                     CustomCartIcon(
                         widget: const Icon(Icons.close_rounded),
-                        // widget: Image.asset("assets/images/menu (1).png"),
                         onPressed: () =>
                             scaffoldKey.currentState!.closeDrawer(),
                         backgroundColor: context.myTheme.cardColor),

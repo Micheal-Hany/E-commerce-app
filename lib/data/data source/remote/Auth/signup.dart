@@ -1,7 +1,6 @@
 import 'package:store_app/Server_linkes.dart';
 import 'package:store_app/core/class/crud.dart';
 
-
 class SignUpData {
   Crud crud;
 
@@ -14,7 +13,7 @@ class SignUpData {
       "password": password,
       "phone": phone,
     });
-    print(response);
+    print("SignUpData $response");
     return response.fold((l) => l, (r) => r);
   }
 }

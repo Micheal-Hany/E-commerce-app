@@ -3,8 +3,6 @@ import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/view/widgets/Payment_card/Custom_add_new_card_button.dart';
 
 class MyCreditCardWidget extends StatelessWidget {
   final CreditCardController creditCardController;

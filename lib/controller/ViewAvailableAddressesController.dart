@@ -8,7 +8,7 @@ import 'package:store_app/data/model/address_model.dart';
 class ViewAvailableAddressesController extends GetxController {
   CartPageControllerImpl cartPageControllerImpl =
       Get.put(CartPageControllerImpl());
-  List<AddressModel> addressList = [];
+  List<AddressModel> addressList = <AddressModel>[].obs;
   MyServices myServices = Get.find();
 
   AddressModel? currentSelected;
@@ -44,6 +44,7 @@ class ViewAvailableAddressesController extends GetxController {
 
   void removeAddress(AddressModel addressModel) async {
     await DBHelper.instance().deleteAddress("addresses", addressModel);
+    getAllAddresses();
     update();
   }
 

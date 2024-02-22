@@ -19,8 +19,6 @@ class AppRouts {
   static const String addAddressPageFildes = '/addAddressPageFildes';
   static const String viewAvailableCards = '/viewAvailableCards';
   static const String signInWithPage = '/signInWithPage';
-
-  
-
-  
+  static const String orderConfirmedScreen = '/OrderConfirmedScreen';
+  static const String orderTrackPage = '/orderTrackPage';
 }

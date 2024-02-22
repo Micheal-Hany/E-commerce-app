@@ -35,6 +35,7 @@ class CustomTextField extends StatelessWidget {
       child: SizedBox(
         height: 60,
         child: TextFormField(
+          controller: controller,
           validator: validator,
           cursorHeight: 23,
           cursorColor: Colors.black,

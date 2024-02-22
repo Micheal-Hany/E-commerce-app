@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/core/function/translate_database.dart';
 import 'package:store_app/data/model/product_model.dart';
@@ -70,7 +69,7 @@ class CustomCartItemDetails extends StatelessWidget {
                   height: Dimensions.getHeight(context) * .02,
                 ),
                 ProductItemCounter(
-                  controller: controller,
+                  // controller: controller,
                   product: product,
                 ),
                 SizedBox(

@@ -5,13 +5,14 @@ import 'package:get/get.dart';
 import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/view/widgets/Home/Custom_bottom_navber_button.dart';
 
-class HomeScreen extends GetView<FavoriteControllerImpl> {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(FavoriteControllerImpl());
-    Get.put(HaomeScreenContollerImpl());
+    final controller = Get.find<FavoriteControllerImpl>();
+    // Get.put(HaomeScreenContollerImpl());
+    Get.find<HaomeScreenContollerImpl>();
     return GetBuilder<HaomeScreenContollerImpl>(
       builder: (haomeScreenContollerImpl) {
         return Scaffold(

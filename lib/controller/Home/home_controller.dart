@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
-// import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:store_app/controller/product-detailes_controller.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
@@ -37,6 +38,11 @@ class HomeControllerImpl extends HomeController
   RxSet<int> favoritedProductIds = <int>{}.obs;
   late RxInt selectedCategoryId = 0.obs;
   final TextEditingController searchController = TextEditingController();
+  bool isLising = false;
+  bool get speechEnabled => _speechEnabled.value;
+  set speechEnabled(bool value) => _speechEnabled.value = value;
+
+  String get lastWords => _lastWords.value;
   @override
   void onInit() {
     tabController = TabController(length: 7, vsync: this);
@@ -102,8 +108,12 @@ class HomeControllerImpl extends HomeController
     super.onClose();
   }
 
+  final ProductDetailesControllerImpl productDetailesControllerImpl =
+      Get.find<ProductDetailesControllerImpl>();
   @override
   goToProductDetailes(ProductModel product) {
+    productDetailesControllerImpl.getReviews(product.itemId.toString());
+
     Get.toNamed(AppRouts.productPage, arguments: product);
   }
 
@@ -171,25 +181,35 @@ class HomeControllerImpl extends HomeController
     update();
   }
 
-  bool get speechEnabled => _speechEnabled.value;
-  set speechEnabled(bool value) => _speechEnabled.value = value;
-
-  String get lastWords => _lastWords.value;
-
+  // void _initSpeech() async {
+  //   var result = await _speechToText.initialize();
+  //   if (_speechToText.lastError != null) {
+  //     print('Speech initialization error: ${_speechToText.lastError}');
+  //   } else {
+  //     _speechEnabled.value = true;
+  //   }
+  // }
   void _initSpeech() async {
-    var result = await _speechToText.initialize();
-    if (_speechToText.lastError != null) {
-      print('Speech initialization error: ${_speechToText.lastError}');
+    var status = await Permission.microphone.request();
+    if (status.isGranted) {
+      await _speechToText.initialize();
+      if (_speechToText.lastError != null) {
+        print('Speech initialization error: ${_speechToText.lastError}');
+      } else {
+        _speechEnabled.value = true;
+      }
     } else {
-      _speechEnabled.value = true;
+      print('Microphone permission not granted');
     }
   }
 
   void startListening() async {
-    var result = await _speechToText.listen(onResult: _onSpeechResult);
+    isLising = true;
+    await _speechToText.listen(onResult: _onSpeechResult);
     if (_speechToText.lastError != null) {
       print('Speech listening error: ${_speechToText.lastError}');
     }
+    update();
   }
 
   void stopListening() async {
@@ -202,5 +222,7 @@ class HomeControllerImpl extends HomeController
     _lastWords.value = result.recognizedWords;
     searchController.text = result.recognizedWords;
     print("result is ${result.recognizedWords}");
+    isLising = false;
+    update();
   }
 }

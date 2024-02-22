@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:store_app/Server_linkes.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
@@ -29,8 +28,12 @@ class SignUpVerifayCodeControllerImpl extends SignUpVerifayCodeController {
     if (StatusRequest.success == stateRequest) {
       if (response["status"] == "success") {
         Get.toNamed(AppRouts.signUpSuccess);
+        email = '';
       } else {
-        Get.defaultDialog(title: "48".tr, middleText: "50".tr);
+        Get.defaultDialog(
+          title: "48".tr,
+          middleText: "50".tr,
+        );
         stateRequest = StatusRequest.failure;
       }
     }
@@ -39,7 +42,14 @@ class SignUpVerifayCodeControllerImpl extends SignUpVerifayCodeController {
 
   @override
   void onInit() {
-    email = Get.arguments['email'];
+    email = Get.arguments;
+
+    // if (Get.arguments != null && Get.arguments.containsKey('email')) {
+    //   email = Get.arguments['email'];
+    // } else {
+    //   email = null;
+    //   print("Email not found in arguments or arguments is null");
+    // }
     super.onInit();
   }
 }

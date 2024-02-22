@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
+import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
 import 'package:store_app/core/services/Services.dart';
@@ -48,6 +49,8 @@ class LoginControllerImpl extends LoginController {
           Get.offNamed(
             AppRouts.homePage,
           );
+          email.clear();
+          password.clear();
           //} else {
           // Get.toNamed(AppRouts.signUpVerifayCode,
           //     arguments: {"email": email.text});
@@ -55,8 +58,12 @@ class LoginControllerImpl extends LoginController {
           //   arguments: {"email": email.text});
           //}
         } else {
+          // customDialog(title, content, () { }, () { }, okLable, canslelable)
           Get.defaultDialog(
-              title: "Error", middleText: "Email Or Passwordis not correct");
+              title: "Error",
+              middleText: "Email Or Passwordis not correct",
+              titleStyle: TextStyle(color: ColorConstant.primary),
+              middleTextStyle: TextStyle(color: ColorConstant.primary));
           stateRequest = StatusRequest.failure;
         }
       }

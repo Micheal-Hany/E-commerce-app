@@ -7,12 +7,13 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/model/address_model.dart';
 
 class MapController extends GetxController {
   ViewAvailableAddressesController viewAvailableAddressesController =
-      Get.put(ViewAvailableAddressesController());
+      Get.find<ViewAvailableAddressesController>();
   Completer<GoogleMapController>? completercontroller;
   StatusRequest statusRequest = StatusRequest.none;
   List<Marker> markers = [];
@@ -24,10 +25,12 @@ class MapController extends GetxController {
 
   @override
   void onInit() async {
-    super.onInit();
+    await _determineAndSetPosition();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _determineAndSetPosition();
     });
+    determinePosition();
+    super.onInit();
 
     completercontroller = Completer<GoogleMapController>();
   }
@@ -48,7 +51,7 @@ class MapController extends GetxController {
   }
 
   Future<void> _determineAndSetPosition() async {
-    position = await _determinePosition();
+    position = await determinePosition();
     kGooglePlex = CameraPosition(
       target: LatLng(position!.latitude, position!.longitude),
       zoom: 14.4746,
@@ -58,7 +61,7 @@ class MapController extends GetxController {
     update();
   }
 
-  Future<Position> _determinePosition() async {
+  Future<Position> determinePosition() async {
     statusRequest = StatusRequest.loading;
     bool serviceEnabled;
     LocationPermission permission;
@@ -67,7 +70,6 @@ class MapController extends GetxController {
     if (!serviceEnabled) {
       await _showEnableLocationDialog();
     }
-
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -81,6 +83,7 @@ class MapController extends GetxController {
           'Location permissions are permanently denied, we cannot request permissions.');
     }
     statusRequest = StatusRequest.success;
+    update();
     return await Geolocator.getCurrentPosition();
   }
 
@@ -118,6 +121,8 @@ class MapController extends GetxController {
 
   void _showErrorDialog(String message) {
     Get.defaultDialog(
+      titleStyle: TextStyle(color: ColorConstant.primary),
+      middleTextStyle: TextStyle(color: ColorConstant.primary),
       title: 'Error',
       content: Text(message),
       actions: [

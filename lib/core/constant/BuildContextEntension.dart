@@ -1,7 +1,14 @@
-
 import 'package:flutter/material.dart';
 
 extension BuildContextEntension<T> on BuildContext {
+
+ // media query
+  EdgeInsets get viewPadding => MediaQuery.of(this).viewPadding;
+  double get bottomViewPadding => MediaQuery.of(this).viewPadding.bottom;
+  EdgeInsets get viewInsets => MediaQuery.of(this).viewInsets;
+  EdgeInsets get padding => MediaQuery.of(this).padding;
+
+
   // text styles
 
   TextStyle? get headlineLarge => Theme.of(this).textTheme.headlineLarge;
@@ -34,9 +41,5 @@ extension BuildContextEntension<T> on BuildContext {
   // theme
   ThemeData get myTheme => Theme.of(this);
 
-  // media query
-  EdgeInsets get viewPadding => MediaQuery.of(this).viewPadding;
-  double get bottomViewPadding => MediaQuery.of(this).viewPadding.bottom;
-  EdgeInsets get viewInsets => MediaQuery.of(this).viewInsets;
-  EdgeInsets get padding => MediaQuery.of(this).padding;
+ 
 }

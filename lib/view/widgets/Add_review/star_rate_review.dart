@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:store_app/controller/add_review_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +35,9 @@ class StarRatingSection extends StatelessWidget {
               Icons.star_rate_rounded,
               color: Color(0xffFF981F),
             ),
-            onRatingUpdate: (rating) {},
+            onRatingUpdate: (rating) {
+              Get.find<AddReviewControllerimple>().rate = rating;
+            },
           ),
         ),
       ],

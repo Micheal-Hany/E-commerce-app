@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/core/constant/colors.dart';
+
 
 class RatingInfo extends StatelessWidget {
-  const RatingInfo({super.key});
+  const RatingInfo({Key? key, required this.rate}) : super(key: key);
+
+  final int rate;
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +13,17 @@ class RatingInfo extends StatelessWidget {
         Row(
           children: [
             Text(
-              '4.8',
-              style: context.bodySmall!.copyWith(
-                fontSize: 15,
-              ),
+              '$rate',
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontSize: 15,
+                  ),
             ),
             const SizedBox(width: 5),
             Text(
               'rating',
-              style: context.bodySmall!.copyWith(
-                fontSize: 12,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontSize: 12,
+                  ),
             ),
           ],
         ),
@@ -31,8 +31,8 @@ class RatingInfo extends StatelessWidget {
           children: List.generate(
             5,
             (index) => Icon(
-              Icons.star_purple500_sharp,
-              color: index == 4 ? Colors.black : const Color(0xffFF981F),
+              Icons.star,
+              color: index < rate ? const Color(0xffFF981F) : Colors.black,
               size: 15,
             ),
           ),

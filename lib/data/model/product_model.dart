@@ -1,4 +1,7 @@
+import 'package:get/get.dart';
+
 class ProductModel {
+    RxInt counter = 1.obs;
   int? itemId;
   String? itemNameEn;
   String? itemNameAr;

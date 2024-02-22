@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/widgets.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
 import 'package:store_app/core/constant/colors.dart';
+import 'package:get/get.dart';
 
 class OnBoardingHeader extends StatelessWidget {
   const OnBoardingHeader({
@@ -16,12 +15,12 @@ class OnBoardingHeader extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Look Good, Feel Good',
+            '145'.tr,
             style: context.headlineMedium,
           ),
           const SizedBox(height: 10.0),
           Text(
-            'Create your individual & unique style and look amazing everyday.',
+            '146'.tr,
             style: context.bodyMedium?.copyWith(color: ColorConstant.manatee),
             textAlign: TextAlign.center,
           ),

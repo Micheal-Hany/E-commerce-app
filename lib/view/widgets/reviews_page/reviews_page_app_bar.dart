@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/review_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Home/Custom_cart_icon.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class ReviewsPageCustomAppBar extends StatelessWidget {
     return Row(
       children: [
         CustomCartIcon(
-          backgroundColor: const Color(0xffFEFEFE),
+          backgroundColor:context.myTheme.cardColor,
           onPressed: () => controller.goBackToProductPage(),
           widget: const Icon(Icons.arrow_back_rounded),
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/view/widgets/Payment_card/Custom_paymet_app_bar.dart';
 import 'package:store_app/view/widgets/Payment_card/card_details.dart';
@@ -13,8 +12,8 @@ class PaymentCard extends StatelessWidget {
   const PaymentCard({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.put(CreditCardController());
-
+    // Get.put(CreditCardController());
+    Get.find<CreditCardController>();
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

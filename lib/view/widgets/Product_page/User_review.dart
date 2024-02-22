@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/data/model/review_model.dart';
 import 'package:store_app/view/widgets/Product_page/Review_content.dart';
 import 'package:store_app/view/widgets/Product_page/User_review_info.dart';
 
 class CustomUserReview extends StatelessWidget {
   const CustomUserReview({
     super.key,
+    required this.reviewModel,
   });
-
+  final ReviewModel reviewModel;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
-          UserInformation(),
-          SizedBox(height: 10),
-          ReviewContent(),
+          UserInformation(
+              name: reviewModel.reviewerName,
+              rating: reviewModel.reviewRate,
+              time: reviewModel.reviewDate),
+          const SizedBox(height: 10),
+          ReviewContent(description: reviewModel.reviewNote),
         ],
       ),
     );

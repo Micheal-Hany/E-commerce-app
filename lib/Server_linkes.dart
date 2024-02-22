@@ -24,4 +24,10 @@ class AppLink {
   static const String homePage = "$server/home.php";
   static const String items = "$server/item/items.php";
   static const String search = "$server/item/search.php";
+  static const String makeOrder = "$server/order/make_orders.php";
+
+  //======================= Review ================
+
+  static const String getReview = "$server/reviews/get_reviews.php";
+  static const String makeReview = "$server/reviews/make_review.php";
 }

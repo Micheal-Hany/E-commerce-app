@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:store_app/data/model/product_model.dart';
 import 'package:get/get.dart';
 
 class ProductItemCounter extends StatelessWidget {
-  final CartPageControllerImpl controller;
   final ProductModel product;
 
   const ProductItemCounter({
     Key? key,
-    required this.controller,
     required this.product,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<CartPageControllerImpl>();
     return Row(
       children: [
         GestureDetector(
           onTap: () {
-            controller.minusOne();
-            controller.getOrderdProducts();
-            // controller.updatePrices();
+            controller.minusOne(product);
+            controller.updatePrices();
           },
           child: Container(
             width: 30,
@@ -44,15 +41,18 @@ class ProductItemCounter extends StatelessWidget {
         ),
         SizedBox(width: Dimensions.getWidth(context) * .05),
         Obx(
-          () => Text("${controller.counter.value}",
+          () => Text(
+              controller.productsPrices
+                  .where((element) => element == product)
+                  .length
+                  .toString(),
               style: context.bodySmall!.copyWith(fontSize: 15)),
         ),
         SizedBox(width: Dimensions.getWidth(context) * .05),
         GestureDetector(
           onTap: () {
-            controller.addOne();
-            controller.getOrderdProducts();
-            // controller.updatePrices();
+            controller.addOne(product);
+            controller.updatePrices();
           },
           child: Container(
             width: 30,
@@ -74,8 +74,7 @@ class ProductItemCounter extends StatelessWidget {
         GestureDetector(
           onTap: () {
             controller.remove(product);
-            controller.getOrderdProducts();
-            // controller.updatePrices();
+            controller.updatePrices();
           },
           child: Container(
               width: 35.0,

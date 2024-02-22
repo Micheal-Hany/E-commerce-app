@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/core/constant/BuildContextEntension.dart';
 
 class CustomGoToRegisterPageOrLogin extends StatelessWidget {
-  const CustomGoToRegisterPageOrLogin({super.key, required this.textOne, required this.textTwo, required this.onTap});
+  const CustomGoToRegisterPageOrLogin(
+      {super.key,
+      required this.textOne,
+      required this.textTwo,
+      required this.onTap});
   final String textOne;
   final String textTwo;
   final void Function() onTap;
@@ -16,11 +21,7 @@ class CustomGoToRegisterPageOrLogin extends StatelessWidget {
         ),
         InkWell(
           onTap: onTap,
-          child: Text(textTwo,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge!
-                  .copyWith(fontSize: 14, color: Colors.black)),
+          child: Text(textTwo, style: context.bodyLarge),
         )
       ],
     );

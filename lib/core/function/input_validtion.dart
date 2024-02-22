@@ -6,6 +6,9 @@ inputValidtion(String val, int min, int max, String type) {
       return '42'.tr;
     }
   }
+  if (type == 'text') {
+    val.isEmpty ? '45'.tr : null;
+  }
   if (type == 'email') {
     if (!GetUtils.isEmail(val)) {
       return "43".tr;
@@ -20,9 +23,9 @@ inputValidtion(String val, int min, int max, String type) {
     return '45'.tr;
   }
   if (val.length < 5) {
-    return '46 $min'.tr;
+    return "${'46'.tr}$min";
   }
   if (val.length > 30) {
-    return '47 $max'.tr;
+    return "${'47'.tr}+$max";
   }
 }

@@ -1,12 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/home_screen_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/function/responsive_app.dart';
-import 'package:store_app/main.dart';
 import 'package:store_app/view/widgets/Product_page/avatar_image.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +13,7 @@ class CustomDrawerUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HaomeScreenContollerImpl());
+    final controller = Get.find<HaomeScreenContollerImpl>();
     return Row(
       children: [
         const UserAvatar(),
@@ -27,9 +23,9 @@ class CustomDrawerUserInfo extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GetBuilder<HaomeScreenContollerImpl>(
-                  builder: (controller) => Text(
-                    controller.name,
+                Obx(
+                  () => Text(
+                    controller.name.value.toString(),
                     style: context.bodyLargeW500,
                   ),
                 ),
@@ -64,7 +60,7 @@ class CustomDrawerUserInfo extends StatelessWidget {
                   color: context.theme.cardColor,
                   borderRadius: const BorderRadius.all(Radius.circular(5.0))),
               child: Text(
-                '3 Orders',
+                '${controller.orderTrackController.orders.length} Orders',
                 style: TextStyle(color: ColorConstant.manatee),
               ),
             )

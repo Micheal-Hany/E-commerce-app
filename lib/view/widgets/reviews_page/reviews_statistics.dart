@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/review_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:store_app/core/function/responsive_app.dart';
 import 'package:get/get.dart';
 
 class ReviewStatisticsSection extends StatelessWidget {
   final ReviewPageControllerImpl controller;
 
-  const ReviewStatisticsSection({Key? key, required this.controller})
+  const ReviewStatisticsSection(
+      {Key? key, required this.controller, required this.count})
       : super(key: key);
-
+  final int count;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,7 +21,7 @@ class ReviewStatisticsSection extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '245',
+                  '$count',
                   style: context.bodySmall!.copyWith(
                     fontSize: 15,
                   ),
@@ -51,28 +51,7 @@ class ReviewStatisticsSection extends StatelessWidget {
             )
           ],
         ),
-        TextButton(
-          onPressed: () => controller.goToAddNotePage(),
-          style: TextButton.styleFrom(
-            backgroundColor: const Color(0xffFF7043),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.edit_note_rounded,
-                color: Colors.white,
-              ),
-              Text(
-                "63".tr,
-                style: CustomStyle.textStyle13.copyWith(color: Colors.white),
-              ),
-            ],
-          ),
-        )
+       
       ],
     );
   }

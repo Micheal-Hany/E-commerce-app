@@ -1,8 +1,9 @@
-import 'package:dartz/dartz.dart';
+import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
 import 'package:store_app/data/model/address_model.dart';
+import 'package:store_app/data/model/order_model.dart';
 import 'package:store_app/data/model/product_model.dart';
 
 class DBHelper {
@@ -51,6 +52,7 @@ class DBHelper {
     await _createProductTable(db, 'Cart_Products');
     await _createAddressTable(db, 'addresses');
     await _createCardTable(db, 'cards');
+    await _createOrdefrTable(db, "orders");
   }
 
   Future<void> _createProductTable(Database db, String tableName) async {
@@ -100,6 +102,61 @@ class DBHelper {
       cvvCode TEXT
     )
   ''');
+  }
+
+  Future<void> _createOrdefrTable(Database db, String tableName) async {
+    await db.execute('''
+      CREATE TABLE $tableName (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        address TEXT,
+        deliveryPrice REAL,
+        totalPrice REAL,
+        orderDateTime TEXT,
+        items TEXT,
+        cartNumber TEXT 
+      )
+    ''');
+  }
+
+  Future<void> insertOrder(OrderModel order) async {
+    final db = await database;
+    await db.insert("orders", order.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<OrderModel>> getOrders() async {
+    final db = await database;
+
+    final List<Map<String, dynamic>> maps = await db.query("orders");
+    return List.generate(maps.length, (i) {
+      final List<dynamic> itemsList =
+          jsonDecode(maps[i]['items']); // Parse JSON string into a list of maps
+      final List<ProductModel> products = itemsList
+          .map((item) => ProductModel.fromJson(item))
+          .toList(); // Convert maps into ProductModel objects
+      return OrderModel(
+        cartNumber: maps[i]["cartNumber"],
+        address: maps[i]['address'],
+        deliveryPrice: maps[i]['deliveryPrice'],
+        totalPrice: maps[i]['totalPrice'],
+        orderDateTime: DateTime.parse(maps[i]['orderDateTime']),
+        items: products, // Assign the list of ProductModel objects to items
+      );
+    });
+  }
+
+  Future<void> deleteAllRows(String tableName) async {
+    final db = await database;
+    await db.rawDelete('DELETE FROM $tableName');
+  }
+
+  Future<void> deleteOrder(int id) async {
+    final Database db = await database;
+    await db.delete(
+      "orders",
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
   Future<int> insertProduct(String tableName, ProductModel product) async {
@@ -181,5 +238,32 @@ class DBHelper {
     } else {
       return null;
     }
+  }
+
+  Future<OrderModel?> getOrderContainingItem(String itemId) async {
+    final db = await database;
+    final List<Map<String, dynamic>> orders = await db.query('orders');
+
+    // Initialize a boolean flag to track if the item is found
+    bool itemFound = false;
+
+    for (final orderMap in orders) {
+      final List<dynamic> itemsJson = json.decode(orderMap['items']);
+      final List<ProductModel> items =
+          itemsJson.map((item) => ProductModel.fromJson(item)).toList();
+
+      for (final item in items) {
+        if (item.itemId == itemId) {
+          // Set the flag to true to indicate that the item is found
+          itemFound = true;
+          return OrderModel.fromMap(orderMap);
+        }
+      }
+      // Check if the item is found before proceeding to the next order
+      if (itemFound) {
+        break;
+      }
+    }
+    return null;
   }
 }

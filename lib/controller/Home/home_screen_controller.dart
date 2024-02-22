@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/controller/Home/wallet_controller.dart';
+import 'package:store_app/controller/order_track_controller.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/view/screens/Home/cart_page.dart';
@@ -13,7 +14,8 @@ abstract class HaomeScreenContoller extends GetxController {
 }
 
 class HaomeScreenContollerImpl extends HaomeScreenContoller {
-  WalletController walletController = Get.put(WalletController());
+  WalletController walletController = Get.find<WalletController>();
+  OrderTrackController orderTrackController= Get.find<OrderTrackController>();
   int currentPage = 0;
   List<Widget> screens = [
     const MyHomePage(),
@@ -45,7 +47,7 @@ class HaomeScreenContollerImpl extends HaomeScreenContoller {
     Get.offNamed(AppRouts.login);
   }
 
-  var name = "";
+  RxString name = "".obs;
 
   @override
   void onInit() {
@@ -53,7 +55,7 @@ class HaomeScreenContollerImpl extends HaomeScreenContoller {
     var usernameFromSharedPreferences =
         myServices.sharedPreferences.get("username");
 
-    name = usernameFromSharedPreferences != null
+    name.value = usernameFromSharedPreferences != null
         ? usernameFromSharedPreferences.toString()
         : "";
 

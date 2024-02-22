@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 
 class OrderInfoSection extends StatelessWidget {
@@ -9,7 +8,7 @@ class OrderInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CartPageControllerImpl());
+    final controller = Get.find<CartPageControllerImpl>();
     // print(controller.shipingCost);
     return Obx(() => Column(
           children: [

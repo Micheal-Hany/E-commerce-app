@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
-import 'package:store_app/data/model/address_model.dart';
-import 'package:store_app/view/screens/Map_page.dart';
 import 'package:store_app/view/widgets/cart/user_location.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +9,8 @@ class CustomDeliveryAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CartPageControllerImpl());
+    // Get.put(CartPageControllerImpl());
+    Get.find<CartPageControllerImpl>();
     return GetBuilder<CartPageControllerImpl>(
       builder: (controller) {
         return Column(
@@ -30,7 +28,7 @@ class CustomDeliveryAddress extends StatelessWidget {
                 ),
               ],
             ),
-            CustomUserLocationDetailes(
+            UserLocationDetails(
               city: controller.city,
               country: controller.country,
             )

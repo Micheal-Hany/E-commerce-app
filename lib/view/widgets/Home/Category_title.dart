@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/core/constant/BuildContextEntension.dart';
-import 'package:store_app/core/constant/Style.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/constant/colors.dart';
-import 'package:store_app/main.dart';
 
 class CustomCategoryTitle extends StatelessWidget {
   const CustomCategoryTitle({

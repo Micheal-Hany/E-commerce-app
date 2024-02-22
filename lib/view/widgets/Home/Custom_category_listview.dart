@@ -59,7 +59,7 @@ class CustomCategorylistView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeControllerImpl());
+    Get.find<HomeControllerImpl>();
 
     return GetBuilder<HomeControllerImpl>(
       builder: (controller) => Scaffold(

@@ -19,7 +19,7 @@ class OnBoardingNextButton extends StatelessWidget {
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(controller.isMale.value ? 'Next' : 'Skip'),
+          child: Text(controller.isMale.value ? '149'.tr : '150'.tr),
         ),
       ),
     );

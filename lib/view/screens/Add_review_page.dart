@@ -14,7 +14,8 @@ class AddReviewpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AddReviewControllerimple());
+    Get.find<AddReviewControllerimple>();
+
     return Scaffold(
       backgroundColor: context.myTheme.scaffoldBackgroundColor,
       body: GetBuilder<AddReviewControllerimple>(
@@ -23,22 +24,28 @@ class AddReviewpage extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 50),
-              child: Column(
-                children: [
-                  AddReviewHeaderSection(controller: controller),
-                  SizedBox(height: Dimensions.getHeight(context) * .06),
-                  const NameAndExperienceInputSection(),
-                  SizedBox(height: Dimensions.getHeight(context) * .02),
-                  const StarRatingSection(),
-                  SizedBox(height: Dimensions.getHeight(context) * .1),
-                  CustomButton(
-                    backgroundColor: const Color(0xff9775FA),
-                    buttonName: "100".tr,
-                    height: Dimensions.getHeight(context) * .06,
-                    onPressed: () {},
-                    width: Dimensions.getWidth(context) * .7,
-                  )
-                ],
+              child: Form(
+                key: controller.formkey,
+                child: Column(
+                  children: [
+                    AddReviewHeaderSection(controller: controller),
+                    SizedBox(height: Dimensions.getHeight(context) * .06),
+                   
+                    NameAndExperienceInputSection(
+                        controller: controller, formKey: controller.formkey),
+                    SizedBox(height: Dimensions.getHeight(context) * .02),
+                    const StarRatingSection(),
+                    SizedBox(height: Dimensions.getHeight(context) * .1),
+                    CustomButton(
+                      backgroundColor: const Color(0xff9775FA),
+                      buttonName: "100".tr,
+                      height: Dimensions.getHeight(context) * .06,
+                      onPressed: () => controller.makeReview(
+                          Get.parameters['id']!, "${controller.rate}"),
+                      width: Dimensions.getWidth(context) * .7,
+                    )
+                  ],
+                ),
               ),
             ),
           );

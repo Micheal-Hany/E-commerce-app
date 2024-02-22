@@ -12,7 +12,7 @@ class OnBoardingBottomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(onBordingControllerImplment());
+ Get.find<onBordingControllerImplment>();
     return Container(
       margin: const EdgeInsets.all(15),
       decoration: BoxDecoration(
