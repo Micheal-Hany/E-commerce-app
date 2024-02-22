@@ -1,9 +1,10 @@
 # Flutter E-Commerce App
 
 This Flutter E-Commerce app is built based on the Laza Figma design, providing a platform for users to browse, search, and purchase products online.
-![Screen 1](![alt text](1.png) ![alt text](2.png) ![alt text](3.png))
-![Screen 2](![alt text](2-1.png) ![alt text](3-1.png) ![alt text](1-1.png))
-![Screen 3](![alt text](3-2.png) ![alt text](1-2.png) ![alt text](2-2.png))
+
+## Screenshots
+
+![alt text](3-3.png) ![alt text](1-3.png) ![alt text](2-3.png)
 
 ## Overview
 
@@ -66,5 +67,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Credits
 
-- Figma design: [Laza Figma Design](https://www.figma.com/file/3jBzAL9c1qmRJjmSA9Z5Qv/Laza---Ecommerce-Mobile-App-UI-Kit-(Community)?type=design&mode=design)
+- Figma design: [Laza Figma Design](<https://www.figma.com/file/3jBzAL9c1qmRJjmSA9Z5Qv/Laza---Ecommerce-Mobile-App-UI-Kit-(Community)?type=design&mode=design>)
 - Flutter framework: [Flutter](https://flutter.dev/)
