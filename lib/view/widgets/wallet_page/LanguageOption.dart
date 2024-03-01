@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
- 
 
 class LanguageOption extends StatelessWidget {
   final String imageUrl;
@@ -28,9 +28,9 @@ class LanguageOption extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                imageUrl,
-                width: 40,
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
+                width: 50,
                 height: 40,
                 fit: BoxFit.cover,
               ),

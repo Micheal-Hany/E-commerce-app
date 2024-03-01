@@ -225,6 +225,20 @@ class DBHelper {
     });
   }
 
+  Future<AddressModel?> getAddressById(int itemId, String tableName) async {
+    final db = await database;
+    List<Map<String, dynamic>> result = await db.query(
+      tableName,
+      where: 'id = ?',
+      whereArgs: [itemId],
+    );
+
+    if (result.isNotEmpty) {
+      return AddressModel.fromJson(result.first);
+    } else {
+      return null;
+    }
+  }
   Future<ProductModel?> getProductById(int itemId, String tableName) async {
     final db = await database;
     List<Map<String, dynamic>> result = await db.query(
@@ -244,7 +258,7 @@ class DBHelper {
     final db = await database;
     final List<Map<String, dynamic>> orders = await db.query('orders');
 
-    // Initialize a boolean flag to track if the item is found
+    
     bool itemFound = false;
 
     for (final orderMap in orders) {
@@ -254,7 +268,7 @@ class DBHelper {
 
       for (final item in items) {
         if (item.itemId == itemId) {
-          // Set the flag to true to indicate that the item is found
+      
           itemFound = true;
           return OrderModel.fromMap(orderMap);
         }
