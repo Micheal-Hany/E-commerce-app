@@ -1,19 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:store_app/controller/ViewAvailableAddressesController.dart';
-import 'package:store_app/core/class/status%20request.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:store_app/core/constant/colors.dart';
 import 'package:store_app/core/services/sqlite_servise.dart';
 import 'package:store_app/data/model/address_model.dart';
+import 'package:store_app/core/class/status%20request.dart';
 
 class MapController extends GetxController {
-  ViewAvailableAddressesController viewAvailableAddressesController =
-      Get.find<ViewAvailableAddressesController>();
   Completer<GoogleMapController>? completercontroller;
   StatusRequest statusRequest = StatusRequest.none;
   List<Marker> markers = [];
@@ -24,98 +20,51 @@ class MapController extends GetxController {
   AddressModel? addressModel;
 
   @override
-  void onInit() async {
-    await _determineAndSetPosition();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _determineAndSetPosition();
-    });
-    determinePosition();
+  void onInit() {
+    _init();
     super.onInit();
+  }
 
+  void _init() async {
+    await _determineAndSetPosition();
     completercontroller = Completer<GoogleMapController>();
   }
 
-  Future<String> getAddressFromLatLng(LatLng latLng) async {
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
-
-    if (placemarks.isNotEmpty) {
-      Placemark place = placemarks[0];
-      String address =
-          "${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}";
-
-      return address;
-    } else {
-      return "Address not found";
-    }
-  }
-
   Future<void> _determineAndSetPosition() async {
-    position = await determinePosition();
-    kGooglePlex = CameraPosition(
-      target: LatLng(position!.latitude, position!.longitude),
-      zoom: 14.4746,
-    );
-    addMarkers(position!.latitude, position!.longitude);
-
-    update();
-  }
-
-  Future<Position> determinePosition() async {
     statusRequest = StatusRequest.loading;
-    bool serviceEnabled;
-    LocationPermission permission;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      await _showEnableLocationDialog();
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      // Request location permission
       permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        throw Exception('Location permissions are denied.');
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        // Location permissions are denied.
+        _showErrorDialog('Location permissions are denied.');
+        return;
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw Exception(
+      // Location permissions are permanently denied.
+      _showErrorDialog(
           'Location permissions are permanently denied, we cannot request permissions.');
+      return;
     }
-    statusRequest = StatusRequest.success;
-    update();
-    return await Geolocator.getCurrentPosition();
-  }
 
-  Future<void> _showEnableLocationDialog() async {
-    bool? enableLocation = await Get.defaultDialog<bool>(
-      title: 'Location Services Disabled',
-      content: const Text('Please enable location services to continue.'),
-      actions: [
-        TextButton(
-          onPressed: () => Get.back(result: true),
-          child: const Text('Enable'),
-        ),
-        TextButton(
-          onPressed: () => Get.back(result: false),
-          child: const Text('Cancel'),
-        ),
-      ],
-    );
-
-    if (enableLocation!) {
-      await Geolocator.openAppSettings();
-    } else {
-      throw Exception('Location services are disabled.');
-    }
-  }
-
-  void _handleLocationError(dynamic e) {
-    if (e is Exception &&
-        e.toString().contains('Location services are disabled.')) {
-      _showEnableLocationDialog();
-    } else {
-      _showErrorDialog('Error determining position: $e');
+    try {
+      // Get current position
+      position = await Geolocator.getCurrentPosition();
+      kGooglePlex = CameraPosition(
+        target: LatLng(position!.latitude, position!.longitude),
+        zoom: 14.4746,
+      );
+      addMarkers(position!.latitude, position!.longitude);
+      statusRequest = StatusRequest.success;
+      update();
+    } catch (e) {
+      _showErrorDialog('Error getting current location: $e');
     }
   }
 
@@ -141,20 +90,35 @@ class MapController extends GetxController {
       position: LatLng(latitude, longitude),
       infoWindow: InfoWindow(title: '126'.tr),
     ));
+
+    lat = latitude;
+    long = longitude;
     List<Placemark> placemarks =
         await placemarkFromCoordinates(latitude, longitude);
     addressModel = AddressModel.fromPlacemark(placemarks[0]);
-    lat = latitude;
-    long = longitude;
     update();
   }
 
-  void addAddressToDatabase(AddressModel addressModel) async {
-    await DBHelper.instance().insertAddress("addresses", addressModel);
+  void addAddressToDatabase() async {
+    await DBHelper.instance().insertAddress("addresses", addressModel!);
   }
 
-  goBack() {
-    viewAvailableAddressesController.getAllAddresses();
+  void goBack() {
     Get.back();
+  }
+
+  Future<String> getAddressFromLatLng(LatLng latLng) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+
+    if (placemarks.isNotEmpty) {
+      Placemark place = placemarks[0];
+      String address =
+          "${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}";
+
+      return address;
+    } else {
+      return "Address not found";
+    }
   }
 }

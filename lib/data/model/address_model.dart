@@ -1,17 +1,14 @@
-
 import 'package:geocoding/geocoding.dart';
 
 class AddressModel {
-  static int _nextId = 1; // Static variable to track the next id
-  final int id; // Instance variable for the id
-  final String street;
-  final String subLocality;
-  final String locality;
-  final String postalCode;
-  final String country;
-  String? name;
-  String? phoneNumber;
-  String? address;
+  static int _nextId = 1; // Initialize _nextId with a starting value
+
+  int id;
+  String street;
+  String subLocality;
+  String locality;
+  String postalCode;
+  String country;
 
   AddressModel({
     required this.id,
@@ -20,9 +17,6 @@ class AddressModel {
     required this.locality,
     required this.postalCode,
     required this.country,
-    this.name,
-    this.phoneNumber,
-    this.address,
   });
 
   factory AddressModel.fromPlacemark(Placemark placemark) {
@@ -64,4 +58,3 @@ class AddressModel {
     return '$id: $street, $subLocality, $locality, $postalCode, $country';
   }
 }
-
