@@ -80,19 +80,6 @@ class MapController extends GetxController {
     return await Geolocator.getCurrentPosition();
   }
 
-  void showErrorDialog(String message) {
-    Get.defaultDialog(
-      title: 'Error',
-      content: Text(message),
-      actions: [
-        TextButton(
-          onPressed: () => Get.back(),
-          child: const Text('OK'),
-        ),
-      ],
-    );
-  }
-
   void addMarkers(double latitude, double longitude) async {
     markers.clear();
     markers.add(Marker(

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:store_app/controller/Home/cart_page_controller.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
+import 'package:store_app/core/class/card_model.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/core/services/sqlite_servise.dart';

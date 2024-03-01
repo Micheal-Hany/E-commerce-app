@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:store_app/controller/payment_card_controller.dart';
+import 'package:store_app/core/class/card_model.dart';
 import 'package:store_app/data/model/address_model.dart';
 import 'package:store_app/data/model/order_model.dart';
 import 'package:store_app/data/model/product_model.dart';

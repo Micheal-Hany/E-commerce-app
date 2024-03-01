@@ -46,7 +46,7 @@ class MapAddressPage extends StatelessWidget {
                           child: Row(
                             children: [
                               CustomCartIcon(
-                                backgroundColor: const Color(0xffFEFEFE),
+                                backgroundColor: context.theme.cardColor,
                                 onPressed: () => controllerpage.goBack(),
                                 widget: const Icon(Icons.arrow_back_rounded),
                               ),

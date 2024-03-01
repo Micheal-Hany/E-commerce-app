@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
+import 'package:store_app/core/function/custom_snackbar.dart';
 import 'package:store_app/core/function/handlData.dart';
 import 'package:store_app/data/data%20source/remote/review_data.dart';
 
@@ -20,7 +21,6 @@ class AddReviewControllerimple extends AddReviewController {
   makeReview(String id, String rate) async {
     if (formkey.currentState!.validate()) {
       stateReques = StatusRequest.loading;
-      print("${name.text} ${note.text}");
       var response =
           await reviewData.postReview(id, name.text, note.text, rate);
 
@@ -31,10 +31,14 @@ class AddReviewControllerimple extends AddReviewController {
           stateReques = StatusRequest.failure;
         }
       }
+      customSnackbar(
+        "127".tr,
+        "",
+      );
       note.clear();
       name.clear();
     }
-    
+
     update();
   }
 

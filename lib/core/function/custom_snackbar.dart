@@ -8,7 +8,7 @@ customSnackbar(String title, String message) {
     message,
     backgroundColor: Colors.blueGrey[900], // Background color
     colorText: Colors.white, // Text color
-    borderRadius: 10, // BorderRadius
+    borderRadius: 15, // Increased BorderRadius for a more rounded appearance
     snackStyle: SnackStyle.FLOATING,
     margin: const EdgeInsets.all(16), // Margin
     padding:
@@ -18,7 +18,8 @@ customSnackbar(String title, String message) {
     barBlur: 20, // Blur effect for the snackbar
     isDismissible: true, // Allow user to dismiss the snackbar
     dismissDirection: DismissDirection.horizontal, // Dismiss direction
-    icon: const Icon(Icons.info_outline, color: Colors.white), // Icon
+    icon: const Icon(Icons.info_outline,
+        color: Colors.white, size: 28), // Larger Icon size
     shouldIconPulse: true, // Pulse animation for the icon
     maxWidth: Get.width * 0.8, // Maximum width for the snackbar
     animationDuration: const Duration(milliseconds: 400), // Animation duration
@@ -30,8 +31,8 @@ customSnackbar(String title, String message) {
         Get.back();
       },
       child: Text(
-        '128'.tr,
-        style: TextStyle(color: ColorConstant.manatee), // Button text color
+        '128'.tr, // Changed button text
+        style: const TextStyle(color: Colors.white), // Button text color
       ),
     ), // Main button
     onTap: (_) {
