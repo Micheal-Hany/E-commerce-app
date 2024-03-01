@@ -1,7 +1,7 @@
 import 'package:geocoding/geocoding.dart';
 
 class AddressModel {
-  static int _nextId = 1; // Initialize _nextId with a starting value
+  static int _nextId = 1;  
 
   int id;
   String street;
