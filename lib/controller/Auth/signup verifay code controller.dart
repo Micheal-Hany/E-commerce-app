@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
+import 'package:store_app/core/function/show_dialog.dart';
 import 'package:store_app/data/data%20source/remote/Auth/verifaycodeSignup.dart';
 
 abstract class SignUpVerifayCodeController extends GetxController {
@@ -30,10 +31,11 @@ class SignUpVerifayCodeControllerImpl extends SignUpVerifayCodeController {
         Get.toNamed(AppRouts.signUpSuccess);
         email = '';
       } else {
-        Get.defaultDialog(
-          title: "48".tr,
-          middleText: "50".tr,
-        );
+        customDialog("48".tr, "50".tr, () {}, () {}, '', '');
+        // Get.defaultDialog(
+        //   title: "48".tr,
+        //   middleText: "50".tr,
+        // );
         stateRequest = StatusRequest.failure;
       }
     }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:store_app/core/class/status%20request.dart';
 import 'package:store_app/core/constant/routsName.dart';
 import 'package:store_app/core/function/handlData.dart';
+import 'package:store_app/core/function/show_dialog.dart';
 import 'package:store_app/core/services/Services.dart';
 import 'package:store_app/data/data%20source/remote/Auth/signup.dart';
 
@@ -36,7 +37,7 @@ class SignUpControllerImpl extends SignUpController {
       update();
       var response = await signUpData.signUp(
           userName.text, email.text, password.text, phone.text);
-      print("response------------------->  $response");
+
       stateRequest = handleData(response);
       if (StatusRequest.success == stateRequest) {
         if (response["status"] == "success") {
@@ -50,6 +51,8 @@ class SignUpControllerImpl extends SignUpController {
           phone.clear();
           userName.clear();
         } else {
+          customDialog("48".tr, "165".tr, () {}, () {}, '', '');
+
           stateRequest = StatusRequest.failure;
         }
       }

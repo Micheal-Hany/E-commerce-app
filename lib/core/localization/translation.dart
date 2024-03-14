@@ -170,6 +170,8 @@ class MyTranslation extends Translations {
               'لقد تم تأكيد طلبك، وسنرسل إليك رسالة تأكيد بالبريد الإلكتروني قريبًا.',
           '163': 'انتقل إلى الطلبات',
           '164': 'مواصلة التسوق',
+          '165':'البريد الإلكتروني أو رقم الهاتف مسجل بالفعل',
+
         },
         "en": {
           "1": "Choose Language",
@@ -341,6 +343,7 @@ class MyTranslation extends Translations {
               'Your order has been confirmed, we will send you confirmation email shortly.',
           '163': 'Go to Orders',
           '164': 'continue shopping',
+          '165':'Email or phone number already registered',
         }
       };
 }
